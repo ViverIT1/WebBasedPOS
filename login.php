@@ -19,7 +19,7 @@ echo "Number of rows: " . mysqli_num_rows($result);
 if (mysqli_num_rows($result) == 1) {
     session_start();
     $_SESSION["username"] = $username;
-    header("Location: http://localhost/yourdirectory/Homepage.html");
+    header("Location: http://localhost/New folder/WebBasedPOS/Homepage.html");
     echo "<p>Success Login</p>";
 } else {
     echo "<p>Incorrect username or password.</p>";
