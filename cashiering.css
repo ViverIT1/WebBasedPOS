@@ -30,6 +30,8 @@ body {
     }
     
     .content-table{
+        position: relative;
+    width: 60%;
     border-collapse: collapse;
     margin: 10px;
     }
@@ -67,3 +69,77 @@ body {
     th{
         border: 1px solid #060505;
     }
+
+
+/* Use flexbox to align items to the right and stack them vertically */
+.scnd_container {
+    position: relative;
+    margin-right: 10%;
+    flex-direction: column;
+}
+
+/* Apply flexbox to the elements to move them to the right */
+.subtotal, .perc_discnt, .discount, .total {
+  margin-left: auto;
+}
+
+.subtotal, .perc_discnt, .discount {
+padding: 13px;
+}
+
+/* Heading style for the grand total */
+.grand_ttl {
+  margin-bottom: 5px;
+}
+
+/* Style for the numbers in each section */
+.sub_number, .disc_percnumb, .disc_numb, .total_numb {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Additional styles for input elements (hidden fields) */
+input[type="hidden"] {
+  display: none;
+}
+
+.total_numb{
+        width: 300px; /* Adjust the width and height as per your requirement */
+        height: 100px;
+        background-color: #f0f0f0; /* Set the background color of the box */
+        border: 2px solid #ccc; /* Add a border around the box */
+        border-radius: 8px; /* Round the corners of the box */
+        display: flex; /* Use flexbox to center the number */
+        justify-content: center;
+        align-items: center;
+        font-size: 30px; /* Set the font size for the number */
+}
+
+
+.scnd_box {
+    width: 400px;
+    height: 85%;
+    position: absolute; /* Set the box to absolute position */
+    top: 60px; /* Adjust the top value as per your preference */
+    right: 70px; /* Adjust the right value as per your preference */
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    z-index: 1; /* Set a higher z-index to make the box appear above the table */
+}
+
+.sub_number, .disc_percnumb, .disc_numb{
+    width: 100%; /* Adjust the width and height as per your requirement */
+    height: 40px;
+    background-color: #f0f0f0; /* Set the background color of the box */
+    border: 2px solid #ccc; /* Add a border around the box */
+    border-radius: 8px; /* Round the corners of the box */
+    display: flex; /* Use flexbox to center the number */
+    justify-content: center;
+    align-items: center;
+    font-size: 20px; /* Set the font size for the number */
+}
