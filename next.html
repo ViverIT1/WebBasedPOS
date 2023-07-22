@@ -15,15 +15,9 @@
     <h1 class="header">Sales and Inventory Management</h1>
 </div>
 
-<div class=".center-embedded">
-<div class="embedded-website">
-  <iframe src="cashiering.html" frameborder="0" scrolling="no" id="embeddedIframe"></iframe>
-</div>
-</div>
-
 <div class="side-bar">
   <div class="menu">
-    <div class="item"><a class="sub-btn"><i class="fas fa-desktop"></i>Cashiering </a>
+    <div class="item"><a href="cashiering.html" target="MainIframe"><i class="fas fa-desktop"></i>Cashiering </a>
     </div>
     
 
@@ -31,26 +25,26 @@
     <i class="fas fa-angle-right dropdown"></i>
     </a>
     <div class="sub-menu">
-      <a href="itemanage.html" class="sub-module">Item Management</a>
-      <a href="stockadj.html" class="sub-module">Stock Adjusment</a>
-      <a href="discount.html" class="sub-module">Discount</a>
-      <a href="packages.html" class="sub-module">Packages</a>
+      <a href="" class="sub-module">Item Management</a>
+      <a href="" class="sub-module">Stock Adjusment</a>
+      <a href="" class="sub-module">Discount</a>
+      <a href="" class="sub-module">Packages</a>
     </div>
     </div>
 
-    <div class="item"><a class="sub-btn"><i class="fas fa-desktop"></i>User Management</a>
+    <div class="item"><a class="sub-btn" href="usermanage.html" target="MainIframe"><i class="fas fa-desktop"></i>User Management</a>
     </div>
 
-    <div class="item"><a class="sub-btn"><i class="fas fa-desktop"></i>Customer Information Management</a>
+    <div class="item"><a class="sub-btn" href="customermanage.html" target="MainIframe"><i class="fas fa-desktop"></i>Customer Information Management</a>
     </div>
 
-    <div class="item"><a class="sub-btn"><i class="fas fa-desktop"></i>Supplier
+    <div class="item"><a class="sub-btn" class="sub-btn"><i class="fas fa-desktop"></i>Supplier
       <i class="fas fa-angle-right dropdown"></i>
     </a>
       <div class="sub-menu">
-        <a href="" class="sub-module">Supplier Information Management</a>
-        <a href="" class="sub-module">Purchased Oder to Supplier</a>
-        <a href="" class="sub-module">Supplier Delivery</a>
+        <a href="supplierinfo.html" target="MainIframe" class="sub-module">Supplier Information Management</a>
+        <a href="ordertosupp.html" target="MainIframe" class="sub-module">Purchased Oder to Supplier</a>
+        <a href="suppdel.html" target="MainIframe" class="sub-module">Supplier Delivery</a>
       </div>
     </div>
 
@@ -58,11 +52,11 @@
       <i class="fas fa-angle-right dropdown"></i>
     </a>
       <div class="sub-menu">
-        <a href="" class="sub-module">Customer Return</a>
-        <a href="" class="sub-module">Supplier Return</a>
-        <a href="" class="sub-module">Database Backup and Restore</a>
-        <a href="" class="sub-module">Audit Trail</a>
-        <a href="" class="sub-module">Item Barcode</a>
+        <a href="customereturn.html" target="MainIframe" class="sub-module">Customer Return</a>
+        <a href="suppreturn.html" target="MainIframe" class="sub-module">Supplier Return</a>
+        <a href="" target="MainIframe" class="sub-module">Database Backup and Restore</a>
+        <a href="" target="MainIframe" class="sub-module">Audit Trail</a>
+        <a href="" target="MainIframe" class="sub-module">Item Barcode</a>
       </div>
     </div>
 
@@ -70,15 +64,15 @@
       <i class="fas fa-angle-right dropdown"></i>
     </a>
       <div class="sub-menu">
-        <a href="" class="sub-module">Inventory Report</a>
-        <a href="" class="sub-module">Stock Adjusment Report</a>
-        <a href="" class="sub-module">Sales Report</a>
-        <a href="" class="sub-module">Customer Report</a>
-        <a href="" class="sub-module">Supplier Return Report</a>
-        <a href="" class="sub-module">Re Order List Report</a>
-        <a href="" class="sub-module">Supplier Delivery Report</a>
-        <a href="" class="sub-module">Product Experiration Report</a>
-        <a href="" class="sub-module">Data Analytics</a>
+        <a href="" target="MainIframe" class="sub-module">Inventory Report</a>
+        <a href="" target="MainIframe" class="sub-module">Stock Adjusment Report</a>
+        <a href="" target="MainIframe" class="sub-module">Sales Report</a>
+        <a href="" target="MainIframe" class="sub-module">Customer Report</a>
+        <a href="" target="MainIframe" class="sub-module">Supplier Return Report</a>
+        <a href="" target="MainIframe" class="sub-module">Re Order List Report</a>
+        <a href="" target="MainIframe" class="sub-module">Supplier Delivery Report</a>
+        <a href="" target="MainIframe"  class="sub-module">Product Experiration Report</a>
+        <a href="" target="MainIframe"  class="sub-module">Data Analytics</a>
       </div>
     </div>
 
@@ -86,17 +80,25 @@
       <i class="fas fa-angle-right dropdown"></i>
     </a>
       <div class="sub-menu">
-        <a href="" class="sub-module">Pricing Maintenance</a>
-        <a href="" class="sub-module">Receipt Maintenance</a>
-        <a href="" class="sub-module">Update Policy</a>
+        <a href="" target="MainIframe" class="sub-module">Pricing Maintenance</a>
+        <a href="" target="MainIframe"  class="sub-module">Receipt Maintenance</a>
+        <a href="" target="MainIframe"  class="sub-module">Update Policy</a>
       </div>
     </div>
 
-    <div class="item"><a class="sub-btn"><i class="fas fa-desktop"></i>Policy</a>
+    <div class="item"><a class="sub-btn" href="" target="MainIframe" ><i class="fas fa-desktop"></i>Policy</a>
     </div>
     
   </div>
 </div>
+
+
+<div class="center-embedded">
+  <div class="embedded-website">
+    <iframe src="iframe.html" name="MainIframe"></iframe>
+  </div>
+</div>
+
 <script>
 $(document).ready(function(){
   $('.sub-btn').click(function(){
