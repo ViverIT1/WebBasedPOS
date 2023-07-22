@@ -87,7 +87,7 @@ body {
     padding-bottom: 20px;
   }
   .iframe {
-    position: absolute;
+    position: fixed;
     bottom: 20px; 
     left: 20px;
   }
