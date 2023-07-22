@@ -88,10 +88,13 @@ body {
   }
   .iframe {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: #f0f0f0;
-    padding: 10px;
+    bottom: 20px;
+    right: 20px; 
+  }
+
+  .iframe iframe {
+    width: 300px; 
+    height: 200px; 
   }
 
 ::-webkit-scrollbar{
