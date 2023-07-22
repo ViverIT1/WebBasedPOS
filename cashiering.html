@@ -8,31 +8,69 @@
     </head>
 
     <body>
-        <div class="title-container">
-            <h1 class="header">Cashiering</h1>
-        <h2 class="header-box">HEADEHADEAHEDAE</h2>
+
+
+    <div class="input-group">
+        <div class="container">
+            <label for="name">Customer Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+        </div>
+        <div class="container">
+            <label for="letter">Enter Product Code</label>
+            <input type="text" id="product" placeholder="Enter your Product">
+        </div>
     </div>
+
 <table class="content-table">
     <thead>
         <tr>
-            <th>HEAD</th>
-            <th>FOWWW</th>
-            <th>HWWW</th>
+            <th></th>
+            <th>Quantity</th>
+            <th>Unit</th>
+            <th>Product</th>
+            <th>Unit Price</th>
+            <th>Total</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1</td>
-            <td>A122323</td>
-            <td>saiii29</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>V812839123</td>
-            <td>radasda9292</td>
+            <td rowspan="1" class="input-cell"><input type="text" value="" readonly></td>
+            <td class="input-cell"><input type="number" placeholder=""></td>
+            <td class="input-cell"><input type="text" value="$50" readonly></td>
+            <td class="input-cell"><input type="text" value="$50" readonly></td>
+            <td class="input-cell"><input type="text" value="$50" readonly></td>
+            <td class="input-cell"><input type="text" value="$50" readonly></td>
         </tr>
     </tbody>
 </table>
 
+<div class="scnd_box">
+<div class="scnd_container">
+                            <div class="subtotal">
+                                <div class="total_sub">SubTotal</div>
+                                <div class="sub_number" id="sub_total">0.00</div>
+                            </div>
+
+                            <div class="perc_discnt">
+                                <div class="discount_perc">Discount %</div>
+                                <div class="disc_percnumb" id="disc_perc">0</div>
+                                <input type="hidden" name="disc_perc" value="0">
+                            </div>
+
+                            <div class="discount">
+                                <div class="disc">Discount</div>
+                                <div class="disc_numb" id="disc_amount">0</div>
+                                <input type="hidden" name="disc_amount" value="0">
+                            </div>
+
+                <div class="total">
+                    <h2 class="grand_ttl">Grand Total</h2>
+                    <div class="total_numb" id="grand-total">0.00</div>
+                    <input type="hidden" name="total" value="0">
+                    <input type="hidden" name="amount_tendered" value="0">
+                    <input type="hidden" name="amount_change" value="0">
+                 </div>
+</div>
+</div>
     </body>
 </html>

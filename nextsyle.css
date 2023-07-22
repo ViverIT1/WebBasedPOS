@@ -36,7 +36,7 @@ body {
 
   .menu .item a{
     color: rgb(0, 0, 0);
-    font-size: 16px;
+    font-size: 14px;
     text-decoration: none;
     display: block;
     padding: 5px 30px;
@@ -87,17 +87,9 @@ body {
     padding-bottom: 20px;
   }
 
-.logo{
-  width: 50px;
-  height: auto; 
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-}
-
 ::-webkit-scrollbar{
   background: #fff;
-  width: 4px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb{
