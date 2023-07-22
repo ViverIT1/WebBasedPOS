@@ -103,7 +103,8 @@ body {
   height: 100%;
 }
 
-.embedded-website {
+.embedded-cashiering {
+  background-color: rgb(20, 75, 105);
   position: fixed;
   width: 100%;
   height: 0;
@@ -114,7 +115,36 @@ body {
   transform: translateX(20px); /* Further shift it right by the same amount to keep it centered */
 }
 
-.embedded-website iframe {
+.embedded-cashiering iframe {
+  transform: scale(0.7); /* Set the scale factor as needed (0.7 means 70% of the original size) */
+  transform-origin: 0 0; /* Set the origin of the scale to the top-left corner */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.inv-manage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.embedded-invmanage {
+  background-color: rgb(20, 105, 54);
+  position: fixed;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* Set a desired aspect ratio, e.g., 16:9, 4:3, etc. (height / width * 100) */
+  overflow: hidden;
+  margin-top: 60%;
+  left: 350px; /* Add the amount of right offset you want */
+  transform: translateX(20px); /* Further shift it right by the same amount to keep it centered */
+}
+
+.embedded-invmanage iframe {
   transform: scale(0.7); /* Set the scale factor as needed (0.7 means 70% of the original size) */
   transform-origin: 0 0; /* Set the origin of the scale to the top-left corner */
   position: absolute;
