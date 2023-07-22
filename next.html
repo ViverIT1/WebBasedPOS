@@ -14,21 +14,19 @@
   <div class="title-container">
     <h1 class="header">Sales and Inventory Management</h1>
 </div>
-
 <div class="side-bar">
   <div class="menu">
     <div class="item"><a href="cashiering.html" target="MainIframe"><i class="fas fa-desktop"></i>Cashiering </a>
     </div>
-    
 
     <div class="item"><a class="sub-btn"><i class="fas fa-desktop"></i>Inventory Management
     <i class="fas fa-angle-right dropdown"></i>
     </a>
     <div class="sub-menu">
-      <a href="" class="sub-module">Item Management</a>
-      <a href="" class="sub-module">Stock Adjusment</a>
-      <a href="" class="sub-module">Discount</a>
-      <a href="" class="sub-module">Packages</a>
+      <a href="itemanage.html" target="MainIframe" class="sub-module">Item Management</a>
+      <a href="stockadj.html" target="MainIframe" class="sub-module">Stock Adjusment</a>
+      <a href="discount.html" target="MainIframe" class="sub-module">Discount</a>
+      <a href="packages.html" target="MainIframe" class="sub-module">Packages</a>
     </div>
     </div>
 
@@ -91,14 +89,9 @@
     
   </div>
 </div>
-
-
-<div class="center-embedded">
-  <div class="embedded-website">
-    <iframe src="iframe.html" name="MainIframe"></iframe>
-  </div>
+<div class="iframe">
+  <iframe src="iframe.html" name="MainIframe"></iframe>
 </div>
-
 <script>
 $(document).ready(function(){
   $('.sub-btn').click(function(){
