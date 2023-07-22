@@ -86,6 +86,13 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
   }
+  .iframe {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
 
 ::-webkit-scrollbar{
   background: #fff;
@@ -94,11 +101,4 @@ body {
 
 ::-webkit-scrollbar-thumb{
   background: #471ea7c6;
-}
-.iframe {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: #f0f0f0;
-  padding: 10px;
 }
