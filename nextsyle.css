@@ -88,13 +88,13 @@ body {
   }
   .iframe {
     position: absolute;
-    bottom: 20px;
-    right: 20px; 
+    bottom: 20px; 
+    left: 20px;
   }
 
   .iframe iframe {
-    width: 300px; 
-    height: 200px; 
+    width: 300px;
+    height: 200px;
   }
 
 ::-webkit-scrollbar{
