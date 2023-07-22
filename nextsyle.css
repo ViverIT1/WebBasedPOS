@@ -91,6 +91,16 @@ body {
   background: #fff;
   width: 10px;
 }
+.iframe {
+  position: fixed;
+  bottom: 20px;
+  right: 20px; /* Adjust this value to place it on the right side */
+}
+
+.iframe iframe {
+  width: 300px;
+  height: 200px;
+}
 
 ::-webkit-scrollbar-thumb{
   background: #471ea7c6;
