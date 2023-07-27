@@ -16,7 +16,7 @@ $result = $stmt->get_result();
 if (mysqli_num_rows($result) == 1) {
     session_start();
     $_SESSION["username"] = $username;
-    header("Location:next.html");
+    header("Location:next.php");
 } else {
     echo "<p>Incorrect username or password.</p>";
 }
