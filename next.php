@@ -15,6 +15,7 @@ if (!isset($_SESSION['username'])) {
   <link rel="stylesheet" type="text/css" href="nextsyle.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="next.js"></script>
 
 
 </head>
@@ -93,8 +94,13 @@ if (!isset($_SESSION['username'])) {
     </div>
 
     <div class="item"><a class="sub-btn" href="policy.html" target="MainIframe" ><i class="fas fa-desktop"></i>Policy</a>
-    <div class="item"><a class="sub-btn" href="logout.php"><i class="fas fa-desktop"></i>Logout</a>
     </div>
+    <div class="item">
+    <a class="sub-btn" href="#" onclick="logout();">
+    <i class="fas fa-desktop"></i>Logout
+    </a>
+    </div>
+
     
   </div>
 </div>
