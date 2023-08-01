@@ -14,8 +14,7 @@ table,th,td{
     border-collapse: collapse;
 }
 .AddWindow{
-    width: 400px;
-    background-color: #fff;
+    width: 600px;
     border-radius: 6%;
     position:absolute;
     top: 50%;
