@@ -4,8 +4,13 @@
     margin-top: 50px;
     margin-bottom: 50px;
     }
+
+table.content-table{
+  width: 95%;
+}
+  
 table,th,td{
-    width: 100px;
+    width: 100;
     margin: auto;
     font-size: 13px;
     padding: 1px;
