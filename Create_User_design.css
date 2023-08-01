@@ -153,7 +153,15 @@ form .button input:hover{
     }
 }
 select {
-    width: 300px;
-    height: 42px;
-    border: 5px solid transparent;
+    height: 45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border:1px solid #ccc;
+    padding-left: 15px;
+    font-size: 16px;
+    border-bottom-width: 2px;
+}
+select option{
+    font-family: 'Poppins' ,sans-serif;
 }
