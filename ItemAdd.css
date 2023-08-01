@@ -1,4 +1,9 @@
-
+* body{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
 /* General styles for the form container */
 .form-container {
   max-width: 100px;
