@@ -69,6 +69,7 @@ if (!$result) {
 <button class="modify-button">Modify</button>
 <button class="import-button">Import</button>
 <button class="export-button">Export</button>
+</body>
     <div class="AddWindow" id="openaddpop">
         <div class="form-container">
             <div class="form-box">
