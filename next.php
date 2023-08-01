@@ -32,7 +32,7 @@ if (!isset($_SESSION['username'])) {
     <i class="fas fa-angle-right dropdown"></i>
     </a>
     <div class="sub-menu">
-      <a href="itemanage.html" target="MainIframe" class="sub-module">Item Management</a>
+      <a href="itemanage.php" target="MainIframe" class="sub-module">Item Management</a>
       <a href="stockadj.html" target="MainIframe" class="sub-module">Stock Adjusment</a>
       <a href="discount.html" target="MainIframe" class="sub-module">Discount</a>
       <a href="packages.html" target="MainIframe" class="sub-module">Packages</a>
