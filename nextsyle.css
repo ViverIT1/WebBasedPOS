@@ -44,7 +44,7 @@ body {
   }
 
   .side-bar .menu .item a:hover{
-    background: #FDA65D;
+    background: #FFDCA9;
     transition: 0.3s ease;
   }
 
@@ -60,7 +60,7 @@ body {
   }
 
   .item .sub-menu{
-    background: #FFDCA9;
+    background: ##FDA65D;
     display: none;
   }
 
@@ -71,7 +71,7 @@ body {
 
   .title-container {
     position: relative;
-    background-color: #E26A2C;
+    background-color: #FAAB78;
     display: flex;
     justify-content: space-between;
     align-items: center;
