@@ -73,17 +73,6 @@ if (!$result) {
         </tbody>
     </table>
 
-
-
-    <div id="popupWrapper">
-        <div id="popup">
-            <iframe id="iframePopup" src="ItemUpSet.php"></iframe>
-        </div>
-    </div>
-
-
-
-    
     <div class="inv-manage">
         <div class="embedded-invmanage">
             <iframe src="" name="MainIframe"></iframe>
