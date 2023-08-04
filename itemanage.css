@@ -97,10 +97,6 @@ form #closeaddpop {
   padding: 8px 16px;
   cursor: pointer;
 }
-  
-  .close-button:hover {
-    background-color: #f00;
-  }
 
 /* Add some spacing between buttons */
 form input[type="submit"],
