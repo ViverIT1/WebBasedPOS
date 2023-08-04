@@ -32,18 +32,18 @@ if ($conn->query($sql_itemlist) === true && $conn->query($sql_userauth) === true
 
     // Insert data into 'itemlist' table
     $insert_itemlist = "INSERT INTO itemlist (pro_inf, pro_name, pro_cat, pro_price, pro_maxStock, pro_quantity, pro_barcode, pro_exp, pro_reorder, pro_minStock)
-    VALUES ('Product info 1','Product Name 1', 'Category 1', 10, 100, 50, '123456', '2023-12-31', 30, 10),
+    VALUES ('Product info 1', 'Product Name 1', 'Category 1', 10, 100, 50, '123456', '2023-12-31', 30, 10),
            ('Product Info 2', 'Product Name 2', 'Category 2', 20, 200, 100, '789012', '2024-06-30', 50, 20)";
 
     // Insert data into 'userauth' table
     $insert_userauth = "INSERT INTO userauth (user_role, user_name, user_password, user_fullname)
-    VALUES ('admin', 'adminuser', 'admin123', 'Administrator')";
+    VALUES ('Administrator', 'admin', 'admin123', 'Admin-kun')";
 
-    if ($conn->query($insert_userauth) === true) {
-        echo "Data inserted into 'userauth' table successfully";
+    if ($conn->query($insert_itemlist) === true && $conn->query($insert_userauth) === true) {
+        echo "Data inserted into 'itemlist' and 'userauth' tables successfully";
         echo '<a href="Homepage.html"><button>Go Back<button></a>';
     } else {
-        echo "Error inserting data into 'userauth' table: " . $conn->error;
+        echo "Error inserting data: " . $conn->error;
     }
 } else {
     echo "Error creating tables: " . $conn->error;
