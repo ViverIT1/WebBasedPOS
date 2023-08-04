@@ -89,13 +89,14 @@ form #closeaddpop {
 }
 
 .close-button {
+  display: inline-block;
   background-color: #f00;
   color: #fff;
   border: none;
-    padding: 10px 20px;
-    text-decoration: none;
-    cursor: pointer;
-  }
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
   
   .close-button:hover {
     background-color: #f00;
