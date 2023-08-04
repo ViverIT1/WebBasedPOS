@@ -128,6 +128,12 @@ if (!$result) {
         </div>
     </div>
 
+<div id="popupWrapper">
+  <div id="popup">
+    <iframe id="iframePopup" src="ItemUpSet.php"></iframe>
+  </div>
+</div>
+
 </body>
 
 </html>
