@@ -87,7 +87,7 @@ if (!$result) {
         <div class="form-container">
             <div class="form-box">
 
-                <form action="I.php" method="post">
+                <form action="ItemAdd.php" method="post">
                     <label for="Product_ID">Product ID:</label>
                     <input type="text" name="Product_ID" id="Product_ID" required>
                     <br>

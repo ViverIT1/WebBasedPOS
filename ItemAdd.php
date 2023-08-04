@@ -26,7 +26,7 @@ $stmt = mysqli_prepare($conn, $sql);
 mysqli_stmt_bind_param($stmt, "sssssiiiiii", $Product_ID, $Product_Name, $Description, $Category, $Price, $Quantity, $Barcode, $Expiry_Date, $Reorder_Point, $Minimum, $Maximum);
 
 if (mysqli_stmt_execute($stmt)) {
-    echo "Data inserted successfully.";
+    header('location:itemanage.php');
 } else {
     echo "Error: " . mysqli_error($conn);
 }
