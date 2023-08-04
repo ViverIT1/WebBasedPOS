@@ -39,6 +39,7 @@ if (!$result) {
             <th>Reorder Point</th>
             <th>Minimum Stock Level</th>
             <th>Maximum Stock Level</th>
+            <th colspan="2">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -57,12 +58,24 @@ if (!$result) {
                 <td><?php echo $row['pro_reorder']; ?></td>
                 <td><?php echo $row['pro_minStock']; ?></td>
                 <td><?php echo $row['pro_maxStock']; ?></td>
+                <td>
+                    <button><a href="itemUp.php?UpID=<?php echo $row['pro_ID']; ?>" target="MainIframe">Update</a></button>
+                </td>
+                <td>
+                    <button><a href="itemRe.php?ReID=<?php echo $row['pro_ID']; ?>">Remove</a></button>
+                </td>
             </tr>
                 <?php
             }
             ?>
-
     </tbody>
+
+    <div class="inv-manage">
+    <div class="embedded-invmanage">
+        <iframe src="" name="MainIframe"></iframe>
+    </div>
+    </div>
+
 </table>
 <button class="add-button" type="button" onclick="openAddWindow()">Add</button>
 <button class="delete-button">Delete</button>
