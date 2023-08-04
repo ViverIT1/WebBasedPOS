@@ -107,6 +107,7 @@ form #closeaddpop {
   margin: 40px;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
+  visibility: hidden;
 }
 
 .embedded-invmanage {

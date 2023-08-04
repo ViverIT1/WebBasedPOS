@@ -26,6 +26,6 @@ if (isset($_GET['ReID'])) {
     // Close the database connection
     $conn->close();
 } else {
-    echo "Invalid request: ReID parameter is missing.";
+    echo "Error getting Product ID, Please try again.";
 }
 ?>
