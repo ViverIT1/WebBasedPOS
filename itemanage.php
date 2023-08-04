@@ -61,7 +61,7 @@ if (!$result) {
                     <td><?php echo $row['pro_minStock']; ?></td>
                     <td><?php echo $row['pro_maxStock']; ?></td>
                     <td>
-                        <button><a href="itemUpSet.php?UpID=<?php echo $row['pro_ID']; ?>">Update</a></button>
+                        <button><a href="itemUpSet.php?UpSetID=<?php echo $row['pro_ID']; ?>">Update</a></button>
                     </td>
                     <td>
                         <button><a href="itemRe.php?ReID=<?php echo $row['pro_ID']; ?>">Remove</a></button>

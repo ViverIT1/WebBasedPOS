@@ -1,7 +1,7 @@
 <?php
 require_once('PhpCon.php');
-if (isset($_GET['UpID'])) {
-    $proID = $_GET['UpID'];
+if (isset($_GET['UpSetID'])) {
+    $proID = $_GET['UpSetID'];
 
     $query = "SELECT * FROM itemlist WHERE pro_ID = '$proID'";
     $result = mysqli_query($conn, $query);
@@ -25,12 +25,13 @@ if (isset($_GET['UpID'])) {
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="itemanage.css">
         <title>Item Update</title>
     </head>
     <body>
         <div class="form-container">
             <div class="form-box">
-                <form action="itemUp.php" method="post">
+            <form action="itemUp.php?UpID=<?php echo $row['pro_ID']; ?>" method="post">
                     <input type="hidden" name="Product_ID" value="<?php echo $row['pro_ID']; ?>">
                     <label for="Product_Name">Product Name:</label>
                     <input type="text" name="Product_Name" id="Product_Name" value="<?php echo isset($row['pro_name']) ? $row['pro_name'] : ''; ?>" required>
@@ -62,8 +63,8 @@ if (isset($_GET['UpID'])) {
                     <label for="Maximum">Maximum Stock Level:</label>
                     <input type="text" name="Maximum" id="Maximum" value="<?php echo isset($row['pro_maxStock']) ? $row['pro_maxStock'] : ''; ?>" required>
                     <br>
-                    <a href="itemUp.php"><button>Update</button></a>
-                    <a href="itemanage.php"><button>Close</button></a>
+                    <input type="submit" value="Update">
+                    <a href="itemanage.php" id="closeaddpop"><button>Close</button></a>
             </form>
             </div>
         </div>
