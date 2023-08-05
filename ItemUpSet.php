@@ -26,6 +26,7 @@ if (isset($_GET['UpSetID'])) {
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" type="text/css" href="itemanage.css">
+        <script src="ItemUpSet.js"></script>
         <title>Item Update</title>
     </head>
     <body>
@@ -64,7 +65,7 @@ if (isset($_GET['UpSetID'])) {
                     <input type="text" name="Maximum" id="Maximum" value="<?php echo isset($row['pro_maxStock']) ? $row['pro_maxStock'] : ''; ?>" required>
                     <br>
                     <input type="submit" value="Update">
-                    <a href="itemanage.php" id="closebtnpop"><button class="close-button">Close</button></a>
+                    <button onclick="closeIframe()">Close Iframe</button>
             </form>
             </div>
         </div>

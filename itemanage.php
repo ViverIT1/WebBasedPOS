@@ -75,7 +75,7 @@ if (!$result) {
 
     <div class="inv-manage" id="updatepop">
         <div class="embedded-invmanage">
-         <iframe src="EmptyFrame.html" name="MainIframe"></iframe>
+         <iframe src="" name="MainIframe"></iframe>
         </div>
     </div>
 
