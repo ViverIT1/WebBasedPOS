@@ -65,7 +65,7 @@ if (isset($_GET['UpSetID'])) {
                     <input type="text" name="Maximum" id="Maximum" value="<?php echo isset($row['pro_maxStock']) ? $row['pro_maxStock'] : ''; ?>" required>
                     <br>
                     <input type="submit" value="Update">
-                    <button onclick="closeIframe()">Close Iframe</button>
+                    <button onclick="closeIframe()">Close</button>
             </form>
             </div>
         </div>
