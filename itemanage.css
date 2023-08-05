@@ -112,33 +112,31 @@ form #closeaddpop {
 }
 
 /*For Iframe(testing)*/
+/* CSS for the container div that holds the iframe */
 .inv-manage {
-  max-width: 500px; /* Increase the width to accommodate the labels and input fields */
-  margin: 40px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
-  visibility: hidden;
-}
-
-.embedded-invmanage {
   position: fixed;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
-  overflow: hidden;
-  margin-top: 60%;
-  left: 350px;
-  transform: translateX(20px);
-  z-index: 999; /* Add a higher z-index to make the iframe appear on top */
-}
-
-.embedded-invmanage iframe {
-  transform: scale(0.7);
-  transform-origin: 0 0;
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 9999; /* Set the same higher z-index for the iframe */
+  z-index: 9999; /* Higher z-index value to place it on top */
+  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
 }
+
+    /* For the embedded div that wraps the iframe */
+    .embedded-invmanage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%; /* Adjust the width as needed */
+      height: 80%; /* Adjust the height as needed */
+      background-color: #fff; /* Set a background color for the embedded div */
+  }
+
+  /* For the iframe */
+  .embedded-invmanage iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+  }
