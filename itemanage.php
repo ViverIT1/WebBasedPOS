@@ -61,7 +61,7 @@ if (!$result) {
                     <td><?php echo $row['pro_minStock']; ?></td>
                     <td><?php echo $row['pro_maxStock']; ?></td>
                     <td>
-                        <button><a href="itemUpSet.php?UpSetID=<?php echo $row['pro_ID']; ?>" target="MainIframe">Update</a></button>
+                        <button onclick="OpenUpdate()"><a href="itemUpSet.php?UpSetID=<?php echo $row['pro_ID']; ?>" target="MainIframe">Update</button>
                     </td>
                     <td>
                         <button><a href="itemRe.php?ReID=<?php echo $row['pro_ID']; ?>">Remove</a></button>
@@ -73,7 +73,7 @@ if (!$result) {
         </tbody>
     </table>
 
-    <div class="inv-manage">
+    <div class="inv-manage" id="updatepop">
         <div class="embedded-invmanage">
          <iframe src="EmptyFrame.html" name="MainIframe"></iframe>
         </div>
