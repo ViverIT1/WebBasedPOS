@@ -40,8 +40,6 @@ table,th,td{
 /* General styles for the form containe */
 .form-container {
   max-width: 500px; /* Increase the width to accommodate the labels and input fields */
-  margin: 90px;
-  margin-left: 400px;
   border: 1px solid #ccc;
   background-color: #f9f9f9;
 }
