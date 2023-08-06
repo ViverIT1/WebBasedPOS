@@ -107,7 +107,7 @@ if (!isset($_SESSION['username'])) {
 
 <div class="center-embedded">
   <div class="embedded-cashiering">
-    <iframe src="" name="MainIframe1"></iframe>
+    <iframe src="" name="MainIframe"></iframe>
   </div>
 </div>
 
