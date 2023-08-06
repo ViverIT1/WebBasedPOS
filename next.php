@@ -19,7 +19,7 @@ if (!isset($_SESSION['username'])) {
 
 
 </head>
-<body>
+<body><div></div>
   <div class="title-container">
     <h1 class="header">Sales and Inventory Management</h1>
 </div>
