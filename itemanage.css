@@ -114,30 +114,3 @@ form #closeaddpop {
 }
 
 /*For Iframe(testing)*/
-/* CSS for the container div that holds the iframe */
-.inv-manage {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999; /* Higher z-index value to place it on top */
-  background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
-  display: none;
-}
-
-.embedded-invmanage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%; /* Adjust the width as needed */
-  height: 80%; /* Adjust the height as needed */
-  background-color: #fff; /* Set a background color for the embedded div */
-}
-
-.embedded-invmanage iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
