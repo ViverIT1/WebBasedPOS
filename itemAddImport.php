@@ -10,9 +10,13 @@ if (isset($_REQUEST['import-excel'])) {
 
     if ($extension == 'xlsx' || $extension == 'xls' || $extension == 'csv') {
         $obj = IOFactory::load($file);
-        $data = $obj->getActiveSheet()->toArray();
+        $worksheet = $obj->getActiveSheet();
+        $data = $worksheet->toArray();
 
-        foreach ($data as $row) {
+        // Start from the second row (index 1) to skip the header row
+        for ($rowIndex = 1; $rowIndex < count($data); $rowIndex++) {
+            $row = $data[$rowIndex];
+
             // Process the data from the Excel file
             $Product_Description = $row['2'];
             $Product_ID = $row['0'];
@@ -25,7 +29,6 @@ if (isset($_REQUEST['import-excel'])) {
             $Product_Barcode = $row['6'];
             $Product_Expiry = $row['7'];
             $Product_Minimum = $row['9'];
-
             // Check if the ID already exists in the database
             $existingQuantity = 0;
             $result = mysqli_query($conn, "SELECT pro_quantity FROM itemlist WHERE pro_ID = '$Product_ID'");
