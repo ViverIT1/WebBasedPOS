@@ -7,31 +7,44 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
 if (isset($_REQUEST['import-excel'])) {
     $file = $_FILES['import-file']['tmp_name'];
     $extension = pathinfo($_FILES['import-file']['name'], PATHINFO_EXTENSION);
-    
+
     if ($extension == 'xlsx' || $extension == 'xls' || $extension == 'csv') {
         $obj = IOFactory::load($file);
         $data = $obj->getActiveSheet()->toArray();
 
         foreach ($data as $row) {
             // Process the data from the Excel file
-            $Product_Description = $row['0'];
-            $Product_ID = $row['1'];
-            $Product_Name = $row['2'];
+            $Product_Description = $row['2'];
+            $Product_ID = $row['0'];
+            $Product_Name = $row['1'];
             $Product_Category = $row['3'];
             $Product_Price = $row['4'];
-            $Product_Maximum = $row['5'];
-            $Product_Quantity = $row['6'];
-            $Product_Reorder = $row['7'];
-            $Product_Barcode = $row['8'];
-            $Product_Expiry = $row['9'];
-            $Product_Minimum = $row['10'];
+            $Product_Maximum = $row['10'];
+            $Product_Quantity = $row['5'];
+            $Product_Reorder = $row['8'];
+            $Product_Barcode = $row['6'];
+            $Product_Expiry = $row['7'];
+            $Product_Minimum = $row['9'];
 
-            // Insert the data into the MySQL database
-            $sql = "INSERT INTO itemlist (pro_inf, pro_ID, pro_name, pro_cat, pro_price, pro_maxStock, pro_quantity, pro_reorder, pro_barcode, pro_exp, pro_minStock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sssssiiiiii", $Product_Description, $Product_ID, $Product_Name, $Product_Category, $Product_Price, $Product_Maximum, $Product_Quantity, $Product_Reorder, $Product_Barcode, $Product_Expiry, $Product_Minimum);
-            $stmt->execute();
-        }
+            // Check if the ID already exists in the database
+            $existingQuantity = 0;
+            $result = mysqli_query($conn, "SELECT pro_quantity FROM itemlist WHERE pro_ID = '$Product_ID'");
+            if (mysqli_num_rows($result) > 0) {
+                $existingData = mysqli_fetch_assoc($result);
+                $existingQuantity = $existingData['pro_quantity'];
+            }
+
+            // If the ID exists, update the quantity; otherwise, insert a new record
+            if ($existingQuantity > 0) {
+                $updatedQuantity = $existingQuantity + $Product_Quantity;
+                mysqli_query($conn, "UPDATE itemlist SET pro_quantity = '$updatedQuantity' WHERE pro_ID = '$Product_ID'");
+            } else {
+                $sql = "INSERT INTO itemlist (pro_inf, pro_ID, pro_name, pro_cat, pro_price, pro_maxStock, pro_quantity, pro_reorder, pro_barcode, pro_exp, pro_minStock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("sssssiiiiii", $Product_Description, $Product_ID, $Product_Name, $Product_Category, $Product_Price, $Product_Maximum, $Product_Quantity, $Product_Reorder, $Product_Barcode, $Product_Expiry, $Product_Minimum);
+                $stmt->execute();
+                    }        
+                }
 
         echo "Data imported successfully.";
     } else {
