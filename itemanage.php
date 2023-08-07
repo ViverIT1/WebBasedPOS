@@ -74,7 +74,7 @@ if (!$result) {
     </table>
 
     <button class="add-button" type="button" onclick="openAddWindow()">Add</button>
-    <button class="import-button">Import</button>
+    <a href="itemAddImport.php"><button class="import-button">Import</button></a>
     <button class="export-button">Export</button>
 
     <div class="AddWindow" id="openaddpop">
