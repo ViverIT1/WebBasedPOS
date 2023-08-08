@@ -4,7 +4,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $product_id = $_POST["product"];
 
-    // Retrieve product information from the source database
     $query = "SELECT pro_name, pro_price, pro_quantity FROM itemlist WHERE id = $product_id";
     $result = $source_db->query($query);
 
@@ -21,14 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Error:";
         }
-
-        // Close the destination database connection
-        $destination_db->close();
     } else {
         echo "No product found with the provided ID.";
     }
 
-    // Close the source database connection
     $source_db->close();
 }
 ?>

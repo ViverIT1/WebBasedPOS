@@ -1,24 +1,24 @@
 <?php
 include 'db_connection.php';
 
-$query = "SELECT id, name, price FROM products";
+$query = "SELECT pro_ID, pro_name, pro_quantity, pro_price FROM cashier_temp";
 $result = $source_db->query($query);
 
 $productRows = '';
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        $product_id = $row["id"];
-        $product_name = $row["name"];
-        $product_price = $row["price"];
+        $product_id = $row["pro_ID"];
+        $product_name = $row["pro_name"];
+        $product_quantity = $row["pro_quantity"];
+        $product_price = $row["pro_price"];
 
         $productRows .= "
         <tr>
             <td rowspan=\"1\" class=\"input-cell\"><input type=\"text\" value=\"$product_id\" readonly></td>
-            <td class=\"input-cell\"><input type=\"number\" placeholder=\"\" name=\"quantity[]\"></td>
-            <td class=\"input-cell\"><input type=\"text\" value=\"Unit\" readonly></td>
             <td class=\"input-cell\"><input type=\"text\" value=\"$product_name\" readonly></td>
-            <td class=\"input-cell\"><input type=\"text\" value=\"$product_price\" readonly></td>
+            <td class=\"input-cell\"><input type=\"number\" value=\"$product_quantity\"></td>
+            <td class=\"input-cell\"><input type=\"number\" value=\"$product_price\" readonly></td>
             <td class=\"input-cell\"><input type=\"text\" value=\"\" readonly></td>
         </tr>";
     }
@@ -50,10 +50,9 @@ if ($result->num_rows > 0) {
 <table class="content-table">
     <thead>
         <tr>
-            <th></th>
-            <th>Quantity</th>
-            <th>Unit</th>
+            <th>Product ID</th>
             <th>Product</th>
+            <th>Quantity</th>
             <th>Unit Price</th>
             <th>Total</th>
         </tr>
