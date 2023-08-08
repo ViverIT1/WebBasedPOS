@@ -66,7 +66,6 @@ if (isset($_REQUEST['import-excel'])) {
 </head>
 <body>
     <form method="post" enctype="multipart/form-data">
-        <!-- Change the name to "import-file" -->
         <input type="file" name="import-file" required data-parsley-type="file" data-parsley-trigger="keyup" class="form-control"/>
         <input type="submit" name="import-excel" value="Import" class="btn btn-success">
     </form>

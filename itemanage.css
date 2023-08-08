@@ -1,3 +1,33 @@
+/*Header part*/
+/* Apply a flexbox layout to the Header container */
+.Header {
+  display: flex;
+  justify-content: space-between; /* This will separate the h2 and button elements */
+  align-items: center; /* This will vertically center the items within the container */
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+/* Style for the h2 element */
+.Header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* Style for the button element */
+.Header .add-button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+/* Add some margin to separate the h2 and button elements */
+.Header h2 {
+  margin-right: 10px;
+}
+/*Search*/
 .header-box{
     width: 100%;
     text-align: center;
