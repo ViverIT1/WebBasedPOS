@@ -2,10 +2,10 @@
 /* Apply a flexbox layout to the Header container */
 .Header {
   display: flex;
-  justify-content: space-between; /* This will separate the h2 and button elements */
   align-items: center; /* This will vertically center the items within the container */
   background-color: #f0f0f0;
   padding: 10px;
+  justify-content: flex-start;
 }
 
 /* Style for the h2 element */
