@@ -71,13 +71,6 @@ body {
     }
 
 
-/* Use flexbox to align items to the right and stack them vertically */
-.scnd_container {
-    position: relative;
-    margin-right: 10%;
-    flex-direction: column;
-}
-
 /* Apply flexbox to the elements to move them to the right */
 .subtotal, .perc_discnt, .discount, .total {
   margin-left: auto;
