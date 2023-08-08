@@ -1,8 +1,8 @@
 <?php
-include 'db_connection.php';
+require ('PhpCon.php');
 
 $query = "SELECT pro_ID, pro_name, pro_quantity, pro_price FROM cashier_temp";
-$result = $source_db->query($query);
+$result = $conn->query($query);
 
 $productRows = '';
 
@@ -38,14 +38,15 @@ if ($result->num_rows > 0) {
 
 
     <div class="input-group">
-        <form method="post" action="cashieringHandler.php">
+    <form method="post" action="cashieringHandler.php">
         <div class="container">
-            <label for="letter">Enter Product Code</label>
-            <input type="text" id="product" placeholder="Enter your Product">
+            <label for="product">Enter Product Code</label>
+            <input type="text" id="product" name="product" placeholder="Enter your Product">
             <input type="submit" value="Add to cart">
         </div>
-        </form>
-    </div>
+    </form>
+</div>
+
 
 <table class="content-table">
     <thead>
