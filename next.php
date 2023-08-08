@@ -25,7 +25,7 @@ if (!isset($_SESSION['username'])) {
 </div>
 <div class="side-bar">
   <div class="menu">
-    <div class="item"><a href="cashiering.html" target="MainIframe"><i class="fas fa-desktop"></i>Cashiering </a>
+    <div class="item"><a href="cashiering.php" target="MainIframe"><i class="fas fa-desktop"></i>Cashiering </a>
     </div>
 
     <div class="item"><a class="sub-btn"><i class="fas fa-desktop"></i>Inventory Management
