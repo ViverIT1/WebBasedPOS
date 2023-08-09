@@ -69,3 +69,31 @@ button[type="submit"] {
     border: 1px solid #ddd; /* Add border property */
     padding: 10px;
 }
+
+/*prev and next button */
+.pagination {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: flex-end;
+  }
+  
+  .pagination button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #f2f2f2;
+    cursor: pointer;
+  }
+  
+  .page-num {
+    padding: 8px 12px;
+    font-weight: bold;
+  }
+  
+  .prev-btn {
+    border-radius: 5px 0 0 5px;
+  }
+  
+  .next-btn {
+    border-radius: 0 5px 5px 0;
+  }
