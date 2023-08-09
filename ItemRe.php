@@ -1,14 +1,7 @@
 <?php
 if (isset($_GET['ReID'])) {
     $proID = $_GET['ReID'];
-
-    // Assuming you have the correct database credentials
-    $conn = new mysqli('localhost', 'root', '', 'webinventorydb');
-
-    // Check if the connection was successful
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    require ('PhpCon.php');
 
     // Sanitize the input to prevent SQL injection (using mysqli_real_escape_string for simplicity)
     $itemID = mysqli_real_escape_string($conn, $proID);
