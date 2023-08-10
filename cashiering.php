@@ -102,7 +102,6 @@ $result = $conn->query($query);
                                 <div class="disc_numb" id="disc_amount">0</div>
                                 <input type="hidden" name="disc_amount" value="0">
                             </div>
-
                 <div class="total">
                     <h2 class="grand_ttl">Grand Total</h2>
                     <div class="total_numb" id="grand-total">0.00</div>
