@@ -55,12 +55,12 @@ mysqli_stmt_close($stmt);
           // Close the database connection
           $conn->close();
       ?>"></td>
-      <td><input type="number" name="quantity"></td>
+      <td><input type="number" name="quantity" required></td>
       
     </tr>
   </table>
 
-  <button class="confirm-button" name="change_quantity">Confirm</button>
+  <button class="confirm-button" name="change_quantity" >Confirm</button>
       </form>
   <table class="output-box">
     <tr>
