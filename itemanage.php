@@ -23,7 +23,7 @@ if (!$result) {
     </div>
         <div class="Header">
             <h2>Item Management</h2>
-            <button class="add-button" type="button"><a href="ItemAdd.php">+</a></button>
+            <a href="ItemAdd.php"><button class="add-button" type="button">+</button></a>
         </div>
 
     <form>
