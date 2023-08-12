@@ -1,4 +1,5 @@
 <?php
+if(isset($_POST["Product_Name"])){
 $Product_Name = $_POST['Product_Name'];
 $Description = $_POST['Description'];
 $Category = $_POST['Category'];
@@ -36,4 +37,5 @@ mysqli_close($conn);
 
 mysqli_stmt_close($stmt);
 mysqli_close($conn);
+}
 ?>

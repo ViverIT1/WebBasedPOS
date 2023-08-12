@@ -31,3 +31,8 @@ tbody input {
     font-size: 14px;
     resize: vertical;
   }
+  .content-table th h6 {
+    margin: 0; /* Remove vertical margin */
+    padding: 0; /* Remove padding */
+    color: red; /* Set the color to red */
+  }
