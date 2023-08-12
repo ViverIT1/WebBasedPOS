@@ -1,0 +1,77 @@
+body, h1, h2, h3, p, ul, ol, li, table, td {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply some basic styles to the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Style the Header section */
+.Header {
+        display: flex;
+        align-items: center; /* This will vertically center the items within the container */
+        background-color: #e59d9d;
+        padding: 10px;
+        justify-content: flex-start;
+}
+
+.add-button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.add-button:hover {
+    background-color: #1c40ce;
+}
+
+/* Style the search form */
+form {
+    margin: 10px;
+}
+
+input[type="search"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #454ea0;
+}
+
+/* Style the table */
+.content-table {
+    width: 100%;
+    border-collapse: collapse; /* if gusto mo may kulay ung border pede mo to burahin tas edit mo na lng si border */
+    background-color: #161370;
+    border: 1px solid #ccc;
+}
+
+.content-table th, .content-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #ccc; /* Add a right border to cells */
+    text-align: center;
+}
+
+.content-table th {
+    background-color: #333;
+    color: #fff;
+}
