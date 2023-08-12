@@ -105,7 +105,7 @@ color: orange; /* Set the color to red */
 }
 
 /* href 2 buttons */
-.custom-button button[type="submit"] {
+.custom-button {
   padding: 10px 15px;
   background-color: orange;
   color: #fff;
@@ -113,8 +113,11 @@ color: orange; /* Set the color to red */
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  text-decoration: none; /* To remove the default link underline */
+  margin-top: 10px; /* Adjust the top margin for spacing */
+  display: inline-block; /* Ensures the button is treated as a block while keeping it inline with the link */
 }
 
-.custom-button button[type="submit"]:hover {
+.custom-button:hover {
   background-color: darkorange;
 }
