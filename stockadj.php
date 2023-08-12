@@ -36,8 +36,13 @@ mysqli_stmt_close($stmt);
 </head>
 <body>
   <h1 class="header">Stock Adjusment</h1>
-  <table class="content-table">
 
+  <form>
+        <input type="search" name="search" placeholder="Search...">
+        <button type="submit">Search</button>
+      </form>
+
+  <table class="content-table">
     <tr>
       <th>Product Name/Id</th>
       <th>Quantity</th>
