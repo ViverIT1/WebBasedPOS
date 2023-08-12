@@ -82,11 +82,9 @@ if (isset($_REQUEST['import-excel'])) {
     }
 }
 
-// Step 2: Retrieve data from the database
 $query = "SELECT DISTINCT pro_cat FROM itemlist";
 $result = $conn->query($query);
 
-// Initialize an array to hold the fetched values
 $values = array();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
