@@ -1,5 +1,5 @@
 <?php
-include_once('PhpCon.php'); // Make sure the database connection is included
+include ('PhpCon.php'); // Make sure the database connection is included
 require 'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -82,6 +82,16 @@ if (isset($_REQUEST['import-excel'])) {
     }
 }
 
+$query = "SELECT DISTINCT pro_cat FROM itemlist";
+$result = $conn->query($query);
+
+$values = array();
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $values[] = $row["pro_cat"];
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +117,16 @@ if (isset($_REQUEST['import-excel'])) {
                     <input type="text" name="Description" id="Description" required>
                     <br>
                     <label for="Category">Category:</label>
-                    <input type="text" name="Category" id="Category" required>
+                    <input type="text" list="categoryList" required>
+                        <datalist id="categoryList">
+                        <option>---</option>
+                        <?php foreach ($values as $value): ?>
+                            <?php if(isset($value)): ?>
+                        <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        </datalist>
+
                     <br>
                     <label for="Price">Price:</label>
                     <input type="text" name="Price" id="Price" required>

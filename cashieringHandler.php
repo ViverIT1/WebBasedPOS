@@ -1,9 +1,9 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST["product"])) {
     include ('PhpCon.php'); // Include the database connection file
 
-    $product_id = (int) trim($_POST['product']);
-    $product_quantity = (int)trim($_POST['quantity']);
+    $product_id = $_POST['product'];
+    $product_quantity = $_POST['quantity'];
     $query = "SELECT pro_name, pro_price, pro_quantity FROM itemlist WHERE pro_ID = $product_id";
     $result = $conn->query($query); // Use $conn instead of $source_db
 
