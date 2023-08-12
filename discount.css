@@ -29,7 +29,7 @@ form {
 
 input[type="search"] {
   padding: 10px;
-  border: none;
+  border: 1px solid orange;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -52,7 +52,7 @@ button[type="submit"]:hover {
 .content-table {
   width: 100%;
   border-collapse: collapse;
-  border: 2px solid;
+  border: 3px solid orange;
   margin-bottom: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -74,7 +74,7 @@ button[type="submit"]:hover {
 .content-table select {
   width: 100%;
   padding: 8px;
-  border: 1px solid black;
+  border: 1px solid grey;
   border-radius: 4px;
 }
 
@@ -101,5 +101,5 @@ button[type="submit"]:hover {
 .content-table th h6 {
 margin: 0; /* Remove vertical margin */
 padding: 0; /* Remove padding */
-color: red; /* Set the color to red */
+color: orange; /* Set the color to red */
 }
