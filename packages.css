@@ -18,7 +18,7 @@ body {
 .header {
     text-align: left;
     margin-bottom: 20px;
-    color: #333;
+    color: black;
 }
 
 /* Form styles */
@@ -30,7 +30,7 @@ form {
 input[type="search"] {
 
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid orange;
     border-radius: 4px;
 }
 
@@ -46,6 +46,7 @@ button[type="submit"] {
 /* Table styles */
 .content-table {
     width: 100%;
+    border: 3px solid orange;
     border-collapse: collapse;
 }
 
@@ -78,6 +79,7 @@ button[type="submit"] {
 .output-box {
     width: 100%;
     margin-top: 20px;
+    border: 3px solid orange;
     border-collapse: collapse;
 }
 
@@ -85,13 +87,12 @@ button[type="submit"] {
 .output-box td {
     padding: 10px;
     text-align: center;
-    border: 1px solid #ddd;
 }
 
 /* Readonly input styles */
 input[readonly] {
     background-color: #f5f5f5;
-    border: none;
+    border: 1px solid grey;
 }
 
 table td input[type="text"] {
