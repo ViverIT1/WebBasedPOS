@@ -35,7 +35,7 @@ if (!isset($_SESSION['username'])) {
       <a href="itemanage.php" target="MainIframe" class="sub-module">Item Management</a>
       <a href="stockadj.php" target="MainIframe" class="sub-module">Stock Adjusment</a>
       <a href="discount.php" target="MainIframe" class="sub-module">Discount</a>
-      <a href="packages.html" target="MainIframe" class="sub-module">Packages</a>
+      <a href="packagelist.html" target="MainIframe" class="sub-module">Packages</a>
     </div>
     </div>
 
