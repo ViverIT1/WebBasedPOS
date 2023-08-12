@@ -103,3 +103,18 @@ margin: 0; /* Remove vertical margin */
 padding: 0; /* Remove padding */
 color: orange; /* Set the color to red */
 }
+
+/* href 2 buttons */
+.custom-button button[type="submit"] {
+  padding: 10px 15px;
+  background-color: orange;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.custom-button button[type="submit"]:hover {
+  background-color: darkorange;
+}
