@@ -62,14 +62,7 @@ mysqli_stmt_close($stmt);
 
   <button class="confirm-button" name="change_quantity" >Confirm</button>
       </form>
-  <table class="output-box">
-    <tr>
-        <th>Output</th>
-    </tr>
-    <tr>
-        <td><input type="text" readonly></td>
-    </tr>
-  </table>
+
   <table class="content-table">
         <thead>
             <tr>
