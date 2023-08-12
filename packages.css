@@ -28,7 +28,7 @@ form {
 }
 
 input[type="search"] {
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
