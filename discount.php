@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
         </tr>
     </tbody>  
     </table>
-    <a href="#"><button>Set Total-Based Discount</button></a>
+    <a href="#"><button class="custom-button">Set Total-Based Discount</button></a>
     <table class="content-table">
         <thead>
             <tr>
