@@ -74,7 +74,7 @@ if ($result->num_rows > 0) {
             </tr>
         </tbody>  
         </table>
-        <a href="#" class="custom-button"><button>Set Item-Based Discount</button></a>
+        <a href="#"><button class="custom-button">Set Item-Based Discount</button></a>
       </table>
 </body>
 </html>
