@@ -18,9 +18,6 @@ if (!$result) {
 </head>
 
 <body>
-    <div class="title-container">
-        <h1 class="header-box">Item Management</h1>
-    </div>
         <div class="Header">
             <h2>Item Management</h2>
             <a href="ItemAdd.php"><button class="add-button" type="button">+</button></a>
