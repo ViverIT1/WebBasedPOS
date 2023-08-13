@@ -23,7 +23,7 @@ $sql = "INSERT INTO itemlist
 
 $stmt = mysqli_prepare($conn, $sql);
 
-mysqli_stmt_bind_param($stmt, "sssssiiiii", $Product_Name, $Description, $Category, $Price, $Quantity, $Barcode, $Expiry_Date, $Reorder_Point, $Minimum, $Maximum);
+mysqli_stmt_bind_param($stmt, "sssiissiii", $Product_Name, $Description, $Category, $Price, $Quantity, $Barcode, $Expiry_Date, $Reorder_Point, $Minimum, $Maximum);
 
 if (mysqli_stmt_execute($stmt)) {
     header('location: ItemAdd.php');

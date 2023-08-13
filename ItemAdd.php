@@ -117,7 +117,7 @@ if ($result->num_rows > 0) {
                     <input type="text" name="Description" id="Description" required>
                     <br>
                     <label for="Category">Category:</label>
-                    <input type="text" list="categoryList" required>
+                    <input type="text" list="categoryList" name="Category" required>
                         <datalist id="categoryList">
                         <option>---</option>
                         <?php foreach ($values as $value): ?>
