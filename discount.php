@@ -80,7 +80,7 @@ if ($result->num_rows > 0) {
                            VALUES (?, ?, ?, ?, ?)";
 
             $stmt = $conn->prepare($sql_insert_gen_dis);
-            $stmt->bind_param("sdsdd", $GeneralDiscount, $GeneralDiscountPercentage, $genDisQual, $GeneralDiscountStart, $GeneralDiscountEnd);
+            $stmt->bind_param("sdsss", $GeneralDiscount, $GeneralDiscountPercentage, $genDisQual, $GeneralDiscountStart, $GeneralDiscountEnd);
             if ($stmt->execute()) {
                 echo "General discount inserted successfully.";
             } else {

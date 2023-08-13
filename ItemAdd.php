@@ -63,7 +63,7 @@ if (isset($_REQUEST['import-excel'])) {
                 $stmt = $conn->prepare($insertQuery);
 
                 if ($stmt) {
-                    $stmt->bind_param("sssssiisii", $Product_Description, $Product_Name, $Product_Category, $Product_Price, $Product_Maximum, $Product_Quantity, $Product_Reorder, $Product_Barcode, $Product_Expiry, $Product_Minimum);
+                    $stmt->bind_param("sssiiiissi", $Product_Description, $Product_Name, $Product_Category, $Product_Price, $Product_Maximum, $Product_Quantity, $Product_Reorder, $Product_Barcode, $Product_Expiry, $Product_Minimum);
                     if ($stmt->execute()) {
                         $successCount++;
                     } else {
