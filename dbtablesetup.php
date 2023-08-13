@@ -35,12 +35,33 @@ $sql_userauth = "CREATE TABLE userauth (
     user_fullname VARCHAR(50) NOT NULL
 )";
 
+$sql_gendis = "CREATE TABLE gendiscount (
+    gendis_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    gendis BIGINT(8),
+    gendisper DECIMAL(3,2),
+    gendisqual int(8),
+    gendistart date NOT NULL,
+    gendisend date NOT NULL
+)";
+
+$sql_itemdis = "CREATE TABLE itemdiscount (
+    itemdis_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    pro_ID VARCHAR(15) NOT NULL,
+    pro_name VARCHAR(40) NOT NULL,
+    itemdis BIGINT(8),
+    itemdisper DECIMAL(3,2),
+    itemdistart date NOT NULL,
+    itemdisend date NOT NULL
+)";
+
 if (
     $conn->query($sql_itemlist) === true &&
     $conn->query($sql_cashier_temp) === true &&
-    $conn->query($sql_userauth) === true
+    $conn->query($sql_userauth) === true &&
+    $conn->query($sql_gendis) === true &&
+    $conn->query($sql_itemdis) === true 
 ) {
-    echo "Tables 'itemlist', 'cashier_temp', and 'userauth' created successfully";
+    echo "Tables 'itemlist', 'cashier_temp', 'userauth', 'gendiscount', and itemdis created successfully";
 
     // Insert data into 'itemlist' table
     $insert_itemlist = "INSERT INTO itemlist (pro_inf, pro_name, pro_cat, pro_price, pro_maxStock, pro_quantity, pro_barcode, pro_exp, pro_reorder, pro_minStock)
