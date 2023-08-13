@@ -45,10 +45,12 @@ if ($result->num_rows > 0) {
             <td><input type="text"> </td>
             <td><input type="text"> </td>
             <td><input type="text"> </td>
+        </form>
         </tr>
     </tbody>  
     </table>
-    <table>
+
+    <table class="content-table">
         <thead>
             <tr>
                 <th>Discount Starts(YYYY--MM--DD)</th>
@@ -56,15 +58,17 @@ if ($result->num_rows > 0) {
             </tr>
         </thead>
         <tbody>
-            <tr>
+        <tr>
+        <form>
             <td><input type="text"> </td>
             <td><input type="text"> </td>
-            </tr>
-        </tbody>
+        </form>
+        </tr>
+    </tbody>  
     </table>
-    <a href="#"><button class="custom-button1">Set Total-Based Discount</button></a>
-    <input type="submit" value="Set Total-Based Discount">
-    </form>
+    
+    <input type="submit" value="Set Total-Based Discount" class="custom-button1">      
+    
     <table class="content-table">
         <thead>
             <tr>
@@ -77,6 +81,7 @@ if ($result->num_rows > 0) {
                 <th>Discount Ends</th>
             </tr>
         </thead>
+
         <tbody>
             <form>
             <tr>
@@ -94,7 +99,7 @@ if ($result->num_rows > 0) {
             </tr>
         </tbody>  
         </table>
-        <table>
+        <table class="content-table">
         <thead>
             <th>Discount Starts(YYYY--MM--DD)</th>
             <th>Discount Ends(YYYY--MM--DD)</th>
@@ -104,9 +109,9 @@ if ($result->num_rows > 0) {
             <td><input type="text"> </td>
         </tbody>
     </table>
-        <a href="#"><button class="custom-button2">Set Item-Based Discount</button></a>
-        <input type="Submit" value="Set Item-Based Discount">
-                    </form>
+    <input type="submit" value="Set Item-Based Discount" class="custom-button2">
+    </form>
       </table>
 </body>
+
 </html>
