@@ -43,6 +43,10 @@ button[type="submit"] {
     cursor: pointer;
 }
 
+button[type="submit"]:hover {
+    background-color: #FFD07F;
+}
+
 /* Table styles */
 .content-table {
     width: 100%;
