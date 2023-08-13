@@ -74,16 +74,13 @@ if ($result->num_rows > 0) {
             $GeneralDiscountPercentage=$_POST['genDisPer'];
             $genDisQual=$_POST['genDisQual'];
             $GeneralDiscountStart=$_POST['genDisStart'];
-            $GeneralDiscountStartFormatted = date('YYYY-mm-dd', strtotime($GeneralDiscountStart));
             $GeneralDiscountEnd=$_POST['genDisEnd'];
-            $GeneralDiscountEndFormatted = date('YYYY-mm-dd', strtotime($GeneralDiscountEnd));
 
             $sql_insert_gen_dis = "INSERT INTO gendiscount (gendis, gendisper, gendisqual, gendistart, gendisend)
                            VALUES (?, ?, ?, ?, ?)";
 
             $stmt = $conn->prepare($sql_insert_gen_dis);
-            $stmt->bind_param("sdsdd", $GeneralDiscount, $GeneralDiscountPercentage, $genDisQual, $GeneralDiscountStartFormatted, $GeneralDiscountEndFormatted);
-
+            $stmt->bind_param("sdsdd", $GeneralDiscount, $GeneralDiscountPercentage, $genDisQual, $GeneralDiscountStart, $GeneralDiscountEnd);
             if ($stmt->execute()) {
                 echo "General discount inserted successfully.";
             } else {
