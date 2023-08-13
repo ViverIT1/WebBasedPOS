@@ -13,6 +13,7 @@ if ($result->num_rows > 0) {
         $values[] = $row["pro_cat"];
     }
 }
+if
 
 ?>
 
@@ -42,9 +43,9 @@ if ($result->num_rows > 0) {
     <tbody>
         <tr>
         <form>
-            <td><input type="text"> </td>
-            <td><input type="text"> </td>
-            <td><input type="text"> </td>
+            <td><input type="text" name="genDis"> </td>
+            <td><input type="text" name="genDisPer"> </td>
+            <td><input type="text" name="genDisTotal"> </td>
         </form>
         </tr>
     </tbody>  
@@ -60,7 +61,7 @@ if ($result->num_rows > 0) {
         <tbody>
         <tr>
         <form>
-            <td><input type="text"> </td>
+            <td><input type="text" name="genDisStart"> </td>
             <td><input type="text"> </td>
         </form>
         </tr>
@@ -77,8 +78,6 @@ if ($result->num_rows > 0) {
                 <th>Category<h6>Leave as is if has Product</h6></th>
                 <th>Discount</th>
                 <th>Discount%</th>
-                <th>Discount Starts</th>
-                <th>Discount Ends</th>
             </tr>
         </thead>
 
