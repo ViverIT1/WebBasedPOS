@@ -126,7 +126,6 @@ if ($result->num_rows > 0) {
                             <?php endif; ?>
                         <?php endforeach; ?>
                         </datalist>
-
                     <br>
                     <label for="Price">Price:</label>
                     <input type="text" name="Price" id="Price" required>
@@ -137,7 +136,7 @@ if ($result->num_rows > 0) {
                     <label for="Barcode">Barcode:</label>
                     <input type="text" name="Barcode" id="Barcode" required>
                     <br>
-                    <label for="Expiry_Date">Expiry Date:</label>
+                    <label for="Expiry_Date">Expiry Date(Must be in yyyy-mm-dd format):</label>
                     <input type="text" name="Expiry_Date" id="Expiry_Date" required>
                     <br>
                     <label for="Reorder_Point">Reorder Point:</label>
