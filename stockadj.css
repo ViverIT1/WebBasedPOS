@@ -61,7 +61,7 @@ button[type="submit"]:hover {
 .content-table td {
   padding: 15px;
   text-align: left;
-  border: 2px solid orange;
+  border: 1px solid orange;
   border-bottom: 2px solid orange;
 }
 
