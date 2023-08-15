@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  #receipt {
+    max-width: fit-content; /*u can use 100% if u want */
+    margin: 0 auto;
+    border: 1px solid #000;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .item-list {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
+  .item-name {
+    flex: 1;
+  }
+  
+  .item-quantity, .item-price, .item-total {
+    width: 25%;
+    text-align: right;
+  }
+  
+  .subtotal {
+    text-align: right;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
