@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Summary Receipt</title>
+        <link rel="stylesheet" type="text/css" href="summaryreceipt.css">
+    </head>
+
+    <body>
+        <div id="receipt">
+            <div class="header">
+              <h2>Receipt</h2>
+              <p><input type="text" value="123 Street, City" readonly></p>
+              <p><input type="text" value="Date: August 15, 2023" readonly></p>
+            </div>
+            <div class="item-list">
+              <div class="item">
+                <div class="item-name"><input type="text" value="Item 1" readonly></div>
+                <div class="item-quantity"><input type="text" value="2x" readonly></div>
+                <div class="item-price"><input type="text" value="$1.50" readonly></div>
+                <div class="item-total"><input type="text" value="$3.00" readonly></div>
+              </div>
+              <div class="item">
+                <div class="item-name"><input type="text" value="Item 2" readonly></div>
+                <div class="item-quantity"><input type="text" value="1x" readonly></div>
+                <div class="item-price"><input type="text" value="$2.00" readonly></div>
+                <div class="item-total"><input type="text" value="$2.00" readonly></div>
+              </div>
+              <!-- Add more items here -->
+            </div>
+            <div class="subtotal">Subtotal: <input type="text" value="$5.00" readonly></div>
+            <div class="subtotal">Discount: <input type="text" value="-$1.00" readonly></div>
+            <div class="subtotal">Tax: <input type="text" value="$0.30" readonly></div>
+            <div class="subtotal" style="font-size: 18px;">Total: <input type="text" value="$4.30" readonly></div>
+          </div>
+              
+    </body>
+    </html>
+    
