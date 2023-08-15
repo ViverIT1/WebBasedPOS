@@ -112,5 +112,7 @@ $result = $conn->query($query);
 </div>
 </div>
 
+<button id="popupButton" type="button">Settle Payment</button>
+
     </body>
 </html>
