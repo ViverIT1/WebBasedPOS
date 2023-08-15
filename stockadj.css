@@ -24,7 +24,6 @@ body {
 /* Form styles */
 form {
   text-align: start;
-  margin-bottom: 20px;
 }
 
 input[type="search"] {
@@ -54,6 +53,7 @@ button[type="submit"]:hover {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
+  margin-top: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
