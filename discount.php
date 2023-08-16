@@ -2,11 +2,9 @@
 
 include ('PhpCon.php');
 
-// Step 2: Retrieve data from the database
 $query = "SELECT DISTINCT pro_cat FROM itemlist";
 $result = $conn->query($query);
 
-// Initialize an array to hold the fetched values
 $values = array();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -30,8 +28,9 @@ if ($result->num_rows > 0) {
     <form>
         <input type="search" name="search" placeholder="Search...">
         <button type="submit">Search</button>
-      </form>
-      
+    </form>
+    
+      <form method="post">
       <table class="content-table">
     <thead>
         <tr>
@@ -42,7 +41,6 @@ if ($result->num_rows > 0) {
     </thead>
     <tbody>
         <tr>
-        <form method="post">
             <td><input type="text" name="genDis"> </td>
             <td><input type="text" name="genDisPer"> </td>
             <td><input type="text" name="genDisQual"> </td>
@@ -60,8 +58,8 @@ if ($result->num_rows > 0) {
         <tbody>
         <tr>
         <form>
-            <td><input type="text" name="genDisStart"></td>
-            <td><input type="text" name="genDisEnd"></td>
+            <td><input type="text" name="genDisStart" required></td>
+            <td><input type="text" name="genDisEnd" required></td>
         </tr>
     </tbody>  
     </table>
@@ -69,7 +67,7 @@ if ($result->num_rows > 0) {
     <input type="submit" name="setGenDis" value="Set Total-Based Discount" class="custom-button1">
     </form>
     <?php   
-        if (isset($_REQUEST['setGenDis'])){
+        if (isset($_POST['setGenDis'])){
             $GeneralDiscount=$_POST['genDis'];
             $GeneralDiscountPercentage=$_POST['genDisPer'];
             $genDisQual=$_POST['genDisQual'];
@@ -77,7 +75,7 @@ if ($result->num_rows > 0) {
             $GeneralDiscountEnd=$_POST['genDisEnd'];
 
             $sql_insert_gen_dis = "INSERT INTO gendiscount (gendis, gendisper, gendisqual, gendistart, gendisend)
-                           VALUES (?, ?, ?, ?, ?)";
+                           VALUES (?, ?, ?, ?, ?)";       
 
             $stmt = $conn->prepare($sql_insert_gen_dis);
             $stmt->bind_param("sdsss", $GeneralDiscount, $GeneralDiscountPercentage, $genDisQual, $GeneralDiscountStart, $GeneralDiscountEnd);
@@ -87,9 +85,9 @@ if ($result->num_rows > 0) {
                 echo "Error inserting general discount: " . $stmt->error;
             }
 
-    $stmt->close();
-    $conn->close();
-}
+            $stmt->close();
+            $conn->close();
+        }
 
     ?>
     
@@ -116,8 +114,8 @@ if ($result->num_rows > 0) {
                     <?php endforeach; ?>
                     </select>
                 </td>
-                <td><input type="text" name="itemDis"> </td>
-                <td><input type="text" name="itemDisPer"> </td>
+                <td><input type="text" name="catoritemDis"> </td>
+                <td><input type="text" name="catoritemDisPer"> </td>
             </tr>
         </tbody>  
         </table>
@@ -127,12 +125,76 @@ if ($result->num_rows > 0) {
             <th>Discount Ends(YYYY-MM-DD)</th>
         </thead>
         <tbody>
-            <td><input type="text"> </td>
-            <td><input type="text"> </td>
+            <td><input type="text" name=catoritemStart required> </td>
+            <td><input type="text" name=catoritemEnd  required> </td>
         </tbody>
     </table>
-    <input type="submit" value="Set Item-Based Discount" class="custom-button2">
+    <input type="submit" value="Set Item-Based Discount" name="Set Item-Based Discount" class="custom-button2">
     </form>
+    <?php
+    if (isset($_REQUEST['Set Item-Based Discount'])){
+        if(isset($_POST['itemDisProID']) || isset($_POST['itemDisProName'])){
+            $ItemDiscount_ID = $_POST['itemDisProID'];
+            $ItemDiscount_Name = $_POST['itemDisProName'];
+            $ItemDiscount_Amount = $_POST['catoritemDis'];
+            $ItemDiscount_Percent = $_POST['catoritemDisPer'];
+            $ItemDiscountStart = $_POST['catoritemStart'];
+            $ItemDiscountEnd = $_POST['catoritemEnd'];
+            
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            
+            $sql_insert = "INSERT INTO itemdiscount (pro_ID, pro_name, itemdis, itemdisper, itemdistart, itemdisend)
+                          VALUES (?, ?, ?, ?, ?, ?)";
+            
+            $stmt = $conn->prepare($sql_insert);
+            
+            if ($stmt) {
+                $stmt->bind_param("ssiddss", $ItemDiscount_ID, $ItemDiscount_Name, $ItemDiscount_Amount, $ItemDiscount_Percent, $ItemDiscountStart, $ItemDiscountEnd);
+            
+                if ($stmt->execute()) {
+                    $stmt->close();
+                    echo "Item discount were set successful!";
+                } else {
+                    echo "Item discount were set failed: " . $stmt->error;
+                }
+            }  else {
+                echo "Error: " . $sql_insert . "<br>" . $conn->error;
+            }
+            
+            $conn->close();
+
+        } elseif(isset($_POST['ItemCat_Picker'])){
+            $Category = $_POST['ItemCat_Picker'];
+            $ItemDiscount_Amount = $_POST['catoritemDis'];
+            $ItemDiscount_Percent = $_POST['catoritemDisPer'];
+            $ItemDiscountStart = $_POST['catoritemStart'];
+            $ItemDiscountEnd = $_POST['catoritemEnd'];
+            
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            
+            $sql_insert_cat = "INSERT INTO catdiscount (cat, catdis, catdisper, catdistart, catdisend)
+                              VALUES (?, ?, ?, ?, ?)";
+            
+            $stmt_cat = $conn->prepare($sql_insert_cat);
+            
+            if ($stmt_cat) {
+                $stmt_cat->bind_param("sidds", $Category, $ItemDiscount_Amount, $ItemDiscount_Percent, $ItemDiscountStart, $ItemDiscountEnd);
+                $stmt_cat->execute();
+                $stmt_cat->close();
+            } else {
+                echo "Error: " . $sql_insert_cat . "<br>" . $conn->error;
+            }
+            
+            $conn->close();
+            
+        } else{
+            echo "Invalid Input";
+        }
+    }?>
       </table>
 </body>
 

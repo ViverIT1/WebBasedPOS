@@ -54,14 +54,24 @@ $sql_itemdis = "CREATE TABLE itemdiscount (
     itemdisend date NOT NULL
 )";
 
+$sql_catdis = "CREATE TABLE catdiscount (
+    catdis_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    cat VARCHAR(15) NOT NULL,
+    catdis BIGINT(8),
+    catdisper DECIMAL(3,2),
+    catdistart date NOT NULL,
+    catdisend date NOT NULL
+)";
+
 if (
     $conn->query($sql_itemlist) === true &&
     $conn->query($sql_cashier_temp) === true &&
     $conn->query($sql_userauth) === true &&
     $conn->query($sql_gendis) === true &&
-    $conn->query($sql_itemdis) === true 
+    $conn->query($sql_itemdis) === true &&
+    $conn->query($sql_catdis) === true
 ) {
-    echo "Tables 'itemlist', 'cashier_temp', 'userauth', 'gendiscount', and itemdis created successfully";
+    echo "Tables 'itemlist', 'cashier_temp', 'userauth', 'gendiscount', 'itemdis' and 'catdiscount' created successfully";
 
     // Insert data into 'itemlist' table
     $insert_itemlist = "INSERT INTO itemlist (pro_inf, pro_name, pro_cat, pro_price, pro_maxStock, pro_quantity, pro_barcode, pro_exp, pro_reorder, pro_minStock)
