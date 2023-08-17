@@ -1,0 +1,95 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.input-group {
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+
+.container {
+    display: inline-block;
+    text-align: left;
+    padding: 10px;
+    background-color: #fff;
+    border: 2px solid orange;
+    border-radius: 4px;
+}
+
+input {
+    flex: 1; /* This will make the input element take up the remaining space */
+    margin-left: 10px; /* Add some space between the label and the input */
+    padding: 5px;
+    border: 2px solid grey;
+
+}
+.container input[type="submit"] {
+    padding: 8px 15px;
+    background-color: orange;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.container input[type="submit"]:hover {
+    background-color: #FFD07F;
+}
+
+#name{
+    margin-left: 34px;
+}
+
+.content-table{
+position: relative;
+width: 98%;
+border-collapse: collapse;
+margin: 10px;
+}
+.content-table thead tr{
+    background-color: orange;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* remove button*/
+.input-cell button {
+    padding: 6px 10px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.input-cell button:hover {
+    background-color: #FFD07F;
+}
+
+.input-cell input {
+    width: 90%;
+    padding: 5px;
+    border: none; /* Remove the borders */
+    background-color: transparent; /* Make the background transparent */
+    font-family: inherit;
+    color: inherit;
+    padding: 0px; /*remove the extra padding*/
+}
+
+td:nth-child(1) {
+    width: 20px; /* Set the width of the second cell (Quantity) */
+}
+
+ td {
+    border: 2px solid black; /* Add a border to all cells */
+}
+
+th{
+    border: 2px solid black;
+}
