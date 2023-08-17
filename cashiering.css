@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .input-group {
@@ -125,9 +126,9 @@ font-size: 20px; /* Set the font size for the number */
     transition: background-color 0.2s ease-in-out;
 
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(72%);
 }
 
 #popupButton:hover {
