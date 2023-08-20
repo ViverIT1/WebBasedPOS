@@ -90,7 +90,7 @@ if ($result->num_rows > 0) {
         }
 
     ?>
-    
+        <form method="post">
     <table class="content-table">
         <thead>
             <tr>
@@ -103,7 +103,6 @@ if ($result->num_rows > 0) {
         </thead>
 
         <tbody>
-            <form method="post">
             <tr>
                 <td><input type="text" name="itemDisProID"> </td>
                 <td><input type="text" name="itemDisProName"> </td>
@@ -129,11 +128,11 @@ if ($result->num_rows > 0) {
             <td><input type="text" name=catoritemEnd  required> </td>
         </tbody>
     </table>
-    <input type="submit" value="Set Item-Based Discount" name="Set Item-Based Discount" class="custom-button2">
+    <input type="submit" value="Set Item-Based Discount" name="SetItemDiscount" class="custom-button2">
     </form>
     <?php
-    if (isset($_REQUEST['Set Item-Based Discount'])){
-        if(isset($_POST['itemDisProID']) || isset($_POST['itemDisProName'])){
+    if (isset($_REQUEST['SetItemDiscount'])){
+        if (!empty($_POST['itemDisProID']) || !empty($_POST['itemDisProName'])) {
             $ItemDiscount_ID = $_POST['itemDisProID'];
             $ItemDiscount_Name = $_POST['itemDisProName'];
             $ItemDiscount_Amount = $_POST['catoritemDis'];
@@ -151,7 +150,7 @@ if ($result->num_rows > 0) {
             $stmt = $conn->prepare($sql_insert);
             
             if ($stmt) {
-                $stmt->bind_param("ssiddss", $ItemDiscount_ID, $ItemDiscount_Name, $ItemDiscount_Amount, $ItemDiscount_Percent, $ItemDiscountStart, $ItemDiscountEnd);
+                $stmt->bind_param("isddss", $ItemDiscount_ID, $ItemDiscount_Name, $ItemDiscount_Amount, $ItemDiscount_Percent, $ItemDiscountStart, $ItemDiscountEnd);
             
                 if ($stmt->execute()) {
                     $stmt->close();
@@ -165,7 +164,7 @@ if ($result->num_rows > 0) {
             
             $conn->close();
 
-        } elseif(isset($_POST['ItemCat_Picker'])){
+        } elseif(!empty($_POST['ItemCat_Picker'])){
             $Category = $_POST['ItemCat_Picker'];
             $ItemDiscount_Amount = $_POST['catoritemDis'];
             $ItemDiscount_Percent = $_POST['catoritemDisPer'];
@@ -184,6 +183,7 @@ if ($result->num_rows > 0) {
             if ($stmt_cat) {
                 $stmt_cat->bind_param("sidds", $Category, $ItemDiscount_Amount, $ItemDiscount_Percent, $ItemDiscountStart, $ItemDiscountEnd);
                 $stmt_cat->execute();
+                echo "Discount on Category were set successfully";
                 $stmt_cat->close();
             } else {
                 echo "Error: " . $sql_insert_cat . "<br>" . $conn->error;

@@ -16,7 +16,7 @@ if (isset($_POST["product"])) {
         $insert_query = "INSERT INTO cashier_temp (pro_ID, pro_name, pro_price, pro_quantity, pro_total)
          VALUES ('$product_id','$product_name', '$product_price', '$product_quantity', '$total_price')";
         if ($conn->query($insert_query) === TRUE) {
-            header('location:cashiering.php');
+            header('location:cashieringiframe.php');
         }
     $conn->close(); // Close the connection
 }}

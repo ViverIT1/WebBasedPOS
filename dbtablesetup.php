@@ -37,8 +37,8 @@ $sql_userauth = "CREATE TABLE userauth (
 
 $sql_gendis = "CREATE TABLE gendiscount (
     gendis_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    gendis BIGINT(8),
-    gendisper DECIMAL(3,2),
+    gendis DECIMAL(11,2),
+    gendisper DECIMAL(11,2),
     gendisqual int(8),
     gendistart date NOT NULL,
     gendisend date NOT NULL
@@ -48,8 +48,8 @@ $sql_itemdis = "CREATE TABLE itemdiscount (
     itemdis_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     pro_ID VARCHAR(15) NOT NULL,
     pro_name VARCHAR(40) NOT NULL,
-    itemdis BIGINT(8),
-    itemdisper DECIMAL(3,2),
+    itemdis DECIMAL(11,2),
+    itemdisper DECIMAL(11,2),
     itemdistart date NOT NULL,
     itemdisend date NOT NULL
 )";
@@ -57,8 +57,8 @@ $sql_itemdis = "CREATE TABLE itemdiscount (
 $sql_catdis = "CREATE TABLE catdiscount (
     catdis_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     cat VARCHAR(15) NOT NULL,
-    catdis BIGINT(8),
-    catdisper DECIMAL(3,2),
+    catdis DECIMAL(11,2),
+    catdisper DECIMAL(11,2),
     catdistart date NOT NULL,
     catdisend date NOT NULL
 )";
