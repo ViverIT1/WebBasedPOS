@@ -17,7 +17,7 @@ $sql_itemlist = "CREATE TABLE itemlist (
     pro_exp DATE,
     pro_reorder INT(11) NOT NULL,
     pro_minStock INT(11) NOT NULL
-)";
+)";//Item Database
 
 $sql_cashier_temp = "CREATE TABLE cashier_temp (
     pro_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -25,7 +25,7 @@ $sql_cashier_temp = "CREATE TABLE cashier_temp (
     pro_price decimal(11,2) NOT NULL,
     pro_quantity INT(11) NOT NULL,
     pro_total decimal(11,2) NOT NULL
-)";
+)"; //Cashier Cart
 
 $sql_userauth = "CREATE TABLE userauth (
     user_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -42,7 +42,7 @@ $sql_gendis = "CREATE TABLE gendiscount (
     gendisqual int(8),
     gendistart date NOT NULL,
     gendisend date NOT NULL
-)";
+)"; //General Discount
 
 $sql_itemdis = "CREATE TABLE itemdiscount (
     itemdis_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -52,7 +52,7 @@ $sql_itemdis = "CREATE TABLE itemdiscount (
     itemdisper DECIMAL(11,2),
     itemdistart date NOT NULL,
     itemdisend date NOT NULL
-)";
+)"; //Discount by item
 
 $sql_catdis = "CREATE TABLE catdiscount (
     catdis_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -61,7 +61,7 @@ $sql_catdis = "CREATE TABLE catdiscount (
     catdisper DECIMAL(11,2),
     catdistart date NOT NULL,
     catdisend date NOT NULL
-)";
+)"; //Discount by Category
 
 if (
     $conn->query($sql_itemlist) === true &&
