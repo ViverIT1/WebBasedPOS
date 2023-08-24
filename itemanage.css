@@ -1,56 +1,81 @@
-/*Header part*/
-/* Apply a flexbox layout to the Header container */
-.Header {
-  display: flex;
-  align-items: center; /* This will vertically center the items within the container */
-  background-color: #f0f0f0;
-  padding: 10px;
-  justify-content: flex-start;
-}
-
-/* Style for the h2 element */
-.Header h2 {
+body, h2, button {
   margin: 0;
-  font-size: 20px;
+  padding: 0;
 }
 
-/* Style for the button element */
-.Header .add-button {
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+/* Header styles */
+.header {
+  text-align: left;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.add-button {
   padding: 5px 10px;
-  background-color: #4CAF50;
+  background-color: orange;
+  border: #f0f0f0;
   color: white;
   font-size: 16px;
   text-decoration: none;
 }
 
-/* Add some margin to separate the h2 and button elements */
-.Header h2 {
-  margin-right: 10px;
+.add-button:hover {
+  background-color: #FFD07F;
 }
-/*Search*/
-.header-box{
-    width: 100%;
-    text-align: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    }
 
-table.content-table{
-  width: 95%;
+form {
+  text-align: center;
+  margin: 20px 0;
 }
-  
-table,th,td{
-    width: 100;
-    margin: auto;
-    font-size: 13px;
-    padding: 1px;
-    text-align: center;
-    border: 2px solid #000;
-    border-collapse: collapse;
+
+input[type="search"] {
+  padding: 10px;
+  border: 1px solid orange;
+  border-radius: 5px;
 }
-.content-table thead tr{
+
+button[type="submit"] {
   background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
+
+button[type="submit"]:hover {
+  background-color: #FFD07F;
+}
+
+.content-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.content-table th,
+.content-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.content-table th {
+  background-color: orange;
+  color: white;
+}
+
+.content-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
 .AddWindow{
   position: fixed;
   top: 0;
@@ -146,16 +171,6 @@ input[type="search"] {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 3px;
-}
-
-/* Style for the search button */
-button[type="submit"] {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 3px;
-    cursor: pointer;
 }
 
 /* Responsive styling for smaller screens */
