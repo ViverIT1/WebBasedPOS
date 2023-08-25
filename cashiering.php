@@ -31,45 +31,53 @@ $result = $conn->query($query);
 </div>
 
 <?php
-$cartQuery = "SELECT c.pro_name, c.pro_price, c.pro_quantity,
-i.itemdis, i.itemdisper, 
-c.pro_price * c.pro_quantity AS pro_total
-FROM cashier_temp c
-LEFT JOIN itemdiscount i ON c.pro_name = i.pro_name
-ORDER BY c.pro_ID";
+$cartQuery = "SELECT c.pro_ID, c.pro_name, c.pro_price, c.pro_quantity,
+    i.itemdis, i.itemdisper 
+    FROM cashier_temp c
+    LEFT JOIN itemdiscount i ON c.pro_ID = i.pro_ID
+    ORDER BY c.pro_ID";
 
 $cartResult = $conn->query($cartQuery);
 
 $totalPrice = 0;
 $totalDiscountAmount = 0;
+$totalDiscountPercent = 0;
 
 if ($cartResult) {
     while ($cartItem = $cartResult->fetch_assoc()) {
         $itemPrice = $cartItem['pro_price'];
         $itemQuantity = $cartItem['pro_quantity'];
-        $itemTotal = $cartItem['pro_total'];
         $itemDiscount = $cartItem['itemdis'];
         $itemDiscountPercentage = $cartItem['itemdisper'];
 
+        // Calculate item total before discount
+        $itemTotal = $itemPrice * $itemQuantity;
+
         if ($itemDiscount !== null) {
-            $discountedPrice = $itemPrice - $itemDiscount;
             $discountAmount = $itemDiscount * $itemQuantity;
-            $itemTotalDiscounted = $discountedPrice * $itemQuantity;
+            $itemTotal -= $discountAmount;
             $totalDiscountAmount += $discountAmount;
-        } elseif ($itemDiscountPercentage !== null) {
-            $discountedPrice = $itemPrice * (1 - $itemDiscountPercentage);
-            $discountAmount = $itemPrice - $discountedPrice;
-            $itemTotalDiscounted = $discountedPrice * $itemQuantity;
-            $totalDiscountAmount += $discountAmount * $itemQuantity;
-        } else {
-            $itemTotalDiscounted = $itemTotal;
         }
 
-        $totalPrice += $itemTotalDiscounted;
+        if ($itemDiscountPercentage !== null) {
+            // Get discount amount from percentage
+            $discountPercentage = $itemDiscountPercentage / 100;
+            $discountAmountPercentage = $discountPercentage * ($itemPrice * $itemQuantity);
+
+            // Add discount amount from percentage to total discount amount
+            $totalDiscountAmount += $discountAmountPercentage;
+
+            // Apply the discount percentage
+            $itemTotal -= $discountAmountPercentage;
+        }
+
+        $totalPrice += $itemTotal;
     }
 }
 
-$totalPriceAfterDiscount = $totalPrice - $totalDiscountAmount;
+// Calculate the total price after discounts
+$totalPriceAfterDiscount = $totalPrice;
+
 ?>
 
 <div class="scnd_box">
@@ -96,14 +104,14 @@ $totalPriceAfterDiscount = $totalPrice - $totalDiscountAmount;
             <div class="disc_percnumb" id="disc_perc">
                 <?php
                 if ($totalPrice > 0) {
-                    $discountPercentage = ($totalDiscountAmount / $totalPrice) * 100;
+                    $discountPercentage = ($totalDiscountAmount / ($totalPrice + $totalDiscountAmount)) * 100;
                     echo number_format($discountPercentage, 2);
                 } else {
                     echo "0.00";
                 }
                 ?>
             </div>
-            <input type="hidden" name="disc_perc" value="0">
+            <input type="hidden" name="disc_perc" value="<?php echo $discountPercentage; ?>">
         </div>
 
         <div class="discount">
@@ -113,16 +121,16 @@ $totalPriceAfterDiscount = $totalPrice - $totalDiscountAmount;
                 echo number_format($totalDiscountAmount, 2); 
                 ?>
             </div>
-            <input type="hidden" name="disc_amount" value="0">
+            <input type="hidden" name="disc_amount" value="<?php echo $totalDiscountAmount; ?>">
         </div>
         <div class="total">
             <h2 class="grand_ttl">Grand Total</h2>
             <div class="total_numb" id="grand-total">
                 <?php
-                echo number_format($totalPrice, 2);
+                echo number_format($totalPriceAfterDiscount, 2);
                 ?>
             </div>
-            <input type="hidden" name="total" value="0">
+            <input type="hidden" name="total" value="<?php echo $totalPriceAfterDiscount; ?>">
             <input type="hidden" name="amount_tendered" value="0">
             <input type="hidden" name="amount_change" value="0">
         </div>
@@ -132,15 +140,7 @@ $totalPriceAfterDiscount = $totalPrice - $totalDiscountAmount;
 <div class="iframe-cashiering">
 <iframe src="cashieringiframe.php"></iframe>
 </div>
-
 <button id="popupButton" type="button">Settle Payment</button>
-
-<?php
-
-echo "ItemDis: " . $itemDiscount . "<br>";
-echo "ItemPer: " . $itemDiscountPercentage ."<br>";
-
-?>
 
     </body>
 </html>
