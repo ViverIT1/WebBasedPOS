@@ -1,4 +1,4 @@
-body, h2, button {
+body, h1, button {
   margin: 0;
   padding: 0;
 }
@@ -12,6 +12,7 @@ body {
 
 /* Header styles */
 .header {
+  display: flex;
   text-align: left;
   color: #333;
   margin-bottom: 20px;
@@ -19,6 +20,7 @@ body {
 
 .add-button {
   padding: 5px 10px;
+  margin-left: 10px;
   background-color: orange;
   border: #f0f0f0;
   color: white;
