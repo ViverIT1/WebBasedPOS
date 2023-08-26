@@ -11,14 +11,16 @@ body {
 }
 
 
-.header-box {
-    margin: 0;
-    padding: 10px;
-    font-size: 24px;
+.header {
+    display: flex;
+    text-align: left;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .add-button {
     padding: 5px 10px;
+    margin-left: 10px;
     background-color: orange;
     border: #f0f0f0;
     color: white;
@@ -36,7 +38,7 @@ body {
 }
 
 form {
-    text-align: center;
+    text-align: start;
     margin: 20px 0;
 }
 
