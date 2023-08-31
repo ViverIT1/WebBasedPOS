@@ -1,6 +1,11 @@
-.header-box {
-    background-color: #3498db;
-    color: white;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.header{
+    color: black;
     padding: 10px 20px;
     border-radius: 5px;
     display: inline-block;
@@ -15,13 +20,13 @@ form {
 /* Style for the search input */
 input[type="search"] {
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid orange;
     border-radius: 3px;
 }
 
 /* Style for the search button */
 button[type="submit"] {
-    background-color: #3498db;
+    background-color: orange;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -29,6 +34,27 @@ button[type="submit"] {
     cursor: pointer;
 }
 
+button[type="submit"]:hover {
+    background-color: #FFD07F;
+  }
+
+  .add-button {
+    padding: 5px 10px;
+    background-color: orange;
+    border: #f0f0f0;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.add-button a {
+    color: white;
+    text-decoration: none;
+}
+
+.add-button:hover {
+    background-color: #FFD07F;
+}
 /* Style for the content table */
 .content-table {
     width: 100%;
@@ -40,7 +66,7 @@ button[type="submit"] {
     background-color: #f2f2f2;
     padding: 10px;
     text-align: left;
-    border: 1px solid #030303;
+    border: 2px solid orange;
 
 }
 
@@ -66,6 +92,6 @@ button[type="submit"] {
 
 /* Style for empty row cells */
 .content-table tbody tr td {
-    border: 1px solid #ddd; /* Add border property */
+    border: 2px solid #ddd; /* Add border property */
     padding: 10px;
 }
