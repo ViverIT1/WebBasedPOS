@@ -1,35 +1,35 @@
 body, h1, h2, h3, p, ul, ol, li, table, td {
-    margin: 0;
-    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
 }
 
 /* Apply some basic styles to the body */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    color: #333;
+    color: black;
 }
 
 /* Style the Header section */
 .Header {
         display: flex;
         align-items: center; /* This will vertically center the items within the container */
-        background-color: #e59d9d;
         padding: 10px;
         justify-content: flex-start;
 }
 
 .add-button {
-    background-color: #4CAF50;
+    background-color: orange;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 5px 10px;
     font-size: 16px;
     cursor: pointer;
 }
 
 .add-button:hover {
-    background-color: #1c40ce;
+    background-color: #FFD07F;
 }
 
 /* Style the search form */
@@ -39,12 +39,12 @@ form {
 
 input[type="search"] {
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid orange;
     border-radius: 4px;
 }
 
 button[type="submit"] {
-    background-color: #4CAF50;
+    background-color: orange;
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -53,7 +53,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #454ea0;
+    background-color: #FFD07F;
 }
 
 /* Style the table */
@@ -66,12 +66,12 @@ button[type="submit"]:hover {
 
 .content-table th, .content-table td {
     padding: 10px;
-    border-bottom: 1px solid #ccc;
-    border-right: 1px solid #ccc; /* Add a right border to cells */
+    border-bottom: 2px solid #ddd;
+    border-right: 2px solid #ddd; /* Add a right border to cells */
     text-align: center;
 }
 
 .content-table th {
-    background-color: #333;
+    background-color: orange;
     color: #fff;
 }
