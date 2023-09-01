@@ -1,31 +1,29 @@
-body, h1, h2, h3, p, ul, ol, li, table, td {
+body, h1, button {
+    margin: 0;
+    padding: 0;
+}
+
+body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     padding: 20px;
 }
 
-/* Apply some basic styles to the body */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: black;
-}
-
-/* Style the Header section */
-.Header {
-        display: flex;
-        align-items: center; /* This will vertically center the items within the container */
-        padding: 10px;
-        justify-content: flex-start;
+.header {
+    display: flex;
+    text-align: left;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .add-button {
-    background-color: orange;
-    color: #fff;
-    border: none;
     padding: 5px 10px;
+    margin-left: 10px;
+    background-color: orange;
+    border: #f0f0f0;
+    color: white;
     font-size: 16px;
-    cursor: pointer;
+    text-decoration: none;
 }
 
 .add-button:hover {
@@ -34,7 +32,8 @@ body {
 
 /* Style the search form */
 form {
-    margin: 10px;
+    text-align: start;
+    margin-bottom: 20px;
 }
 
 input[type="search"] {
@@ -59,8 +58,7 @@ button[type="submit"]:hover {
 /* Style the table */
 .content-table {
     width: 100%;
-    border-collapse: collapse; /* if gusto mo may kulay ung border pede mo to burahin tas edit mo na lng si border */
-    background-color: #161370;
+    border-collapse: collapse;
     border: 1px solid #ccc;
 }
 
