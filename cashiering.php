@@ -13,13 +13,14 @@ $result = $conn->query($query);
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Cashiering</title>
         <link rel="stylesheet" type="text/css" href="cashiering.css">
+        <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     </head>
 
     <body>
 
 
     <div class="input-group">
-    <form method="post" action="cashieringHandler.php">
+    <form method="post" action="cashieringHandler.php" id="cashierForm" autocomplete="off">
         <div class="container">
             <label for="product">Enter Product Code</label>
             <input type="text" id="product" name="product" placeholder="Enter your Product">
@@ -28,6 +29,39 @@ $result = $conn->query($query);
             <input type="submit" value="Add to cart">
         </div>
     </form>
+            <video id="scanner" playsinline></video>
+    <script>
+    function refreshParentPage() {
+        window.location.reload();
+    }
+    window.addEventListener('load', function () {
+            const productInput = document.getElementById('product');
+            productInput.focus();
+        });
+
+    const scanner = new Instascan.Scanner({ video: document.createElement('video') });
+
+        Instascan.Camera.getCameras().then(function (cameras) {
+            if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+            } else {
+                console.error('No cameras found.');
+            }
+        }).catch(function (error) {
+            console.error(error);
+        });
+
+        scanner.addListener('scan', function (content) {
+            const productInput = document.getElementById('product');
+            productInput.value = content;
+
+            productInput.focus();
+
+            scanner.stop();
+
+            document.getElementById('cashierForm').submit();
+        });
+    </script>
 </div>
 
 <?php

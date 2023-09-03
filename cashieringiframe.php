@@ -5,17 +5,15 @@ $query = "SELECT * FROM cashier_temp";
 $result = $conn->query($query);
 ?>
 
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Cashiering</title>
-        <link rel="stylesheet" type="text/css" href="cashieringiframe.css">
-    </head>
-
-    <body>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cashiering</title>
+    <link rel="stylesheet" type="text/css" href="cashieringiframe.css">
+</head>
+<body>
 
 <table class="content-table">
     <thead>
@@ -47,7 +45,7 @@ $result = $conn->query($query);
                 <td class="input-cell">
                     <form method="post" action="cashierRemoveProduct.php">
                         <input type="hidden" name="product_id" value="<?php echo $product_id ?>">
-                        <button type="submit">Remove</button>
+                        <button type="submit" onclick="refreshParent()">Remove</button>
                     </form>
                 </td>
             </tr>
@@ -55,8 +53,15 @@ $result = $conn->query($query);
         }
     }
     ?>
-</tbody>
+    </tbody>
 </table>
 
-    </body>
+<script>
+    // Function to refresh the parent page
+    function refreshParent() {
+        window.parent.location.reload();
+    }
+</script>
+
+</body>
 </html>
