@@ -42,6 +42,8 @@ $result = $conn->query($query);
     const scanner = new Instascan.Scanner({ video: document.createElement('video') });
 
         Instascan.Camera.getCameras().then(function (cameras) {
+            const productInput = document.getElementById('product');
+                productInput.focus();
             if (cameras.length > 0) {
                 scanner.start(cameras[0]);
             } else {
@@ -53,10 +55,8 @@ $result = $conn->query($query);
 
         scanner.addListener('scan', function (content) {
             const productInput = document.getElementById('product');
-            productInput.value = content;
-
             productInput.focus();
-
+            productInput.value = content;
             scanner.stop();
 
             document.getElementById('cashierForm').submit();
