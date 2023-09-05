@@ -154,3 +154,8 @@ font-size: 20px; /* Set the font size for the number */
     width: 100%;
     height: 100%;
 }
+
+/*scanner*/
+#scanner{
+    display: none;
+  }
