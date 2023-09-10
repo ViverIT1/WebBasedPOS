@@ -1,0 +1,152 @@
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.form-box {
+    width: auto;
+    padding: 10px;
+}
+
+.container1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Add margin to the select/input for spacing */
+.container1 select,
+.container1 input[type="text"] {
+    margin: 0 10px; /* Adjust the value as needed for spacing */
+    flex: 1; /* Allow them to grow and take available space */
+}
+
+select {
+    width: 20%;
+}
+
+input[type="text"] {
+    width: 20%;
+    
+}
+
+.table {
+    width: 95%;
+    margin: 10px auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content-table th, .content-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.content-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.content-table input[type="text"] {
+    width: 70%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.subt-table input[type="text"] {
+    width: 30%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.subt-table {
+    width: 100%;
+}
+
+.subt-table th, .subt-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: right;
+}
+
+.subt-table button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.subt-table button:hover {
+    background-color: #0056b3;
+}
+
+
+/* CSS for input elements within disc-table */
+.disc-table input[type="text"] {
+    width: 30%;
+    padding: 1px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.disc-table {
+    width: 100%;
+}
+
+.disc-table th, .disc-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: right;
+}
+
+
+/* CSS for input elements within tax-table */
+.tax-table input[type="text"] {
+    width: 30%;
+    padding: 1px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* CSS for input elements within total-table */
+.total-table input[type="text"] {
+    width: 30%;
+    padding: 1px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.tax-table {
+    width: 100%;
+}
+
+.tax-table th, .tax-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: right;
+}
+
+/* CSS for total-table */
+.total-table {
+    width: 100%;
+}
+
+.total-table th, .total-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: right;
+}
