@@ -1,5 +1,5 @@
 <?php
-require_once('PhpCon.php');
+include ('PhpCon.php');
 $query = "SELECT * FROM itemlist";
 $result = mysqli_query($conn, $query);
 if (!$result) {
@@ -37,7 +37,6 @@ if (!$result) {
                 <th>Category</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th>Barcode Number</th>
                 <th>Expiry Date</th>
                 <th>Reorder Point</th>
                 <th>Minimum Stock Level</th>
@@ -50,13 +49,12 @@ if (!$result) {
             while ($row = mysqli_fetch_assoc($result)) {
             ?>
                 <tr>
-                    <td><?php echo $row['pro_ID']; ?></td>
+                    <td><?php echo $row['pro_IDQR']; ?></td>
                     <td><?php echo $row['pro_name']; ?></td>
                     <td><?php echo $row['pro_inf']; ?></td>
                     <td><?php echo $row['pro_cat']; ?></td>
                     <td><?php echo $row['pro_price']; ?></td>
                     <td><?php echo $row['pro_quantity']; ?></td>
-                    <td><?php echo $row['pro_barcode']; ?></td>
                     <td><?php echo $row['pro_exp']; ?></td>
                     <td><?php echo $row['pro_reorder']; ?></td>
                     <td><?php echo $row['pro_minStock']; ?></td>

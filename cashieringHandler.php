@@ -2,9 +2,9 @@
 if (isset($_POST["product"])) {
     include ('PhpCon.php'); // Include the database connection file
 
-    $product_id = $_POST['product'];
+    $product_id = $_POST['productQR'];
     $product_quantity = $_POST['quantity'];
-    $query = "SELECT pro_name, pro_price, pro_quantity FROM itemlist WHERE pro_ID = $product_id";
+    $query = "SELECT pro_name, pro_price, pro_quantity FROM itemlist WHERE pro_IDQR = $product_id";
     $result = $conn->query($query); // Use $conn instead of $source_db
 
     if ($result && $result->num_rows > 0) { // Check if $result is valid before using num_rows
@@ -13,7 +13,7 @@ if (isset($_POST["product"])) {
         $product_price = $row["pro_price"];
         $total_price = $product_quantity * $product_price;
 
-        $insert_query = "INSERT INTO cashier_temp (pro_ID, pro_name, pro_price, pro_quantity, pro_total)
+        $insert_query = "INSERT INTO cashier_temp (pro_IDQR, pro_name, pro_price, pro_quantity, pro_total)
          VALUES ('$product_id','$product_name', '$product_price', '$product_quantity', '$total_price')";
         if ($conn->query($insert_query) === TRUE) {
             header('location:cashieringiframe.php');

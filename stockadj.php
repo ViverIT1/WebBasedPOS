@@ -1,5 +1,5 @@
 <?php
-require_once('PhpCon.php');
+include ('PhpCon.php');
 $query = "SELECT * FROM itemlist";
 $result = mysqli_query($conn, $query);
 if (!$result) {

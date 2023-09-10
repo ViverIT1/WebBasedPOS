@@ -42,14 +42,14 @@ if (!isset($_SESSION['username'])) {
     <div class="item"><a class="sub-btn" href="usermanage.html" target="MainIframe"><i class="fas fa-desktop"></i>User Management</a>
     </div>
 
-    <div class="item"><a class="sub-btn" href="customermanage.html" target="MainIframe"><i class="fas fa-desktop"></i>Customer Information Management</a>
+    <div class="item"><a class="sub-btn" href="customermanage.php" target="MainIframe"><i class="fas fa-desktop"></i>Customer Information Management</a>
     </div>
 
     <div class="item"><a class="sub-btn" class="sub-btn"><i class="fas fa-desktop"></i>Supplier
       <i class="fas fa-angle-right dropdown"></i>
     </a>
       <div class="sub-menu">
-        <a href="supplierinfo.html" target="MainIframe" class="sub-module">Supplier Information Management</a>
+        <a href="supplierinfo.php" target="MainIframe" class="sub-module">Supplier Information Management</a>
         <a href="ordertosupp.html" target="MainIframe" class="sub-module">Purchased Oder to Supplier</a>
         <a href="suppdel.html" target="MainIframe" class="sub-module">Supplier Delivery</a>
       </div>
