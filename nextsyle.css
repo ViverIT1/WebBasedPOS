@@ -6,14 +6,14 @@
 }
 body {
     min-height: 100vh;
-    background: #FFE6C7;
-    color: #fff;
+    background: white;
+    color: white;
     background-size: cover;
     background-position: center;
   }
 
   .side-bar{
-    background: #FF8243;
+    background: #91D8E4;
     width: 330px;
     height: 90vh;
     position: fixed;
@@ -44,7 +44,7 @@ body {
   }
 
   .side-bar .menu .item a:hover{
-    background: #FFDCA9;
+    background: #EAFDFC;
     transition: 0.3s ease;
   }
 
@@ -60,7 +60,7 @@ body {
   }
 
   .item .sub-menu{
-    background: #FDA65D;
+    background: #BFEAF5;
     display: none;
   }
 
@@ -71,7 +71,7 @@ body {
 
   .title-container {
     position: relative;
-    background-color: #FF6000;
+    background-color: #82AAE3;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -93,7 +93,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb{
-  background: #FFA559;
+  background: #82AAE3;
 }
 
 .center-embedded {
