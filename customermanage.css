@@ -12,14 +12,14 @@ body {
 .header {
     display: flex;
     text-align: left;
-    color: #333;
+    color: black;
     margin-bottom: 20px;
 }
 
 .add-button {
     padding: 5px 10px;
     margin-left: 10px;
-    background-color: orange;
+    background-color: #82AAE3;
     border: #f0f0f0;
     color: white;
     font-size: 16px;
@@ -35,13 +35,13 @@ form {
 /* Style for the search input */
 input[type="search"] {
     padding: 5px;
-    border: 1px solid orange;
+    border: 1px solid #82AAE3;
     border-radius: 3px;
 }
 
 /* Style for the search button */
 button[type="submit"] {
-    background-color: orange;
+    background-color: #82AAE3;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -50,7 +50,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #FFD07F;
+    background-color: #91D8E4;
   }
 
 .add-button a {
@@ -59,7 +59,7 @@ button[type="submit"]:hover {
 }
 
 .add-button:hover {
-    background-color: #FFD07F;
+    background-color: #91D8E4;
 }
 /* Style for the content table */
 .content-table {
@@ -72,7 +72,7 @@ button[type="submit"]:hover {
     background-color: #f2f2f2;
     padding: 10px;
     text-align: left;
-    border: 2px solid orange;
+    border: 2px solid #82AAE3;
 
 }
 
