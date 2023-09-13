@@ -1,9 +1,5 @@
 <?php
-$conn = new mysqli('localhost', 'root', '', 'webinventorydb');
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include ("PhpCon.php");
 
 $sql_itemlist = "CREATE TABLE itemlist (
     pro_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
