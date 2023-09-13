@@ -27,8 +27,8 @@ if (isset($_REQUEST['import-excel'])) {
             $Product_Quantity = $row[4]; // Quantity
             $Product_Expiry = $row[5]; // Expiry Date (yyyy-mm-dd)
             $Product_Reorder = $row[6]; // Reorder point
-            $Product_Maximum = $row[7] ?? 0; // Maximum Stock Level (use 0 as default if missing)
-            $Product_Minimum = $row[8]; // Minimum Stock Level
+            $Product_Maximum = 100; // Maximum Stock Level (use 0 as default if missing)
+            $Product_Minimum = 10; // Minimum Stock Level
 
 
             // Check if the product already exists
@@ -137,12 +137,6 @@ if ($result->num_rows > 0) {
                     <br>
                     <label for="Reorder_Point">Reorder Point:</label>
                     <input type="text" name="Reorder_Point" id="Reorder_Point" required>
-                    <br>
-                    <label for="Minimum">Minimum Stock Level:</label>
-                    <input type="text" name="Minimum" id="Minimum" required>
-                    <br>
-                    <label for="Maximum">Maximum Stock Level:</label>
-                    <input type="text" name="Maximum" id="Maximum" required>
                     <br>
                     <input type="submit" value="Add">
                         <button type="button" id="closeaddpop"><a href="itemanage.php">Close</a></button>

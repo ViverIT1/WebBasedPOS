@@ -7,8 +7,8 @@ $Price = $_POST['Price'];
 $Quantity = $_POST['Quantity'];
 $Expiry_Date = $_POST['Expiry_Date'];
 $Reorder_Point = $_POST['Reorder_Point'];
-$Minimum = $_POST['Minimum'];
-$Maximum = $_POST['Maximum'];
+$Minimum = 10;
+$Maximum = 100;
 
 $conn = new mysqli('localhost', 'root', '', 'webinventorydb');
 if ($conn->connect_error) {
