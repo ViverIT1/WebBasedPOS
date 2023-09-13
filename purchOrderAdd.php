@@ -52,11 +52,11 @@ if ($result->num_rows > 0) {
             <tbody>
                 <tr>
                     <td></td>
-                    <td><input type="text" name="Quantity"></td>
-                    <td><input type="text" name="Unit"></td>
-                    <td><input type="text" name="Item"></td>
-                    <td><input type="text" name="ProductName"></td>
-                    <td><input type="text" name="UnitPrice"></td>
+                    <td><input type="text" name="Quantity" autocomplete="off"></td>
+                    <td><input type="text" name="Unit" autocomplete="off"></td>
+                    <td><input type="text" name="Item" autocomplete="off"></td>
+                    <td><input type="text" name="ProductName" autocomplete="off"></td>
+                    <td><input type="text" name="UnitPrice" autocomplete="off"></td>
                 </tr>
             </tbody>
         </table>
