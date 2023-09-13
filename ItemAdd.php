@@ -25,11 +25,10 @@ if (isset($_REQUEST['import-excel'])) {
             $Product_Category = $row[2]; // Category
             $Product_Price = $row[3]; // Price
             $Product_Quantity = $row[4]; // Quantity
-            $Product_Barcode = $row[5]; // Barcode
-            $Product_Expiry = $row[6]; // Expiry Date (yyyy-mm-dd)
-            $Product_Reorder = $row[7]; // Reorder point
-            $Product_Maximum = $row[8] ?? 0; // Maximum Stock Level (use 0 as default if missing)
-            $Product_Minimum = $row[9]; // Minimum Stock Level
+            $Product_Expiry = $row[5]; // Expiry Date (yyyy-mm-dd)
+            $Product_Reorder = $row[6]; // Reorder point
+            $Product_Maximum = $row[7] ?? 0; // Maximum Stock Level (use 0 as default if missing)
+            $Product_Minimum = $row[8]; // Minimum Stock Level
 
 
             // Check if the product already exists
@@ -132,9 +131,6 @@ if ($result->num_rows > 0) {
                     <br>
                     <label for="Quantity">Quantity:</label>
                     <input type="text" name="Quantity" id="Quantity" required>
-                    <br>
-                    <label for="Barcode">Barcode:</label>
-                    <input type="text" name="Barcode" id="Barcode" required>
                     <br>
                     <label for="Expiry_Date">Expiry Date(Must be in yyyy-mm-dd format):</label>
                     <input type="text" name="Expiry_Date" id="Expiry_Date" required>
