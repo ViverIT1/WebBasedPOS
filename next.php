@@ -73,7 +73,7 @@ if (!isset($_SESSION['username'])) {
       <div class="sub-menu">
         <a href="invreport.html" target="MainIframe" class="sub-module">Inventory Report</a>
         <a href="stockadjreport.html" target="MainIframe" class="sub-module">Stock Adjusment Report</a>
-        <a href="salesreport.css" target="MainIframe" class="sub-module">Sales Report</a>
+        <a href="salesreport.html" target="MainIframe" class="sub-module">Sales Report</a>
         <a href="cusreturnreport.html" target="MainIframe" class="sub-module">Customer Return Report</a>
         <a href="suppreturnreport.html" target="MainIframe" class="sub-module">Supplier Return Report</a>
         <a href="reodrlistreport.html" target="MainIframe" class="sub-module">Re Order List Report</a>
