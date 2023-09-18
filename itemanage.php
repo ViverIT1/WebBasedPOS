@@ -80,37 +80,37 @@ if (!$result) {
 
                 <form action="ItemAdd.php" method="post">
                     <label for="Product_ID">Product ID:</label>
-                    <input type="text" name="Product_ID" id="Product_ID" required>
+                    <input type="text" name="Product_ID" id="Product_ID" autocomplete="off" required>
                     <br>
                     <label for="Product_Name">Product Name:</label>
-                    <input type="text" name="Product_Name" id="Product_Name" required>
+                    <input type="text" name="Product_Name" id="Product_Name" autocomplete="off" required>
                     <br>
                     <label for="Description">Description:</label>
-                    <input type="text" name="Description" id="Description" required>
+                    <input type="text" name="Description" id="Description" autocomplete="off" required>
                     <br>
                     <label for="Category">Category:</label>
-                    <input type="text" name="Category" id="Category" required>
+                    <input type="text" name="Category" id="Category" autocomplete="off" required>
                     <br>
                     <label for="Price">Price:</label>
-                    <input type="text" name="Price" id="Price" required>
+                    <input type="text" name="Price" id="Price" autocomplete="off" required>
                     <br>
                     <label for="Quantity">Quantity:</label>
-                    <input type="text" name="Quantity" id="Quantity" required>
+                    <input type="text" name="Quantity" id="Quantity" autocomplete="off" required>
                     <br>
                     <label for="Barcode">Barcode:</label>
-                    <input type="text" name="Barcode" id="Barcode" required>
+                    <input type="text" name="Barcode" id="Barcode" autocomplete="off" required>
                     <br>
                     <label for="Expiry_Date">Expiry Date:</label>
-                    <input type="text" name="Expiry_Date" id="Expiry_Date" required>
+                    <input type="text" name="Expiry_Date" id="Expiry_Date" autocomplete="off" required>
                     <br>
                     <label for="Reorder_Point">Reorder Point:</label>
-                    <input type="text" name="Reorder_Point" id="Reorder_Point" required>
+                    <input type="text" name="Reorder_Point" id="Reorder_Point" autocomplete="off" required>
                     <br>
                     <label for="Minimum">Minimum Stock Level:</label>
-                    <input type="text" name="Minimum" id="Minimum" required>
+                    <input type="text" name="Minimum" id="Minimum" autocomplete="off" required>
                     <br>
                     <label for="Maximum">Maximum Stock Level:</label>
-                    <input type="text" name="Maximum" id="Maximum" required>
+                    <input type="text" name="Maximum" id="Maximum" autocomplete="off" required>
                     <br>
                     <input type="submit" value="Add">
                         <button type="button" onclick="closeAddWindow()" id="closeaddpop">Close</button>
