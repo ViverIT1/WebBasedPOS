@@ -41,9 +41,9 @@ if ($result->num_rows > 0) {
     </thead>
     <tbody>
         <tr>
-            <td><input type="text" name="genDis"> </td>
-            <td><input type="text" name="genDisPer"> </td>
-            <td><input type="text" name="genDisQual"> </td>
+            <td><input type="text" name="genDis" autocomplete="off"> </td>
+            <td><input type="text" name="genDisPer" autocomplete="off"> </td>
+            <td><input type="text" name="genDisQual" autocomplete="off"> </td>
         </tr>
     </tbody>  
     </table>
@@ -58,8 +58,8 @@ if ($result->num_rows > 0) {
         <tbody>
         <tr>
         <form>
-            <td><input type="text" name="genDisStart" required></td>
-            <td><input type="text" name="genDisEnd" required></td>
+            <td><input type="text" name="genDisStart" autocomplete="off" required></td>
+            <td><input type="text" name="genDisEnd" autocomplete="off" required></td>
         </tr>
     </tbody>  
     </table>
@@ -104,8 +104,8 @@ if ($result->num_rows > 0) {
 
         <tbody>
             <tr>
-                <td><input type="text" name="itemDisProID"> </td>
-                <td><input type="text" name="itemDisProName"> </td>
+                <td><input type="text" name="itemDisProID" autocomplete="off"> </td>
+                <td><input type="text" name="itemDisProName" autocomplete="off"> </td>
                 <td><select name="ItemCat_Picker">
                     <option>---</option>
                     <?php foreach ($values as $value): ?>
@@ -113,8 +113,8 @@ if ($result->num_rows > 0) {
                     <?php endforeach; ?>
                     </select>
                 </td>
-                <td><input type="text" name="catoritemDis"> </td>
-                <td><input type="text" name="catoritemDisPer"> </td>
+                <td><input type="text" name="catoritemDis" autocomplete="off"> </td>
+                <td><input type="text" name="catoritemDisPer" autocomplete="off"> </td>
             </tr>
         </tbody>  
         </table>
@@ -124,8 +124,8 @@ if ($result->num_rows > 0) {
             <th>Discount Ends(YYYY-MM-DD)</th>
         </thead>
         <tbody>
-            <td><input type="text" name=catoritemStart required> </td>
-            <td><input type="text" name=catoritemEnd  required> </td>
+            <td><input type="text" name=catoritemStart autocomplete="off" required> </td>
+            <td><input type="text" name=catoritemEnd  autocomplete="off" required> </td>
         </tbody>
     </table>
     <input type="submit" value="Set Item-Based Discount" name="SetItemDiscount" class="custom-button2">
