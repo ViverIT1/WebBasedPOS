@@ -5,12 +5,11 @@
   font-family: sans-serif;
 }
 body {
-    min-height: 100vh;
-    background: white;
-    color: white;
-    background-size: cover;
-    background-position: center;
-  }
+  background-image: url('background.jpg');
+  background-size: cover; /* This ensures the image covers the entire viewport */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
 
   .side-bar{
     background: #91D8E4;
