@@ -4,7 +4,7 @@ $Product_Name = $_POST['Product_Name'];
 $Description = $_POST['Description'];
 $Category = $_POST['Category'];
 $Price = $_POST['Price'];
-$Quantity = $_POST['Quantity'];
+$Quantity = 0;
 $Expiry_Date = $_POST['Expiry_Date'];
 $Reorder_Point = $_POST['Reorder_Point'];
 $Minimum = 10;
@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 }
 
 $sql = "INSERT INTO itemlist 
-        (pro_name, pro_inf, pro_cat, pro_price, pro_quantity, pro_barcode, pro_exp, pro_reorder, pro_minStock, pro_maxStock) 
+        (pro_name, pro_inf, pro_cat, pro_price, pro_quantity, pro_exp, pro_reorder, pro_minStock, pro_maxStock) 
         VALUES 
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 

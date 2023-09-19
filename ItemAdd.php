@@ -24,9 +24,9 @@ if (isset($_REQUEST['import-excel'])) {
             $Product_Description = $row[1]; // Description
             $Product_Category = $row[2]; // Category
             $Product_Price = $row[3]; // Price
-            $Product_Quantity = $row[4]; // Quantity
-            $Product_Expiry = $row[5]; // Expiry Date (yyyy-mm-dd)
-            $Product_Reorder = $row[6]; // Reorder point
+            $Product_Quantity = 0; // Quantity
+            $Product_Expiry = $row[4]; // Expiry Date (yyyy-mm-dd)
+            $Product_Reorder = 20; // Reorder point
             $Product_Maximum = 100; // Maximum Stock Level (use 0 as default if missing)
             $Product_Minimum = 10; // Minimum Stock Level
 
@@ -58,11 +58,11 @@ if (isset($_REQUEST['import-excel'])) {
                     echo "Update error: " . mysqli_error($conn);
                 }
             } else {
-                $insertQuery = "INSERT INTO itemlist (pro_inf, pro_name, pro_cat, pro_price, pro_maxStock, pro_quantity, pro_reorder, pro_barcode, pro_exp, pro_minStock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $insertQuery = "INSERT INTO itemlist (pro_inf, pro_name, pro_cat, pro_price, pro_maxStock, pro_quantity, pro_reorder, pro_exp, pro_minStock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($insertQuery);
 
                 if ($stmt) {
-                    $stmt->bind_param("sssiiiissi", $Product_Description, $Product_Name, $Product_Category, $Product_Price, $Product_Maximum, $Product_Quantity, $Product_Reorder, $Product_Barcode, $Product_Expiry, $Product_Minimum);
+                    $stmt->bind_param("sssiiiisi", $Product_Description, $Product_Name, $Product_Category, $Product_Price, $Product_Maximum, $Product_Quantity, $Product_Reorder, $Product_Expiry, $Product_Minimum);
                     if ($stmt->execute()) {
                         $successCount++;
                     } else {
@@ -128,9 +128,6 @@ if ($result->num_rows > 0) {
                     <br>
                     <label for="Price">Price:</label>
                     <input type="text" name="Price" id="Price" required>
-                    <br>
-                    <label for="Quantity">Quantity:</label>
-                    <input type="text" name="Quantity" id="Quantity" required>
                     <br>
                     <label for="Expiry_Date">Expiry Date(Must be in yyyy-mm-dd format):</label>
                     <input type="text" name="Expiry_Date" id="Expiry_Date" required>

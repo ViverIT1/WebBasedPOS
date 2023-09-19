@@ -76,6 +76,17 @@ $sql_customerlist = "CREATE TABLE customerlist (
     cust_mail VARCHAR(50)
 )"; //Customer list
 
+$sql_polist = "CREATE TABLE polist (
+    po_PONO BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    po_unit VARCHAR(50),
+    po_item VARCHAR(50),
+    pro_IDQR VARCHAR(50),
+    pro_name VARCHAR(50),
+    po_supp VARCHAR(50),
+    po_quantity BIGINT(9),
+    po_unitPrice DECIMAL(11,2),
+    po_total DECIMAL(11,2)
+)"; //Purchase Order list
 
 if (
     $conn->query($sql_itemlist) === true &&
@@ -85,7 +96,8 @@ if (
     $conn->query($sql_itemdis) === true &&
     $conn->query($sql_catdis) === true &&
     $conn->query($sql_supplierlist) === true &&
-    $conn->query($sql_customerlist)
+    $conn->query($sql_customerlist) === true &&
+    $conn->query($sql_polist)
 ) {
     echo "Tables 'itemlist', 'cashier_temp', 'userauth', 'gendiscount', 'itemdis', 'catdiscount',
     'supplierlist' and 'customerlist' created successfully";

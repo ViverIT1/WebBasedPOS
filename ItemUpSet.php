@@ -33,6 +33,9 @@ if (isset($_GET['UpSetID'])) {
             <div class="form-box">
             <form action="itemUp.php?UpID=<?php echo $row['pro_ID']; ?>" method="post">
                     <input type="hidden" name="Product_ID" value="<?php echo $row['pro_ID']; ?>">
+                    <label for="Product_Name">Product IDQR:</label>
+                    <input type="text" name="Product_IDQR" id="Product_IDQR" value="<?php echo isset($row['pro_IDQR']) ? $row['pro_IDQR'] : ''; ?>" required>
+                    <br>
                     <label for="Product_Name">Product Name:</label>
                     <input type="text" name="Product_Name" id="Product_Name" value="<?php echo isset($row['pro_name']) ? $row['pro_name'] : ''; ?>" required>
                     <br>
@@ -44,12 +47,6 @@ if (isset($_GET['UpSetID'])) {
                     <br>
                     <label for="Price">Price:</label>
                     <input type="text" name="Price" id="Price" value="<?php echo isset($row['pro_price']) ? $row['pro_price'] : ''; ?>" required>
-                    <br>
-                    <label for="Quantity">Quantity:</label>
-                    <input type="text" name="Quantity" id="Quantity" value="<?php echo isset($row['pro_quantity']) ? $row['pro_quantity'] : ''; ?>" required>
-                    <br>
-                    <label for="Barcode">Barcode:</label>
-                    <input type="text" name="Barcode" id="Barcode" value="<?php echo isset($row['pro_barcode']) ? $row['pro_barcode'] : ''; ?>" required>
                     <br>
                     <label for="Expiry_Date">Expiry Date:</label>
                     <input type="text" name="Expiry_Date" id="Expiry_Date" value="<?php echo isset($row['pro_exp']) ? $row['pro_exp'] : ''; ?>" required>

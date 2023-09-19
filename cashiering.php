@@ -35,8 +35,8 @@ $result = $conn->query($query);
         window.location.reload();
     }
     window.addEventListener('load', function () {
-            const productInput = document.getElementById('product');
-            productInput.focus();
+            const productQR = document.getElementById('productQR');
+            productQR.focus();
         });
 
     const scanner = new Instascan.Scanner({ video: document.createElement('video') });
@@ -54,7 +54,7 @@ $result = $conn->query($query);
         });
 
         scanner.addListener('scan', function (content) {
-            const productInput = document.getElementById('product');
+            const productInput = document.getElementById('productQR');
             productInput.focus();
             productInput.value = content;
             scanner.stop();

@@ -50,7 +50,7 @@ if (!isset($_SESSION['username'])) {
     </a>
       <div class="sub-menu">
         <a href="supplierinfo.php" target="MainIframe" class="sub-module">Supplier Information Management</a>
-        <a href="ordertosupp.html" target="MainIframe" class="sub-module">Purchased Oder to Supplier</a>
+        <a href="purchaseOrder.php" target="MainIframe" class="sub-module">Purchased Oder to Supplier</a>
         <a href="suppdel.html" target="MainIframe" class="sub-module">Supplier Delivery</a>
       </div>
     </div>
