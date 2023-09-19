@@ -77,7 +77,7 @@ $sql_customerlist = "CREATE TABLE customerlist (
 )"; //Customer list
 
 $sql_polist = "CREATE TABLE polist (
-    po_PONO BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    po_PONO BIGINT(8),
     po_unit VARCHAR(50),
     po_item VARCHAR(50),
     pro_IDQR VARCHAR(50),
@@ -88,6 +88,18 @@ $sql_polist = "CREATE TABLE polist (
     po_total DECIMAL(11,2)
 )"; //Purchase Order list
 
+$sql_supdelivery = "CREATE TABLE supdelivery (
+    supdel_PONO BIGINT(8),
+    supdel_unit VARCHAR(50),
+    supdel_item VARCHAR(50),
+    pro_IDQR VARCHAR(50),
+    pro_name VARCHAR(50),
+    supdel_supp VARCHAR(50),
+    supdel_quantity BIGINT(9),
+    supdel_unitPrice DECIMAL(11,2),
+    supdel_total DECIMAL(11,2)
+)"; //Supplier Delivery
+
 if (
     $conn->query($sql_itemlist) === true &&
     $conn->query($sql_cashier_temp) === true &&
@@ -97,7 +109,8 @@ if (
     $conn->query($sql_catdis) === true &&
     $conn->query($sql_supplierlist) === true &&
     $conn->query($sql_customerlist) === true &&
-    $conn->query($sql_polist)
+    $conn->query($sql_polist) === true &&
+    $conn->query($sql_supdelivery)
 ) {
     echo "Tables 'itemlist', 'cashier_temp', 'userauth', 'gendiscount', 'itemdis', 'catdiscount',
     'supplierlist' and 'customerlist' created successfully";
