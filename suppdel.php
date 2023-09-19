@@ -4,13 +4,20 @@ include("PhpCon.php");
 // Query the supdelivery table
 $supdeliveryQuery = "SELECT DISTINCT supdel_PONO, supdel_supp FROM supdelivery";
 $supdeliveryResult = $conn->query($supdeliveryQuery);
-$supdelPonoValues = array();
-$supdelSuppValues = array();
 
 if ($supdeliveryResult->num_rows > 0) {
+    $supdeliveryData = array();
+
     while ($supdelRow = $supdeliveryResult->fetch_assoc()) {
-        $supdelPonoValues[] = $supdelRow["supdel_PONO"];
-        $supdelSuppValues[] = $supdelRow["supdel_supp"];
+        $supdelPono = $supdelRow["supdel_PONO"];
+        $supdelSupp = $supdelRow["supdel_supp"];
+
+        // Group data by PO number
+        if (!isset($supdeliveryData[$supdelPono])) {
+            $supdeliveryData[$supdelPono] = array(
+                'supdelSupp' => $supdelSupp,
+            );
+        }
     }
 }
 ?>
@@ -30,29 +37,33 @@ if ($supdeliveryResult->num_rows > 0) {
         <input type="text" name="SuppPo" id="SuppPo" autocomplete="off">
         <input type="submit" value="Create supdelivery table">
     </form>
-    <?php foreach ($supdelPonoValues as $loopIndex => $supdelPono): ?>
-        <?php if (isset($supdelPono) || isset($supdelSuppValues[$loopIndex])): ?>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Details</th>
-                        <th colspan="3">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Supplier Name:<?php echo $supdelSuppValues[$loopIndex]; ?></td>
-                        <td><a><button>Delivered</button></a></td>
-                        <td><a><button>Details</button></a></td>
-                        <td><a><button>Cancelled</button></a></td>
-                    </tr>
-                    <tr>
-                        <td>PO#:<?php echo $supdelPono; ?></td>
-                        <td colspan="3">Status:</td>
-                    </tr>
-                </tbody>
-            </table>
-        <?php endif; ?>
+
+    <?php foreach ($supdeliveryData as $supdelPono => $data): ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Details</th>
+                    <th colspan="3">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Supplier Name:<?php echo $data['supdelSupp']; ?></td>
+                    <td>
+                        <form method="post" action="suppdeltoinv.php">
+                            <input type="hidden" name="pro_PONO" value="<?php echo $supdelPono; ?>">
+                            <button type="submit">Delivered</button>
+                        </form>
+                    </td>
+                    <td><a><button>Details</button></a></td>
+                    <td><a><button>Cancelled</button></a></td>
+                </tr>
+                <tr>
+                    <td>PO#:<?php echo $supdelPono; ?></td>
+                    <td colspan="3">Status:</td>
+                </tr>
+            </tbody>
+        </table>
     <?php endforeach; ?>
 </body>
 </html>

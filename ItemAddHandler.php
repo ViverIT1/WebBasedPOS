@@ -1,5 +1,6 @@
 <?php
 if(isset($_POST["Product_Name"])){
+$Product_IDQR = $_POST['Product_IDQR'];
 $Product_Name = $_POST['Product_Name'];
 $Description = $_POST['Description'];
 $Category = $_POST['Category'];
@@ -16,13 +17,13 @@ if ($conn->connect_error) {
 }
 
 $sql = "INSERT INTO itemlist 
-        (pro_name, pro_inf, pro_cat, pro_price, pro_quantity, pro_exp, pro_reorder, pro_minStock, pro_maxStock) 
+        (pro_IDQR, pro_name, pro_inf, pro_cat, pro_price, pro_quantity, pro_exp, pro_reorder, pro_minStock, pro_maxStock) 
         VALUES 
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = mysqli_prepare($conn, $sql);
 
-mysqli_stmt_bind_param($stmt, "sssiisiii", $Product_Name, $Description, $Category, $Price, $Quantity, $Expiry_Date, $Reorder_Point, $Minimum, $Maximum);
+mysqli_stmt_bind_param($stmt, "ssssiisiii", $Product_IDQR, $Product_Name, $Description, $Category, $Price, $Quantity, $Expiry_Date, $Reorder_Point, $Minimum, $Maximum);
 
 if (mysqli_stmt_execute($stmt)) {
     header('location: ItemAdd.php');

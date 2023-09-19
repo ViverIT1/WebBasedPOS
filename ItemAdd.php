@@ -109,6 +109,9 @@ if ($result->num_rows > 0) {
     <br>
             <div class="form-box">
                 <form action="ItemAddHandler.php" method="post">
+                <label for="Product_Name">Product ID:</label>
+                    <input type="text" name="Product_IDQR" id="Product_IDQR" required>
+                    <br>
                     <label for="Product_Name">Product Name:</label>
                     <input type="text" name="Product_Name" id="Product_Name" required>
                     <br>
