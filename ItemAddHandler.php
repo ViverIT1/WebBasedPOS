@@ -19,7 +19,7 @@ if ($conn->connect_error) {
 $sql = "INSERT INTO itemlist 
         (pro_IDQR, pro_name, pro_inf, pro_cat, pro_price, pro_quantity, pro_exp, pro_reorder, pro_minStock, pro_maxStock) 
         VALUES 
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = mysqli_prepare($conn, $sql);
 
