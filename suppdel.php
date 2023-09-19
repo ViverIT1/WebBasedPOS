@@ -25,7 +25,7 @@ if ($supdeliveryResult->num_rows > 0) {
 <body>
     <h1>Supplier Delivery</h1>
 
-    <form method="post" action="supdelHandler.php"> 
+    <form method="post" action="suppdelHandler.php"> 
         <label>Input PO# to deliver:</label>
         <input type="text" name="SuppPo" id="SuppPo" autocomplete="off">
         <input type="submit" value="Create supdelivery table">
@@ -42,9 +42,9 @@ if ($supdeliveryResult->num_rows > 0) {
                 <tbody>
                     <tr>
                         <td>Supplier Name:<?php echo $supdelSuppValues[$loopIndex]; ?></td>
-                        <td><a><button>Approve</button></a></td>
+                        <td><a><button>Delivered</button></a></td>
                         <td><a><button>Details</button></a></td>
-                        <td><a><button>Delete</button></a></td>
+                        <td><a><button>Cancelled</button></a></td>
                     </tr>
                     <tr>
                         <td>PO#:<?php echo $supdelPono; ?></td>
