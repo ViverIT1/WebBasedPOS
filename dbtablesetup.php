@@ -13,7 +13,8 @@ $sql_itemlist = "CREATE TABLE itemlist (
     pro_exp DATE,
     pro_reorder INT(11) NOT NULL,
     pro_minStock INT(11) NOT NULL
-)";//Item Database
+)";//Item Database 
+//add batch ID for expiration identification
 
 $sql_cashier_temp = "CREATE TABLE cashier_temp (
     pro_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
