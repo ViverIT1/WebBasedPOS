@@ -63,7 +63,7 @@ if (!isset($_SESSION['username'])) {
         <a href="suppreturn.html" target="MainIframe" class="sub-module">Supplier Return</a>
         <a href="reposidatabase.html" target="MainIframe" class="sub-module">Database Backup and Restore</a>
         <a href="audit.html" target="MainIframe" class="sub-module">Audit Trail</a>
-        <a href="itembarcode.html" target="MainIframe" class="sub-module">Item Barcode</a>
+        <a href="itemqrcode.html" target="MainIframe" class="sub-module">Item QR code</a>
       </div>
     </div>
 
