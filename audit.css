@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: left; /* Changed from "start" to "left" */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex; /* Use flexbox to align elements horizontally */
+    align-items: center; /* Vertically center items in the container */
+    justify-content: space-between; /* Create space between elements */
+}
+
+.filter-container,
+.search-form {
+    display: flex; /* Make the child elements of the container flex */
+    align-items: center; /* Vertically center items in each container */
+}
+
+/* Style for the search input */
+.search-form input[type="search"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Style for the search button */
+.search-form button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-form button[type="submit"]:hover {
+    background-color: #0056b3;
+}
