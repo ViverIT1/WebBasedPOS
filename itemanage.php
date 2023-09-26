@@ -39,8 +39,6 @@ if (!$result) {
                 <th>Quantity</th>
                 <th>Expiry Date</th>
                 <th>Reorder Point</th>
-                <th>Minimum Stock Level</th>
-                <th>Maximum Stock Level</th>
                 <th colspan="2">Actions</th>
             </tr>
         </thead>
@@ -57,8 +55,6 @@ if (!$result) {
                     <td><?php echo $row['pro_quantity']; ?></td>
                     <td><?php echo $row['pro_exp']; ?></td>
                     <td><?php echo $row['pro_reorder']; ?></td>
-                    <td><?php echo $row['pro_minStock']; ?></td>
-                    <td><?php echo $row['pro_maxStock']; ?></td>
                     <td>
                         <button><a href="itemUpSet.php?UpSetID=<?php echo $row['pro_ID']; ?>">Update</button>
                     </td>
@@ -97,8 +93,8 @@ if (!$result) {
                     <label for="Quantity">Quantity:</label>
                     <input type="text" name="Quantity" id="Quantity" autocomplete="off" required>
                     <br>
-                    <label for="Barcode">Barcode:</label>
-                    <input type="text" name="Barcode" id="Barcode" autocomplete="off" required>
+                    <label for="Barcode">QR Code:</label>
+                    <input type="text" name="QRcode" id="QRcode" autocomplete="off" required>
                     <br>
                     <label for="Expiry_Date">Expiry Date:</label>
                     <input type="text" name="Expiry_Date" id="Expiry_Date" autocomplete="off" required>
