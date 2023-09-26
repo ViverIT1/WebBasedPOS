@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Delivery Report</title>
+    <link rel="stylesheet" type="text/css" href="suppdevreport.css">
+</head>
+<body>
+    <h1>Supplier Delivery Report</h1>
+    <div class="container">
+        <div class="filter-container">
+            <label for="start-date">Start Date:</label>
+            <input type="date" id="start-date">
+            <label for="end-date">End Date:</label>
+            <input type="date" id="end-date">
+        </div>
+        
+        <form class="search-form">
+            <input type="search" name="search" placeholder="Search...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+     <table>
+                <thead>
+                    <tr>
+                        <th>Delivery #</th>
+                        <th>PO #</th>
+                        <th>Product Code</th>
+                        <th>Name</th>
+                        <th>Supplier</th>
+                        <th>Unit</th>
+                        <th>Quantity Ordered</th>
+                        <th>Quantity Delivered</th>
+                        <th>Date Received</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" class="editable" value="" readonly></td>
+                        <td><input type="text" class="editable" value="" readonly></td>
+                        <td><input type="text" class="editable" value="" readonly></td>
+                        <td><input type="text" class="editable" value="" readonly></td>
+                        <td><input type="text" class="editable" value="" readonly></td>
+                        <td><input type="text" class="editable" value="" readonly></td>
+                        <td><input type="text" class="editable" value="" readonly></td>
+                        <td><input type="text" class="editable" value="" readonly></td>
+                        <td><input type="text" class="editable" value="" readonly></td>
+                        <td><input type="text" class="editable" value="" readonly></td>
+                    </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
