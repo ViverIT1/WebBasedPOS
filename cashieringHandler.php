@@ -1,13 +1,15 @@
 <?php
-if (isset($_POST["product"])) {
-    include ('PhpCon.php'); // Include the database connection file
+
+include ('PhpCon.php');
+
+if (isset($_POST["productQR"])) {
 
     $product_id = $_POST['productQR'];
     $product_quantity = $_POST['quantity'];
     $query = "SELECT pro_name, pro_price, pro_quantity FROM itemlist WHERE pro_IDQR = $product_id";
-    $result = $conn->query($query); // Use $conn instead of $source_db
+    $result = $conn->query($query); 
 
-    if ($result && $result->num_rows > 0) { // Check if $result is valid before using num_rows
+    if ($result && $result->num_rows > 0) { 
         $row = $result->fetch_assoc();
         $product_name = $row["pro_name"];
         $product_price = $row["pro_price"];
@@ -18,7 +20,7 @@ if (isset($_POST["product"])) {
         if ($conn->query($insert_query) === TRUE) {
             header('location:cashieringiframe.php');
         }
-    $conn->close(); // Close the connection
+    $conn->close(); 
 }}
 header('location:cashiering.php');
 ?>

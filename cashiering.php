@@ -23,7 +23,7 @@ $result = $conn->query($query);
     <form method="post" action="cashieringHandler.php" id="cashierForm" autocomplete="off">
         <div class="container">
             <label for="product">Enter Product Code</label>
-            <input type="text" id="productQR" name="product" placeholder="Enter your Product">
+            <input type="text" id="productQR" name="productQR" placeholder="Enter your Product">
             <label for="product">Enter Quantity</label>
             <input type="text" id="quantity" name="quantity" value="1" placeholder="1">
             <input type="submit" value="Add to cart">
@@ -42,7 +42,7 @@ $result = $conn->query($query);
     const scanner = new Instascan.Scanner({ video: document.createElement('video') });
 
         Instascan.Camera.getCameras().then(function (cameras) {
-            const productInput = document.getElementById('product');
+            const productInput = document.getElementById('productQR');
                 productInput.focus();
             if (cameras.length > 0) {
                 scanner.start(cameras[0]);
