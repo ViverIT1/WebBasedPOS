@@ -6,24 +6,28 @@ h1 {
     text-align: start;
 }
 
-table {
+.content-table {
     width: 100%;
     border-collapse: collapse;
-}
-
-th, td {
-    border: 1px solid black;
+    background-color: white;
+  }
+  
+  .content-table th,
+  .content-table td {
+    border: 1px solid #ccc;
     padding: 8px;
-    text-align: left;
-}
-
-th {
+    text-align: center;
+  }
+  
+  .content-table th {
     background-color: #82AAE3;
-}
-
-tr:nth-child(even) {
+    color: white;
+  }
+  
+  .content-table tr:nth-child(even) {
     background-color: #f2f2f2;
-}
+  }
+  
 .container {
     display: flex; 
     align-items: center;
