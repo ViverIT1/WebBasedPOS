@@ -3,23 +3,22 @@ body {
 }
 
 h1 {
-    text-align: left; /* Changed from "start" to "left" */
+    text-align: start;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
 }
 
 th, td {
-    padding: 10px;
+    border: 1px solid black;
+    padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #82AAE3;
 }
 
 input[type="date"] {
@@ -43,14 +42,14 @@ input[type="date"] {
 /* Style for the search input */
 .search-form input[type="search"] {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #82AAE3;
     border-radius: 5px;
 }
 
 /* Style for the search button */
 .search-form button[type="submit"] {
     padding: 10px 20px;
-    background-color: #007BFF;
+    background-color: #82AAE3;
     color: white;
     border: none;
     border-radius: 5px;
@@ -58,5 +57,5 @@ input[type="date"] {
 }
 
 .search-form button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #91D8E4;
 }
