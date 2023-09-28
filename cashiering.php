@@ -172,7 +172,7 @@ $totalPriceAfterDiscount = $totalPrice;
 </div>
 
 <div class="iframe-cashiering">
-<iframe src="cashieringiframe.php"></iframe>
+  <iframe src="cashieringiframe.php" frameborder="0"></iframe>
 </div>
 <button id="popupButton" type="button">Settle Payment</button>
 
