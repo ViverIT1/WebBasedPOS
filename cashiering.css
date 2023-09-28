@@ -1,9 +1,22 @@
-body {
-    font-family: Arial, sans-serif;
+body, h1, button {
     margin: 0;
     padding: 0;
-    overflow: hidden;
-}
+  }
+  
+  /* Body styles */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  /* Header styles */
+  .header {
+    display: flex;
+    text-align: left;
+    color: #333;
+    margin-bottom: 20px;
+  }
 
 .input-group {
     text-align: center;
