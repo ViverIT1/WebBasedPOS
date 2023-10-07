@@ -1,22 +1,22 @@
 body, h1, button {
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Body styles */
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    padding: 20px;
-  }
-  
-  /* Header styles */
-  .header {
-    display: flex;
-    text-align: left;
-    color: #333;
-    margin-bottom: 20px;
-  }
+  margin: 0;
+  padding: 0;
+}
+
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  text-align: left;
+  color: #333;
+  margin-bottom: 20px;
+}
 
 .content-table {
     width: 100%;
@@ -40,22 +40,16 @@ body, h1, button {
     background-color: #f2f2f2;
   }
 
-input[type="date"] {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-}
-
 .container {
-    display: flex; /* Use flexbox to align elements horizontally */
-    align-items: center; /* Vertically center items in the container */
-    justify-content: space-between; /* Create space between elements */
+    display: flex; 
+    align-items: center;
+    justify-content: space-between; 
 }
 
 .filter-container,
 .search-form {
-    display: flex; /* Make the child elements of the container flex */
-    align-items: center; /* Vertically center items in each container */
+    display: flex; 
+    align-items: center; 
 }
 
 /* Style for the search input */
