@@ -89,9 +89,9 @@ if (!isset($_SESSION['username'])) {
       <div class="sub-menu">
         <a href="pricemaintenance.html" target="MainIframe" class="sub-module">Pricing Maintenance</a>
         <a href="recieptmaintenance.html" target="MainIframe"  class="sub-module">Receipt Maintenance</a>
-        <a href=".html" target="MainIframe"  class="sub-module">Discount Maintenance</a>
-        <a href=".html" target="MainIframe"  class="sub-module">Category Maintenance</a>
-        <a href=".html" target="MainIframe"  class="sub-module">Unit Maintenance</a>
+        <a href="discountmaintenance.html" target="MainIframe"  class="sub-module">Discount Maintenance</a>
+        <a href="categorymaintenance.html" target="MainIframe"  class="sub-module">Category Maintenance</a>
+        <a href="unitmaintenance.html" target="MainIframe"  class="sub-module">Unit Maintenance</a>
         <a href="updtpolicy.html" target="MainIframe"  class="sub-module">Update Policy</a>
       </div>
     </div>
