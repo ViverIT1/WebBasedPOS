@@ -53,9 +53,16 @@
 .sidebar.close .nav-links{
   overflow: visible;
 }
+
 .sidebar .nav-links::-webkit-scrollbar{
-  display: none;
+  background: #eaa3ea;
+  width: 5px;
 }
+
+.sidebar .nav-links::-webkit-scrollbar-thumb{
+  background: #cf5825;
+}
+
 .sidebar .nav-links li{
   position: relative;
   list-style: none;
