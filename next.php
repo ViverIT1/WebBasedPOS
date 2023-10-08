@@ -58,7 +58,7 @@ if (!isset($_SESSION['username'])) {
                     <span class="link_name">User Management</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="usermanage.html" id="submenu-blank-1">User Management</a></li>
+                    <li><a class="link_name" href="usermanage.html" id="submenu-blank-2">User Management</a></li>
                 </ul>
             </li>
 
@@ -68,7 +68,7 @@ if (!isset($_SESSION['username'])) {
                     <span class="link_name">Customer Management</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="customermanage.php" id="submenu-blank-1">Customer Management</a></li>
+                    <li><a class="link_name" href="customermanage.php" id="submenu-blank-3">Customer Management</a></li>
                 </ul>
             </li>
 
@@ -153,7 +153,7 @@ if (!isset($_SESSION['username'])) {
                     <span class="link_name">Policy</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="policy.html" id="submenu-blank-1">Policy</a></li>
+                    <li><a class="link_name" href="policy.html" id="submenu-blank-4">Policy</a></li>
                 </ul>
             </li>
 
