@@ -217,7 +217,7 @@ if (!isset($_SESSION['username'])) {
 
         submenuItem1.addEventListener("click", function (e) {
             e.preventDefault();
-            iframe.src = "interface.html";
+            iframe.src = "cashiering.php";
         });
 
                 // Submenu item 2 for User Management
@@ -226,7 +226,7 @@ if (!isset($_SESSION['username'])) {
 
         submenuItem2.addEventListener("click", function (e) {
             e.preventDefault();
-            iframe.src = "testingan.html";
+            iframe.src = "usermanage.html";
         });
 
                 // Submenu item 3 for Customer Management
@@ -235,7 +235,7 @@ if (!isset($_SESSION['username'])) {
 
         submenuItem3.addEventListener("click", function (e) {
             e.preventDefault();
-            iframe.src = "dasss.html";
+            iframe.src = "customermanage.php";
         });
 
                 // Submenu item 4 for Policy
@@ -244,7 +244,7 @@ if (!isset($_SESSION['username'])) {
 
         submenuItem4.addEventListener("click", function (e) {
             e.preventDefault();
-            iframe.src = "subukan.html";
+            iframe.src = "policy.html";
         });
     </script>
 
