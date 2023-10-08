@@ -7,125 +7,246 @@ if (!isset($_SESSION['username'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sales and Inventory Management System</title>
-  <link rel="stylesheet" type="text/css" href="nextsyle.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales and Inventory Management System</title>
+    <link rel="stylesheet" href="nextstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="next.js"></script>
 
 
 </head>
-<body><div></div>
-  <div class="title-container">
-    <h1 class="header">Sales and Inventory Management</h1>
-</div>
-<div class="side-bar">
-  <div class="menu">
-    <div class="item"><a href="cashiering.php" target="MainIframe"><i class="fas fa-desktop"></i>Cashiering </a>
+<body><div class="sidebar">
+        <div class="logo-details">
+            <i class="fa-brands fa-centos"></i>
+            <span class="logo_name">POS</span>
+        </div>
+        <ul class="nav-links">
+
+            <li>
+                <a href="#" id="submenu-item-1">
+                    <i class="fa-solid fa-cash-register"></i>
+                    <span class="link_name">Cashiering</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="cashiering.php" id="submenu-blank-1">Cashiering</a></li>
+                </ul>
+            </li>
+
+            <li class="drop">
+                <div class="iocn-link">
+                <a href="#">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span class="link_name">Inventory Management</span>
+                </a>
+               <i class="fa-solid fa-chevron-down arrow"></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Inventory Management</a></li>
+                <li><a href="itemanage.php" target="MainIframe">Item Management</a></li>
+                <li><a href="stockadj.php" target="MainIframe">Stock Adjusment</a></li>
+                <li><a href="discount.php" target="MainIframe">Discount</a></li>
+                <li><a href="packagelist.html" target="MainIframe">Packages</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#" id="submenu-item-2">
+                    <i class="fa-solid fa-user-gear"></i>
+                    <span class="link_name">User Management</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="usermanage.html" id="submenu-blank-1">User Management</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#" id="submenu-item-3">
+                    <i class="fa-solid fa-users-gear"></i>
+                    <span class="link_name">Customer Management</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="customermanage.php" id="submenu-blank-1">Customer Management</a></li>
+                </ul>
+            </li>
+
+            <li class="drop">
+                <div class="iocn-link">
+                <a href="#">
+                    <i class="fa-solid fa-truck-field"></i>
+                    <span class="link_name">Supplier</span>
+                </a>
+               <i class="fa-solid fa-chevron-down arrow"></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Supplier</a></li>
+                <li><a href="supplierinfo.php" target="MainIframe">Supplier Information Management</a></li>
+                <li><a href="purchaseOrder.php" target="MainIframe">Purchased Oder to Supplier</a></li>
+                <li><a href="suppdel.php" target="MainIframe">Supplier Delivery</a></li>
+                </ul>
+            </li>
+
+            <li class="drop">
+                <div class="iocn-link">
+                <a href="#">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span class="link_name">Utility</span>
+                </a>
+               <i class="fa-solid fa-chevron-down arrow"></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Utility</a></li>
+                <li><a href="customereturn.html" target="MainIframe">Customer Return</a></li>
+                <li><a href="suppreturn.html" target="MainIframe">Supplier Return</a></li>
+                <li><a href="reposidatabase.html" target="MainIframe">Database Backup and Restore</a></li>
+                <li><a href="audit.html" target="MainIframe">Audit Trail</a></li>
+                <li><a href="itemqrcode.html" target="MainIframe">Item QR code</a></li>
+                </ul>
+            </li>
+
+            <li class="drop">
+                <div class="iocn-link">
+                <a href="#">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span class="link_name">Reporting and Analytics</span>
+                </a>
+               <i class="fa-solid fa-chevron-down arrow"></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Reporting and Analytics</a></li>
+                <li><a href="invreport.html" target="MainIframe">Inventory Report</a></li>
+                <li><a href="stockadjreport.html" target="MainIframe">Stock Adjusment Report</a></li>
+                <li><a href="salesreport.html" target="MainIframe">Sales Report</a></li>
+                <li><a href="cusreturnreport.html" target="MainIframe">Customer Return Report</a></li>
+                <li><a href="suppreturnreport.html" target="MainIframe">Supplier Return Report</a></li>
+                <li><a href="reodrlistreport.html" target="MainIframe">Re Order List Report</a></li>
+                <li><a href="suppdevreport.html" target="MainIframe">Supplier Delivery Report</a></li>
+                <li><a href="prdexpreport.html" target="MainIframe" >Product Experiration Report</a></li>
+                <li><a href="datanalreport.html" target="MainIframe" >Data Analytics</a></li>
+                </ul>
+            </li>
+
+            <li class="drop">
+                <div class="iocn-link">
+                <a href="#">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <span class="link_name">Maintenance</span>
+                </a>
+               <i class="fa-solid fa-chevron-down arrow"></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">Maintenance</a></li>
+                <li><a href="pricemaintenance.html" target="MainIframe">Pricing Maintenance</a></li>
+                <li><a href="recieptmaintenance.html" target="MainIframe" >Receipt Maintenance</a></li>
+                <li><a href="discountmaintenance.html" target="MainIframe" >Discount Maintenance</a></li>
+                <li><a href="categorymaintenance.html" target="MainIframe" >Category Maintenance</a></li>
+                <li><a href="unitmaintenance.html" target="MainIframe" >Unit Maintenance</a></li>
+                <li><a href="updtpolicy.html" target="MainIframe" >Update Policy</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#" id="submenu-item-4">
+                    <i class="fa-solid fa-gavel"></i>
+                    <span class="link_name">Policy</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="policy.html" id="submenu-blank-1">Policy</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#" onclick="logout();">
+                    <i class="fa-solid fa-arrow-right-from-bracket fa-rotate-180"></i>
+                    <span class="link_name">Logout</span>
+                </a>
+            </li>
+            
+            </li>
+            </ul>
     </div>
 
-    <div class="item"><a class="sub-btn"><i class="fas fa-desktop"></i>Inventory Management
-    <i class="fas fa-angle-right dropdown"></i>
-    </a>
-    <div class="sub-menu">
-      <a href="itemanage.php" target="MainIframe" class="sub-module">Item Management</a>
-      <a href="stockadj.php" target="MainIframe" class="sub-module">Stock Adjusment</a>
-      <a href="discount.php" target="MainIframe" class="sub-module">Discount</a>
-      <a href="packagelist.html" target="MainIframe" class="sub-module">Packages</a>
-    </div>
-    </div>
+    <section class="home-section">
+        <div class="home-content">
+            <i class="fa fa-bars"></i>
+            <span class="text">Sales and Inventory</span>
+        </div>
+    </section>
 
-    <div class="item"><a class="sub-btn" href="usermanage.html" target="MainIframe"><i class="fas fa-desktop"></i>User Management</a>
-    </div>
-
-    <div class="item"><a class="sub-btn" href="customermanage.php" target="MainIframe"><i class="fas fa-desktop"></i>Customer Information Management</a>
-    </div>
-
-    <div class="item"><a class="sub-btn" class="sub-btn"><i class="fas fa-desktop"></i>Supplier
-      <i class="fas fa-angle-right dropdown"></i>
-    </a>
-      <div class="sub-menu">
-        <a href="supplierinfo.php" target="MainIframe" class="sub-module">Supplier Information Management</a>
-        <a href="purchaseOrder.php" target="MainIframe" class="sub-module">Purchased Oder to Supplier</a>
-        <a href="suppdel.php" target="MainIframe" class="sub-module">Supplier Delivery</a>
+    <div class="center-embedded">
+        <div class="embedded-iframe">
+          <iframe class="iframescreen" src="" name="MainIframe" frameborder="0"></iframe>
+        </div>
       </div>
-    </div>
 
-    <div class="item"><a class="sub-btn"><i class="fas fa-desktop"></i>Utility
-      <i class="fas fa-angle-right dropdown"></i>
-    </a>
-      <div class="sub-menu">
-        <a href="customereturn.html" target="MainIframe" class="sub-module">Customer Return</a>
-        <a href="suppreturn.html" target="MainIframe" class="sub-module">Supplier Return</a>
-        <a href="reposidatabase.html" target="MainIframe" class="sub-module">Database Backup and Restore</a>
-        <a href="audit.html" target="MainIframe" class="sub-module">Audit Trail</a>
-        <a href="itemqrcode.html" target="MainIframe" class="sub-module">Item QR code</a>
-      </div>
-    </div>
+     <script>     
+        let menuItems = document.querySelectorAll(" .drop");
 
-    <div class="item"><a class="sub-btn"><i class="fas fa-desktop"></i>Reporting and Analytics
-      <i class="fas fa-angle-right dropdown"></i>
-    </a>
-      <div class="sub-menu">
-        <a href="invreport.html" target="MainIframe" class="sub-module">Inventory Report</a>
-        <a href="stockadjreport.html" target="MainIframe" class="sub-module">Stock Adjusment Report</a>
-        <a href="salesreport.html" target="MainIframe" class="sub-module">Sales Report</a>
-        <a href="cusreturnreport.html" target="MainIframe" class="sub-module">Customer Return Report</a>
-        <a href="suppreturnreport.html" target="MainIframe" class="sub-module">Supplier Return Report</a>
-        <a href="reodrlistreport.html" target="MainIframe" class="sub-module">Re Order List Report</a>
-        <a href="suppdevreport.html" target="MainIframe" class="sub-module">Supplier Delivery Report</a>
-        <a href="prdexpreport.html" target="MainIframe"  class="sub-module">Product Experiration Report</a>
-        <a href="datanalreport.html" target="MainIframe"  class="sub-module">Data Analytics</a>
-      </div>
-    </div>
+        for (var i = 0; i < menuItems.length; i++) {
+        menuItems[i].addEventListener("click", (e) => {
+        let menuItem = e.currentTarget; // Get the clicked <li> element
 
-    <div class="item"><a class="sub-btn"><i class="fas fa-desktop"></i>Maintenance
-      <i class="fas fa-angle-right dropdown"></i>
-    </a>
-      <div class="sub-menu">
-        <a href="pricemaintenance.html" target="MainIframe" class="sub-module">Pricing Maintenance</a>
-        <a href="recieptmaintenance.html" target="MainIframe"  class="sub-module">Receipt Maintenance</a>
-        <a href="discountmaintenance.html" target="MainIframe"  class="sub-module">Discount Maintenance</a>
-        <a href="categorymaintenance.html" target="MainIframe"  class="sub-module">Category Maintenance</a>
-        <a href="unitmaintenance.html" target="MainIframe"  class="sub-module">Unit Maintenance</a>
-        <a href="updtpolicy.html" target="MainIframe"  class="sub-module">Update Policy</a>
-      </div>
-    </div>
+        // Check if the clicked <li> has a submenu (class "sub-menu")
+        if (menuItem.querySelector(".sub-menu")) {
+            menuItem.classList.toggle("showMenu");
+                }
+            });
+        }
 
-    <div class="item"><a class="sub-btn" href="policy.html" target="MainIframe" ><i class="fas fa-desktop"></i>Policy</a>
-    </div>
-    <div class="item">
-    <a class="sub-btn" href="#" onclick="logout();">
-    <i class="fas fa-desktop"></i>Logout
-    </a>
-    </div>
+        let submenuItems = document.querySelectorAll(".sub-menu");
+        for (var i = 0; i < submenuItems.length; i++) {
+            submenuItems[i].addEventListener("click", (e) => {
+                e.stopPropagation();
+            });
+        }
 
-    
-  </div>
-</div>
+        let sidebar = document.querySelector(".sidebar");
+        let sidebarBtn = document.querySelector(".fa-bars");
+        console.log(sidebarBtn);
+        sidebarBtn.addEventListener("click", ()=>{
+            sidebar.classList.toggle("close");
+        });
 
-<div class="center-embedded">
-  <div class="embedded-cashiering">
-    <iframe class= "iframescreen" src="" name="MainIframe" frameborder="0"></iframe>
-  </div>
-</div>
+        let iframe = document.querySelector(".iframescreen");
 
+        // Submenu item 1 for Cashiering
+        let submenuItem1 = document.getElementById("submenu-item-1");
+        let submenuBlank1 = document.getElementById("submenu-blank-1");
 
+        submenuItem1.addEventListener("click", function (e) {
+            e.preventDefault();
+            iframe.src = "interface.html";
+        });
 
+                // Submenu item 2 for User Management
+        let submenuItem2 = document.getElementById("submenu-item-2");
+        let submenuBlank2 = document.getElementById("submenu-blank-2");
 
+        submenuItem2.addEventListener("click", function (e) {
+            e.preventDefault();
+            iframe.src = "testingan.html";
+        });
 
-<script>
-$(document).ready(function(){
-  $('.sub-btn').click(function(){
-    $(this).next('.sub-menu').slideToggle();
-    $(this).find('.dropdown').toggleClass('rotate');
+                // Submenu item 3 for Customer Management
+        let submenuItem3 = document.getElementById("submenu-item-3");
+        let submenuBlank3 = document.getElementById("submenu-blank-3");
 
-  });
-});
-</script>
+        submenuItem3.addEventListener("click", function (e) {
+            e.preventDefault();
+            iframe.src = "dasss.html";
+        });
+
+                // Submenu item 4 for Policy
+        let submenuItem4 = document.getElementById("submenu-item-4");
+        let submenuBlank4 = document.getElementById("submenu-blank-4");
+
+        submenuItem4.addEventListener("click", function (e) {
+            e.preventDefault();
+            iframe.src = "subukan.html";
+        });
+    </script>
+
 </body>
 </html>
