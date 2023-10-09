@@ -41,14 +41,14 @@ if ($poresult->num_rows > 0) {
             </thead>
             <tbody>
                 <tr>
-                    <td>Supplier Name:<?php echo $posuppvalues[$loopIndex]; ?></td>
-                    <td><a><button>Approve</button></a></td>
-                    <td><a><button>Details</button></a></td>
-                    <td><a><button>Delete</button></a></td>
+                    <td class="supplier-name">Supplier Name:<?php echo $posuppvalues[$loopIndex]; ?></td>
+                    <td><a><button class="action-button approve-button">Approve</button></a></td>
+                    <td><a><button class="action-button details-button">Details</button></a></td>
+                    <td><a><button class>Delete</button></a></td>
                 </tr>
                 <tr>
-                    <td>PO#:<?php echo $pono; ?></td>
-                    <td colspan="3">Status:</td>
+                    <td class="po-number">PO#:<?php echo $pono; ?></td>
+                    <td colspan="3" class="status">Status:</td>
                 </tr>
             </tbody>
         </table>
