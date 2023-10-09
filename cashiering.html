@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cashiering</title>
+    <link rel="stylesheet" type="text/css" href="cashiering.css">
+</head>
+<body>
+            <div class="input-group">
+                <form method="post" action="" id="cashierForm" autocomplete="off">
+                    <div class="container">
+                        <label for="product">Enter Product Code</label>
+                        <input type="text" id="productQR" name="productQR" placeholder="Enter your Product">
+                        <label for="product">Enter Quantity</label>
+                        <input type="text" id="quantity" name="quantity" value="1" placeholder="1">
+                        <input type="submit" value="Add to cart">
+                    </div>
+                </form>
+            </div>
+
+            <div class="table-container">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Unit Price</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="1" class="input-cell"><input type="text" value="1" readonly></td>
+                        <td class="input-cell"><input type="text" value="Product 1" readonly></td>
+                        <td class="input-cell"><input type="number" value="10"></td>
+                        <td class="input-cell"><input type="number" value="20" readonly></td>
+                        <td class="input-cell"><input type="number" value="200" readonly></td>
+                        <td class="input-cell">
+                            <form method="post" action="">
+                                <input type="hidden" name="product_id" value="1">
+                                <button type="submit" onclick="refreshParent()">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1" class="input-cell"><input type="text" value="2" readonly></td>
+                        <td class="input-cell"><input type="text" value="Product 2" readonly></td>
+                        <td class="input-cell"><input type="number" value="5"></td>
+                        <td class="input-cell"><input type="number" value="15" readonly></td>
+                        <td class="input-cell"><input type="number" value="75" readonly></td>
+                        <td class="input-cell">
+                            <form method="post" action="">
+                                <input type="hidden" name="product_id" value="2">
+                                <button type="submit" onclick="refreshParent()">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+<div class="totals-container">
+<div class="subtotal">
+    <div class="total_sub">SubTotal:</div>
+    <div class="sub_number" id="sub_total"></div>
+</div>
+
+<div class="perc_discnt">
+    <div class="discount_perc">Discount %</div>
+    <div class="disc_percnumb" id="disc_perc"></div>
+    <input type="hidden" name="disc_perc" value="">
+</div>
+
+<div class="discount">
+    <div class="disc">Discount:</div>
+    <div class="disc_numb" id="disc_amount"></div>
+    <input type="hidden" name="disc_amount" value="">
+</div>
+
+<div class="total">
+    <h2 class="grand_ttl">Grand Total:</h2>
+    <div class="total_numb" id="grand-total"></div>
+    <input type="hidden" name="total" value="">
+    <input type="hidden" name="amount_tendered" value="0">
+    <input type="hidden" name="amount_change" value="0">
+</div>
+
+    <button id="popupButton" type="button">Settle Payment</button>
+</div>
+
+</body>
+</html>
+    
