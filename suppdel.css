@@ -10,11 +10,19 @@ body {
     padding: 20px;
   }
 
-.label {
-    display: block;
+  .form-container label[for="SuppPo"] {
     margin-bottom: 10px;
     font-weight: bold;
 }
+
+
+input[type="text"] {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
   .header {
     display: flex;
     text-align: left;
