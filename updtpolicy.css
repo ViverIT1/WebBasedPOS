@@ -1,0 +1,46 @@
+/* Reset styles for body, h1, and button */
+body, h1, button {
+    margin: 0;
+    padding: 0;
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+.container {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+textarea {
+    width: 100%;
+    max-width: 1180px;
+    height: 200px;
+    resize: vertical;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.btn-update {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.btn-update:hover {
+    background-color: #0056b3;
+}
