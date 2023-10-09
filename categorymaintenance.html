@@ -7,14 +7,10 @@
     <link rel="stylesheet" type="text/css" href="categorymaintenance.css">
 </head>
 <body>
-    <h1>Category Maintenance</h1>
-        
-    <div class="container">
-        <div class="filter-container">
-            <button class="category-button">
-                Create Category <span class="plus-sign">+</span>
-            </button>
-        </div>
+    <div class="header">
+        <h1>Category Maintenance</h1>
+        <a href=""><button class="add-button" type="button">+</button></a>
+    </div>
         
         <form class="search-form">
             <input type="search" name="search" placeholder="Search...">
@@ -22,23 +18,28 @@
         </form>
     </div>
 
-     <table class="content-table">
-            <thead>
-                <tr>
-                    <th>Category Name</th>
-                    <th>Status</th>
-                    <th>Action</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Category Name</th>
+                <th>Type</th>
+                <th>Variant</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button><a href="">Update</button>
+            </td>
+            <td>
+                <button><a href="">Remove</button>
+            </td>
+        </tbody>
+    </table>
 </body>
 </html>
