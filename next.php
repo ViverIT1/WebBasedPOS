@@ -31,7 +31,7 @@ if (!isset($_SESSION['username'])) {
                     <span class="link_name">Cashiering</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="cashiering.php" id="submenu-blank-1">Cashiering</a></li>
+                    <li><a class="link_name" href="cashiering.html" id="submenu-blank-1">Cashiering</a></li>
                 </ul>
             </li>
 
@@ -217,7 +217,7 @@ if (!isset($_SESSION['username'])) {
 
         submenuItem1.addEventListener("click", function (e) {
             e.preventDefault();
-            iframe.src = "cashiering.php";
+            iframe.src = "cashiering.html";
         });
 
                 // Submenu item 2 for User Management
