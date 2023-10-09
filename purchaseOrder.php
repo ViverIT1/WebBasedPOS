@@ -20,7 +20,7 @@ if ($poresult->num_rows > 0) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Purchased Order to Supplier</title>
-    <link rel="stylesheet" type="text/css" href=".css">
+    <link rel="stylesheet" type="text/css" href="purchaseOrder.css">
     <script src=".js"></script>
 </head>
 
@@ -32,11 +32,11 @@ if ($poresult->num_rows > 0) {
 
 <?php foreach($ponovalues as $loopIndex => $pono): ?>
     <?php if(isset($pono) || isset($posuppvalues[$loopIndex])): ?>
-        <table>
+        <table class="order-table">
             <thead>
                 <tr>
-                    <th>Details</th>
-                    <th colspan="3">Action</th>
+                    <th class="details-header">Details</th>
+                    <th colspan="3" class="action-header">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -44,7 +44,7 @@ if ($poresult->num_rows > 0) {
                     <td class="supplier-name">Supplier Name:<?php echo $posuppvalues[$loopIndex]; ?></td>
                     <td><a><button class="action-button approve-button">Approve</button></a></td>
                     <td><a><button class="action-button details-button">Details</button></a></td>
-                    <td><a><button class>Delete</button></a></td>
+                    <td><a><button class="action-button delete-button">Delete</button></a></td>
                 </tr>
                 <tr>
                     <td class="po-number">PO#:<?php echo $pono; ?></td>
