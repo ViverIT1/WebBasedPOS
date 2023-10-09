@@ -33,11 +33,13 @@ if ($supdeliveryResult->num_rows > 0) {
 <body>
     <h1>Supplier Delivery</h1>
 
-    <form method="post" action="suppdelHandler.php"> 
-        <label>Input PO# to deliver:</label>
-        <input type="text" name="SuppPo" id="SuppPo" autocomplete="off">
-        <input class="action-button approve-button" type="submit" value="Create supdelivery table">
-    </form>
+<div class="form-container">
+        <form method="post" action="suppdelHandler.php">
+            <label for="SuppPo">Input PO# to deliver:</label>
+            <input type="text" name="SuppPo" id="SuppPo" autocomplete="off">
+            <input class="action-button approve-button" type="submit" value="Create supdelivery table">
+        </form>
+    </div>
 
     <?php foreach ($supdeliveryData as $supdelPono => $data): ?>
         <table class= "order-table">
