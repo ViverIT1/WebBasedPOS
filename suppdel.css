@@ -37,7 +37,7 @@ input[type="text"] {
 .add-button {
     padding: 5px 10px;
     margin-left: 10px;
-    background-color: #82AAE3;
+    background-color: #176B87;
     border: #f0f0f0;
     color: white;
     font-size: 16px;
@@ -45,7 +45,7 @@ input[type="text"] {
   }
   
   .add-button:hover {
-    background-color: #91D8E4;
+    background-color: #64CCC5;
   }
 
 .order-table {
@@ -57,14 +57,16 @@ input[type="text"] {
 }
 
 .order-table th {
-    background-color: #82AAE3;
+    background-color: #176B87;
     color: #fff;
+    border: 2px solid black;
     padding: 15px;
     text-align: left;
 }
 
 .order-table td {
     padding: 15px;
+    border: 2px solid black;
 }
 
 .supplier-name {
@@ -84,19 +86,19 @@ input[type="text"] {
 }
 
 .approve-button {
-    background-color: #28a745;
+    background-color: #176B87;
 }
 
 .approve-button:hover{
-    background-color: yellowgreen;
+    background-color: #64CCC5;
 }
 
 .details-button {
-    background-color: #82AAE3;
+    background-color: #176B87;
 }
 
 .details-button:hover{
-    background-color: #91D8E4;
+    background-color: #64CCC5;
 }
 
 .delete-button {
