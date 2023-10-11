@@ -99,6 +99,7 @@ input[readonly] {
 
 table td input[type="text"] {
     width: 100%;
+    border: 1px solid #176B87;
     box-sizing: border-box;
     height: 25px;
     font-size: medium;
