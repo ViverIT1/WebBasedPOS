@@ -47,6 +47,7 @@ body {
 .order-table th {
     background-color: #176B87;
     color: #fff;
+    border: 2pc solid black;
     padding: 15px;
     text-align: left;
 }
