@@ -28,14 +28,14 @@ form {
 
 input[type="search"] {
   padding: 10px;
-  border: 1px solid #82AAE3;
+  border: 1px solid #176B87;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 button[type="submit"] {
   padding: 10px 15px;
-  background-color: #82AAE3;
+  background-color: #176B87;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -45,7 +45,7 @@ button[type="submit"] {
 
 
 button[type="submit"]:hover {
-  background-color: #91D8E4;
+  background-color: #64CCC5;
 }
 
 /* Table styles */
@@ -61,12 +61,12 @@ button[type="submit"]:hover {
 .content-table td {
   padding: 15px;
   text-align: left;
-  border: 2px solid #82AAE3;
-  border-bottom: 2px solid #82AAE3;
+  border: 2px solid #176B87;
+  border-bottom: 2px solid #176B87;
 }
 
 .content-table th {
-  border: 2px solid #82AAE3;
+  border: 2px solid black;
   background-color: #f5f5f5;
   font-weight: bold;
 }
@@ -84,7 +84,7 @@ button[type="submit"]:hover {
   display: block;
   margin: 0 auto;
   padding: 10px 20px;
-  background-color: #82AAE3;
+  background-color: #176B87;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -93,7 +93,7 @@ button[type="submit"]:hover {
 }
 
 .confirm-button:hover {
-  background-color: #91D8E4;
+  background-color: #64CCC5;
 }
 
 /* Adjust column widths */
