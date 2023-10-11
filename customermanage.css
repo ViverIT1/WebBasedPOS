@@ -71,6 +71,7 @@ button[type="submit"]:hover {
 .content-table th {
     background-color: #176B87;
     padding: 10px;
+    color: white;
     text-align: left;
     border: 2px solid black;
 
