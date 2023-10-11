@@ -84,7 +84,7 @@ button[type="submit"]:hover {
 
 /* Style for even rows */
 .content-table tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #176B87;
 }
 
 /* Style for table option cells */
