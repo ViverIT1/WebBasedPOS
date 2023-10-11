@@ -54,6 +54,7 @@ body {
 
 .order-table td {
     padding: 15px;
+    border: 2px solid black;
 }
 
 .supplier-name {
