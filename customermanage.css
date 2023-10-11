@@ -84,7 +84,7 @@ button[type="submit"]:hover {
 
 /* Style for even rows */
 .content-table tr:nth-child(even) {
-    background-color: #176B87;
+    background-color: #f2f2f2;
 }
 
 /* Style for table option cells */
@@ -93,7 +93,7 @@ button[type="submit"]:hover {
 }
 
 .content-table tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #176B87;
 }
 
 /* Style for empty row cells */
