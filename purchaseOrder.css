@@ -62,7 +62,7 @@ body {
 
 .action-button {
     background-color: #007bff;
-    border: none;
+    border: 2px solid black;
     color: #fff;
     font-size: 14px;
     cursor: pointer;
