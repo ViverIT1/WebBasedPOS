@@ -94,7 +94,7 @@ button[type="submit"]:hover {
 /* Readonly input styles */
 input[readonly] {
     background-color: #f5f5f5;
-    border: 2px solid grey;
+    border: 2px solid #176B87;
 }
 
 table td input[type="text"] {
