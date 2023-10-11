@@ -49,7 +49,7 @@ body {
   .content-table th {
     background-color: #176B87;
     color: white;
-    border: 2px solid blanchedalmond;
+    border: 2px solid black;
   }
   
   .content-table tr:nth-child(even) {
