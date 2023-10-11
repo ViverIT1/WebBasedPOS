@@ -21,18 +21,22 @@ body, h1, button {
 .add-button {
     padding: 5px 10px;
     margin-left: 10px;
-    background-color: #82AAE3;
+    background-color: #176B87;
     border: #f0f0f0;
     color: white;
     font-size: 16px;
     text-decoration: none;
 }
   
+.add-button:hover {
+  background-color: #64CCC5;
+}
   .content-table {
     margin-top: 5px;
       width: 100%;
       border-collapse: collapse;
       background-color: white;
+      border: 2px solid black;
     }
     
     .content-table th,
@@ -40,10 +44,11 @@ body, h1, button {
       border: 1px solid #ccc;
       padding: 8px;
       text-align: center;
+      border: 2px solid black;
     }
     
     .content-table th {
-      background-color: #82AAE3;
+      background-color: #176B87;
       color: white;
     }
     
@@ -55,14 +60,14 @@ body, h1, button {
   /* Style for the search input */
   .search-form input[type="search"] {
       padding: 10px;
-      border: 1px solid #82AAE3;
+      border: 1px solid #176B87;
       border-radius: 5px;
   }
   
   /* Style for the search button */
   .search-form button[type="submit"] {
       padding: 10px 20px;
-      background-color: #82AAE3;
+      background-color: #176B87;
       color: white;
       border: none;
       border-radius: 5px;
@@ -70,5 +75,5 @@ body, h1, button {
   }
   
   .search-form button[type="submit"]:hover {
-      background-color: #91D8E4;
+      background-color: #64CCC5;
   }
