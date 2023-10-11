@@ -69,7 +69,7 @@ button[type="submit"]:hover {
 
 /* Style for table header cells */
 .content-table th {
-    background-color: #f2f2f2;
+    background-color: #176B87;
     padding: 10px;
     text-align: left;
     border: 2px solid #176B87;
@@ -93,7 +93,7 @@ button[type="submit"]:hover {
 }
 
 .content-table tr:nth-child(even) {
-    background-color: #176B87;
+    background-color: #f2f2f2;
 }
 
 /* Style for empty row cells */
