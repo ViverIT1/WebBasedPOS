@@ -13,7 +13,7 @@ body {
   .header {
     display: flex;
     text-align: left;
-    color: #333;
+    color: black;
     margin-bottom: 20px;
   }
 
@@ -38,6 +38,7 @@ body {
 .order-table {
     margin: 20px auto;
     width: 100%;
+    border: 2px solid black;
     background-color: #fff;
     border-collapse: collapse;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
