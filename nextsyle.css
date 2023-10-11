@@ -172,7 +172,7 @@
 
 .home-section{
     position: relative;
-    background: rgb(181, 182, 124);
+    background: #176B87;
     height: 10vh;
     left: 260px;
     width: calc(100% - 260px);
@@ -201,7 +201,7 @@
 
 .home-section .home-content .fa-bars,
 .home-section .home-content .text{
-    color: #0f8366;
+    color: white;
     font-size: 35px;
 }
 
