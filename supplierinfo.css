@@ -114,6 +114,7 @@ button[type="submit"]:hover {
   .pagination button {
     padding: 8px 12px;
     border: none;
+    color: white;
     background-color: #176B87;
     cursor: pointer;
   }
