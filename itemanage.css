@@ -64,7 +64,7 @@ button[type="submit"]:hover {
 
 .content-table th,
 .content-table td {
-  border: 1px solid #ccc;
+  border: 2px solid black;
   padding: 8px;
   text-align: center;
 }
