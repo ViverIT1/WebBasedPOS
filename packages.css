@@ -28,13 +28,13 @@ form {
 input[type="search"] {
 
     padding: 10px;
-    border: 1px solid #82AAE3;
+    border: 1px solid #176B87;
     border-radius: 4px;
 }
 
 button[type="submit"] {
     padding: 8px 15px;
-    background-color:#82AAE3;
+    background-color:#176B87;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -42,13 +42,13 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #91D8E4;
+    background-color: #64CCC5;
 }
 
 /* Table styles */
 .content-table {
     width: 100%;
-    border: 3px solid #82AAE3;
+    border: 3px solid #176B87;
     border-collapse: collapse;
 }
 
@@ -56,7 +56,7 @@ button[type="submit"]:hover {
 .content-table td {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid black;
 }
 
 .content-table th {
@@ -70,7 +70,7 @@ button[type="submit"]:hover {
     display: inline-block;
     padding: 8px 15px;
     margin-right: 10px;
-    background-color: #82AAE3;
+    background-color: #176B87;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -81,7 +81,7 @@ button[type="submit"]:hover {
 .output-box {
     width: 100%;
     margin-top: 20px;
-    border: 3px solid #82AAE3;
+    border: 3px solid #176B87;
     border-collapse: collapse;
 }
 
