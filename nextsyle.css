@@ -55,12 +55,12 @@
 }
 
 .sidebar .nav-links::-webkit-scrollbar{
-  background: #eaa3ea;
+  background: #DAFFFB;
   width: 5px;
 }
 
 .sidebar .nav-links::-webkit-scrollbar-thumb{
-  background: #cf5825;
+  background: #176B87;
 }
 
 .sidebar .nav-links li{
