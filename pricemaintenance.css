@@ -1,0 +1,43 @@
+body, h1, button {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .pricing-container {
+            padding: 20px;
+        }
+
+        .pricing-label {
+            font-size: 18px;
+            margin-top: 10px; /* Add margin-top here */
+            margin-bottom: 10px;
+        }
+
+        .pricing-input {
+            width: 100%;
+            max-width: 470px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .confirm-button {
+            background-color: #176B87;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .confirm-button:hover {
+            background-color: #64CCC5;
+        }
