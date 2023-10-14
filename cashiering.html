@@ -32,32 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td rowspan="1" class="input-cell"><input type="text" value="1" readonly></td>
-                        <td class="input-cell"><input type="text" value="Product 1" readonly></td>
-                        <td class="input-cell"><input type="number" value="10"></td>
-                        <td class="input-cell"><input type="number" value="20" readonly></td>
-                        <td class="input-cell"><input type="number" value="200" readonly></td>
-                        <td class="input-cell">
-                            <form method="post" action="">
-                                <input type="hidden" name="product_id" value="1">
-                                <button type="submit" onclick="refreshParent()">Remove</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td rowspan="1" class="input-cell"><input type="text" value="2" readonly></td>
-                        <td class="input-cell"><input type="text" value="Product 2" readonly></td>
-                        <td class="input-cell"><input type="number" value="5"></td>
-                        <td class="input-cell"><input type="number" value="15" readonly></td>
-                        <td class="input-cell"><input type="number" value="75" readonly></td>
-                        <td class="input-cell">
-                            <form method="post" action="">
-                                <input type="hidden" name="product_id" value="2">
-                                <button type="submit" onclick="refreshParent()">Remove</button>
-                            </form>
-                        </td>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
@@ -74,10 +49,10 @@
     <input type="hidden" name="disc_perc" value="">
 </div>
 
-<div class="discount">
-    <div class="disc">Discount:</div>
-    <div class="disc_numb" id="disc_amount"></div>
-    <input type="hidden" name="disc_amount" value="">
+<div class="tax">
+    <div class="tax_perc">Tax %</div>
+    <div class="tax_percnumb" id="tax_perc"></div>
+    <input type="number" name="tax_perc" value="0">
 </div>
 
 <div class="total">
@@ -92,5 +67,88 @@
 </div>
 
 </body>
+
+<script>
+function fetchAndPopulateProducts(productID) {
+    fetch('cashieringRetrieve.php?productID=' + productID)
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.querySelector('.content-table tbody');
+            tableBody.innerHTML = '';
+
+            data.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.pro_ID}</td>
+                    <td>${product.pro_name}</td>
+                    <td class="input-cell"><input type="number" value="${product.pro_quantity}"></td>
+                    <td class="input-cell"><input type="number" value="${product.pro_price}" readonly></td>
+                    <td class="input-cell"><input type="number" value="${product.pro_price * product.pro_quantity}" readonly></td>
+                    <td class="input-cell">
+                        <form method="post" action="">
+                            <input type="hidden" name="product_id" value="${product.pro_ID}">
+                            <button type="submit" onclick="refreshParent()">Remove</button>
+                        </form>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+
+            // Update the grand total after populating the table
+            updateGrandTotal();
+        })
+        .catch(error => console.error(error));
+}
+
+// Event listener for the form submission
+document.querySelector('#cashierForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent the default form submission
+    const productID = document.querySelector('#productQR').value;
+    fetchAndPopulateProducts(productID); // Fetch products based on the entered Product ID
+});
+
+// Function to calculate the subtotal
+function calculateSubtotal() {
+    let subtotal = 0;
+    const rows = document.querySelectorAll('.content-table tbody tr');
+    rows.forEach(row => {
+        const quantity = parseFloat(row.querySelector('.input-cell input[type="number"]').value);
+        const unitPrice = parseFloat(row.querySelector('.input-cell input[type="number"][readonly]').value);
+        subtotal += quantity * unitPrice;
+    });
+    return subtotal;
+}
+
+// Function to calculate discount
+function calculateDiscount() {
+    const discountPercentage = parseFloat(document.querySelector('#disc_perc').textContent);
+    const subtotal = calculateSubtotal();
+    return (subtotal * discountPercentage) / 100;
+}
+
+// Function to update the grand total
+function updateGrandTotal() {
+    const subtotal = calculateSubtotal();
+    const discount = calculateDiscount();
+    const taxPercentage = parseFloat(document.querySelector('#tax_perc').value); // Use 'value' to get the tax percentage
+    const grandTotal = subtotal - discount + (subtotal * taxPercentage) / 100;
+    document.querySelector('#grand-total').textContent = grandTotal.toFixed(2);
+}
+
+// Event listener for discount input
+document.querySelector('input[name="disc_perc"]').addEventListener('input', () => {
+    updateGrandTotal();
+});
+
+// Event listener for tax input
+document.querySelector('input[name="tax_perc"]').addEventListener('input', () => {
+    updateGrandTotal();
+});
+
+// Call the function to fetch and populate products
+fetchAndPopulateProducts();
+</script>
+
 </html>
     
