@@ -8,15 +8,15 @@
 </head>
 <body>
             <div class="input-group">
-                <form method="post" action="" id="cashierForm" autocomplete="off">
+                <form method="post" action="cashieringRetrieve.php" id="cashierForm" autocomplete="off">
                     <div class="container">
                         <label for="product">Enter Product Code</label>
                         <input type="text" id="productQR" name="productQR" placeholder="Enter your Product">
                         <label for="product">Enter Quantity</label>
-                        <input type="text" id="quantity" name="quantity" value="1" placeholder="1">
+                        <input type="number" id="quantity" name="quantity" value="1" placeholder="1">
                         <input type="submit" value="Add to cart">
                     </div>
-                </form>
+                </form>                              
             </div>
 
             <div class="table-container">
@@ -37,118 +37,146 @@
             </table>
         </div>
 
-<div class="totals-container">
-<div class="subtotal">
-    <div class="total_sub">SubTotal:</div>
-    <div class="sub_number" id="sub_total"></div>
-</div>
+        <div class="totals-container">
+            <div class="subtotal">
+                <div class="total_sub">SubTotal:</div>
+                <div class="sub_number" id="sub_total">0.00</div>
+            </div>
+    
+            <div class="perc_discnt">
+                <div class="discount_perc">Discount %</div>
+                <div class="disc_percnumb" id="disc_perc">0.00</div>
+            </div>
+    
+            <div class="tax">
+                <div class="tax_perc">Tax %</div>
+                <div class="tax_percnumb" id="tax_perc">0.00</div>
+            </div>
+    
+            <div class="total">
+                <h2 class="grand_ttl">Grand Total:</h2>
+                <div class="total_numb" id="grand-total">0.00</div>
+                <input type="hidden" name="total" value="0">
+                <input type="hidden" name="amount_tendered" value="0">
+                <input type="hidden" name="amount_change" value="0">
+            </div>
+    
+            <button id="popupButton" type="button">Settle Payment</button>
+        </div>
+    
+        <script>
+            function fetchAndPopulateProducts(productID, quantity) {
+                const url = `cashieringRetrieve.php?productID=${productID}`;
+    
+                fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log(data); // Log the entire data object
+                        if (data.length > 0) {
+                            console.log(data[0].pro_IDQR); // Log specific properties
+                            console.log(data[0].pro_name);
+    
+                            // Check if the product is already in the cart
+                            const existingRow = document.querySelector(`.content-table tbody tr[data-product-id="${data[0].pro_IDQR}"]`);
+                            if (existingRow) {
+                                // If it's already in the cart, update the quantity and item total
+                                const existingQuantityCell = existingRow.querySelector('.input-cell.quantity');
+                                const existingQuantity = parseInt(existingQuantityCell.textContent, 10);
+                                const newQuantity = existingQuantity + parseInt(quantity, 10);
+                                existingQuantityCell.textContent = newQuantity;
+    
+                                // Update the item total
+                                const itemPriceCell = existingRow.querySelector('.input-cell.unit-price');
+                                const itemTotalCell = existingRow.querySelector('.input-cell.item-total');
+                                const itemPrice = parseFloat(itemPriceCell.textContent);
+                                itemTotalCell.textContent = (itemPrice * newQuantity).toFixed(2); // Update to 2 decimal places
+                            } else {
+                                // If it's not in the cart, add a new row
+                                const tableBody = document.querySelector('.content-table tbody');
+                                const row = document.createElement('tr');
+                                row.dataset.productId = data[0].pro_IDQR;
+                                row.innerHTML = `
+                                    <td>${data[0].pro_IDQR}</td>
+                                    <td>${data[0].pro_name}</td>
+                                    <td class="input-cell quantity">${quantity}</td>
+                                    <td class="input-cell unit-price">${data[0].pro_price}</td>
+                                    <td class="input-cell item-total">${(data[0].pro_price * quantity).toFixed(2)}</td>
+                                    <td class="input-cell">
+                                        <button type="button" onclick="removeProduct(this)">Remove</button>
+                                    </td>
+                                `;
+                                tableBody.appendChild(row);
+                            }
+    
+                            // Update the subtotal and grand total
+                            updateSubtotal();
+                            clearInputAndQuantity()
+                        } else {
+                            console.error('Received incomplete or undefined data from the server');
+                        }
+                    })
+                    .catch(error => console.error(error));
+            }
+    
+            function updateSubtotal() {
+                let subtotal = 0;
+                const itemTotalCells = document.querySelectorAll('.input-cell.item-total');
+                itemTotalCells.forEach(cell => {
+                    subtotal += parseFloat(cell.textContent);
+                });
+    
+                // Update the subtotal and grand total
+                document.getElementById('sub_total').textContent = subtotal.toFixed(2);
+                updateGrandTotal();
+            }
+    
+            function updateGrandTotal() {
+                const subtotal = parseFloat(document.getElementById('sub_total').textContent);
+                const discountPercentage = parseFloat(document.querySelector('.disc_percnumb').textContent); // Select the element containing discount percentage
+                const taxPercentage = parseFloat(document.querySelector('.tax_percnumb').textContent); // Select the element containing tax percentage
 
-<div class="perc_discnt">
-    <div class="discount_perc">Discount %</div>
-    <div class="disc_percnumb" id="disc_perc"></div>
-    <input type="hidden" name="disc_perc" value="">
-</div>
+                // Calculate the grand total with discount and tax
+                const discount = (discountPercentage / 100) * subtotal;
+                const tax = (taxPercentage / 100) * subtotal;
+                const grandTotal = subtotal - discount + tax;
 
-<div class="tax">
-    <div class="tax_perc">Tax %</div>
-    <div class="tax_percnumb" id="tax_perc"></div>
-    <input type="number" name="tax_perc" value="0">
-</div>
+                // Update the grand total
+                document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+            }
 
-<div class="total">
-    <h2 class="grand_ttl">Grand Total:</h2>
-    <div class="total_numb" id="grand-total"></div>
-    <input type="hidden" name="total" value="">
-    <input type="hidden" name="amount_tendered" value="0">
-    <input type="hidden" name="amount_change" value="0">
-</div>
 
-    <button id="popupButton" type="button">Settle Payment</button>
-</div>
+            function removeProduct(button) {
+                const row = button.parentElement.parentElement;
 
-</body>
+                // Display a confirmation dialog before removing the item
+                const confirmRemove = confirm('Are you sure you want to remove this item from the cart?');
 
-<script>
-function fetchAndPopulateProducts(productID) {
-    fetch('cashieringRetrieve.php?productID=' + productID)
-        .then(response => response.json())
-        .then(data => {
-            const tableBody = document.querySelector('.content-table tbody');
-            tableBody.innerHTML = '';
-
-            data.forEach(product => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${product.pro_ID}</td>
-                    <td>${product.pro_name}</td>
-                    <td class="input-cell"><input type="number" value="${product.pro_quantity}"></td>
-                    <td class="input-cell"><input type="number" value="${product.pro_price}" readonly></td>
-                    <td class="input-cell"><input type="number" value="${product.pro_price * product.pro_quantity}" readonly></td>
-                    <td class="input-cell">
-                        <form method="post" action="">
-                            <input type="hidden" name="product_id" value="${product.pro_ID}">
-                            <button type="submit" onclick="refreshParent()">Remove</button>
-                        </form>
-                    </td>
-                `;
-
-                tableBody.appendChild(row);
+                if (confirmRemove) {
+                    row.remove();
+                    updateSubtotal();
+                }
+            }
+ 
+            document.querySelector('#cashierForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+                const productID = encodeURIComponent(document.querySelector('#productQR').value);
+                const quantity = document.querySelector('#quantity').value;
+                fetchAndPopulateProducts(productID, quantity);
             });
-
-            // Update the grand total after populating the table
-            updateGrandTotal();
-        })
-        .catch(error => console.error(error));
-}
-
-// Event listener for the form submission
-document.querySelector('#cashierForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the default form submission
-    const productID = document.querySelector('#productQR').value;
-    fetchAndPopulateProducts(productID); // Fetch products based on the entered Product ID
-});
-
-// Function to calculate the subtotal
-function calculateSubtotal() {
-    let subtotal = 0;
-    const rows = document.querySelectorAll('.content-table tbody tr');
-    rows.forEach(row => {
-        const quantity = parseFloat(row.querySelector('.input-cell input[type="number"]').value);
-        const unitPrice = parseFloat(row.querySelector('.input-cell input[type="number"][readonly]').value);
-        subtotal += quantity * unitPrice;
-    });
-    return subtotal;
-}
-
-// Function to calculate discount
-function calculateDiscount() {
-    const discountPercentage = parseFloat(document.querySelector('#disc_perc').textContent);
-    const subtotal = calculateSubtotal();
-    return (subtotal * discountPercentage) / 100;
-}
-
-// Function to update the grand total
-function updateGrandTotal() {
-    const subtotal = calculateSubtotal();
-    const discount = calculateDiscount();
-    const taxPercentage = parseFloat(document.querySelector('#tax_perc').value); // Use 'value' to get the tax percentage
-    const grandTotal = subtotal - discount + (subtotal * taxPercentage) / 100;
-    document.querySelector('#grand-total').textContent = grandTotal.toFixed(2);
-}
-
-// Event listener for discount input
-document.querySelector('input[name="disc_perc"]').addEventListener('input', () => {
-    updateGrandTotal();
-});
-
-// Event listener for tax input
-document.querySelector('input[name="tax_perc"]').addEventListener('input', () => {
-    updateGrandTotal();
-});
-
-// Call the function to fetch and populate products
-fetchAndPopulateProducts();
-</script>
-
-</html>
+            
+            function clearInputAndQuantity() {
+            document.querySelector('#productQR').value = '';
+            document.querySelector('#quantity').value = 1;
+             }
+            // Listen to discount and tax input changes
+            document.querySelector('input[name="disc_perc"]').addEventListener('input', updateGrandTotal);
+            document.querySelector('input[name="tax_perc"]').addEventListener('input', updateGrandTotal);
+        </script>
+    </body>
+    </html>
     
