@@ -45,20 +45,12 @@ if (!isset($_SESSION['username'])) {
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Inventory Management</a></li>
-                <li><a href="itemanage.php" target="MainIframe">Item Management</a></li>
+                <li><a href="itemanage.php" target="MainIframe">Product Management</a></li>
                 <li><a href="stockadj.php" target="MainIframe">Stock Adjusment</a></li>
                 <li><a href="discount.php" target="MainIframe">Discount</a></li>
                 <li><a href="packagelist.html" target="MainIframe">Packages</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="#" id="submenu-item-2">
-                    <i class="fa-solid fa-user-gear"></i>
-                    <span class="link_name">User Management</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="usermanage.html" id="submenu-blank-2">User Management</a></li>
+                <li><a href="customereturn.html" target="MainIframe">Customer Return</a></li>
+                <li><a href="suppreturn.html" target="MainIframe">Supplier Return</a></li>
                 </ul>
             </li>
 
@@ -98,11 +90,9 @@ if (!isset($_SESSION['username'])) {
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Utility</a></li>
-                <li><a href="customereturn.html" target="MainIframe">Customer Return</a></li>
-                <li><a href="suppreturn.html" target="MainIframe">Supplier Return</a></li>
                 <li><a href="reposidatabase.html" target="MainIframe">Database Backup and Restore</a></li>
-                <li><a href="audit.html" target="MainIframe">Audit Trail</a></li>
                 <li><a href="itemqrcode.html" target="MainIframe">Item QR code</a></li>
+                <li><a href="usermanage.html" target="MainIframe">User Settings</a></li>
                 </ul>
             </li>
 
@@ -115,7 +105,7 @@ if (!isset($_SESSION['username'])) {
                <i class="fa-solid fa-chevron-down arrow"></i>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name" href="#">Reporting and Analytics</a></li>
+                <li><a class="link_name" href="#">Reporting and Graphical Presentation</a></li>
                 <li><a href="invreport.html" target="MainIframe">Inventory Report</a></li>
                 <li><a href="stockadjreport.html" target="MainIframe">Stock Adjusment Report</a></li>
                 <li><a href="salesreport.html" target="MainIframe">Sales Report</a></li>
@@ -124,7 +114,8 @@ if (!isset($_SESSION['username'])) {
                 <li><a href="reodrlistreport.html" target="MainIframe">Re Order List Report</a></li>
                 <li><a href="suppdevreport.html" target="MainIframe">Supplier Delivery Report</a></li>
                 <li><a href="prdexpreport.html" target="MainIframe" >Product Experiration Report</a></li>
-                <li><a href="datanalreport.html" target="MainIframe" >Data Analytics</a></li>
+                <li><a href="datanalreport.html" target="MainIframe" >Graphical Presentation</a></li>
+                <li><a href="audit.html" target="MainIframe">Audit Trail</a></li>
                 </ul>
             </li>
 
@@ -139,21 +130,21 @@ if (!isset($_SESSION['username'])) {
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Maintenance</a></li>
                 <li><a href="pricemaintenance.html" target="MainIframe">Pricing Maintenance</a></li>
-                <li><a href="recieptmaintenance.html" target="MainIframe" >Receipt Maintenance</a></li>
+                <li><a href="recieptmaintenance.html" target="MainIframe" >Temporary Receipt Maintenance</a></li>
                 <li><a href="discountmaintenance.html" target="MainIframe" >Discount Maintenance</a></li>
                 <li><a href="categorymaintenance.html" target="MainIframe" >Category Maintenance</a></li>
                 <li><a href="unitmaintenance.html" target="MainIframe" >Unit Maintenance</a></li>
-                <li><a href="updtpolicy.html" target="MainIframe" >Update Policy</a></li>
+                <li><a href="updtpolicy.html" target="MainIframe" >Update Terms and Conditions</a></li>
                 </ul>
             </li>
 
             <li>
                 <a href="#" id="submenu-item-4">
                     <i class="fa-solid fa-gavel"></i>
-                    <span class="link_name">Policy</span>
+                    <span class="link_name">Terms and Conditions</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="policy.html" id="submenu-blank-4">Policy</a></li>
+                    <li><a class="link_name" href="policy.html" id="submenu-blank-4">Terms and Conditions</a></li>
                 </ul>
             </li>
 
