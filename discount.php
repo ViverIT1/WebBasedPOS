@@ -144,13 +144,13 @@ if ($result->num_rows > 0) {
                 die("Connection failed: " . $conn->connect_error);
             }
             
-            $sql_insert = "INSERT INTO itemdiscount (pro_ID, pro_name, itemdis, itemdisper, itemdistart, itemdisend)
+            $sql_insert = "INSERT INTO itemdiscount (itemdis_IDQR, pro_name, itemdis, itemdisper, itemdistart, itemdisend)
                           VALUES (?, ?, ?, ?, ?, ?)";
             
             $stmt = $conn->prepare($sql_insert);
             
             if ($stmt) {
-                $stmt->bind_param("isddss", $ItemDiscount_ID, $ItemDiscount_Name, $ItemDiscount_Amount, $ItemDiscount_Percent, $ItemDiscountStart, $ItemDiscountEnd);
+                $stmt->bind_param("ssddss", $ItemDiscount_ID, $ItemDiscount_Name, $ItemDiscount_Amount, $ItemDiscount_Percent, $ItemDiscountStart, $ItemDiscountEnd);
             
                 if ($stmt->execute()) {
                     $stmt->close();

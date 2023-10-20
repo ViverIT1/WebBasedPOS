@@ -43,7 +43,7 @@ $sql_gendis = "CREATE TABLE gendiscount (
 )"; //General Discount
 
 $sql_itemdis = "CREATE TABLE itemdiscount (
-    itemdis_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    itemdis_IDQR varchar(12),
     pro_ID VARCHAR(15) NOT NULL,
     pro_name VARCHAR(40) NOT NULL,
     itemdis DECIMAL(11,2),

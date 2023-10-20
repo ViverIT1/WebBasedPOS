@@ -27,6 +27,7 @@
                         <th>Product</th>
                         <th>Quantity</th>
                         <th>Unit Price</th>
+                        <th>Discount%</th>
                         <th>Total</th>
                         <th>Action</th>
                     </tr>
@@ -66,62 +67,89 @@
     
         <script>
             function fetchAndPopulateProducts(productID, quantity) {
-                const url = `cashieringRetrieve.php?productID=${productID}`;
-    
-                fetch(url)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        console.log(data); // Log the entire data object
-                        if (data.length > 0) {
-                            console.log(data[0].pro_IDQR); // Log specific properties
-                            console.log(data[0].pro_name);
-    
-                            // Check if the product is already in the cart
-                            const existingRow = document.querySelector(`.content-table tbody tr[data-product-id="${data[0].pro_IDQR}"]`);
-                            if (existingRow) {
-                                // If it's already in the cart, update the quantity and item total
-                                const existingQuantityCell = existingRow.querySelector('.input-cell.quantity');
-                                const existingQuantity = parseInt(existingQuantityCell.textContent, 10);
-                                const newQuantity = existingQuantity + parseInt(quantity, 10);
-                                existingQuantityCell.textContent = newQuantity;
-    
-                                // Update the item total
-                                const itemPriceCell = existingRow.querySelector('.input-cell.unit-price');
-                                const itemTotalCell = existingRow.querySelector('.input-cell.item-total');
-                                const itemPrice = parseFloat(itemPriceCell.textContent);
-                                itemTotalCell.textContent = (itemPrice * newQuantity).toFixed(2); // Update to 2 decimal places
-                            } else {
-                                // If it's not in the cart, add a new row
-                                const tableBody = document.querySelector('.content-table tbody');
-                                const row = document.createElement('tr');
-                                row.dataset.productId = data[0].pro_IDQR;
-                                row.innerHTML = `
-                                    <td>${data[0].pro_IDQR}</td>
-                                    <td>${data[0].pro_name}</td>
-                                    <td class="input-cell quantity">${quantity}</td>
-                                    <td class="input-cell unit-price">${data[0].pro_price}</td>
-                                    <td class="input-cell item-total">${(data[0].pro_price * quantity).toFixed(2)}</td>
-                                    <td class="input-cell">
-                                        <button type="button" onclick="removeProduct(this)">Remove</button>
-                                    </td>
-                                `;
-                                tableBody.appendChild(row);
-                            }
-    
-                            // Update the subtotal and grand total
-                            updateSubtotal();
-                            clearInputAndQuantity()
-                        } else {
-                            console.error('Received incomplete or undefined data from the server');
-                        }
-                    })
-                    .catch(error => console.error(error));
+    const url = `cashieringRetrieve.php?productID=${productID}`;
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data); // Log the entire data object
+            if (data.length > 0) {
+                console.log(data[0].pro_IDQR); // Log specific properties
+                console.log(data[0].pro_name);
+
+                // Check if the product is already in the cart
+                const existingRow = document.querySelector(`.content-table tbody tr[data-product-id="${data[0].pro_IDQR}"]`);
+                if (existingRow) {
+                    // If it's already in the cart, update the quantity and item total
+                    const existingQuantityCell = existingRow.querySelector('.input-cell.quantity');
+                    const existingQuantity = parseInt(existingQuantityCell.textContent, 10);
+                    const newQuantity = existingQuantity + parseInt(quantity, 10);
+                    existingQuantityCell.textContent = newQuantity;
+
+                    // Get the discount information for the product from itemdiscount
+                    const itemDiscountPercentage = parseFloat(data[0].itemdisper);
+                    const itemPriceCell = existingRow.querySelector('.input-cell.unit-price');
+                    const itemTotalCell = existingRow.querySelector('.input-cell.item-total');
+                    const itemPrice = parseFloat(itemPriceCell.textContent);
+                    // Calculate the discounted total
+                    const discountTotal = (itemDiscountPercentage / 100) * (itemPrice * newQuantity);
+                    itemTotalCell.textContent = ((itemPrice * newQuantity) - discountTotal).toFixed(2);
+
+                    // Update the discount percentage in the table
+                    const discountPercentageCell = existingRow.querySelector('.input-cell.discount-percentage');
+                    discountPercentageCell.textContent = itemDiscountPercentage;
+                } else {
+                    // If it's not in the cart, add a new row
+                    const tableBody = document.querySelector('.content-table tbody');
+                    const row = document.createElement('tr');
+                    row.dataset.productId = data[0].pro_IDQR;
+
+                    if ("itemdis_IDQR" in data[0]) {
+                        // If the product ID starts with "PD," handle it differently
+                        row.innerHTML = `
+                            <td>${data[0].itemdis_IDQR}</td>
+                            <td>${data[1].pro_name}</td>
+                            <td class="input-cell quantity">${quantity}</td>
+                            <td class="input-cell unit-price">${data[1].pro_price}</td>
+                            <td class="input-cell discount-percentage">${data[0].itemdisper || '0.00'}</td>
+                            <td class="input-cell item-total">${((data[1].pro_price * quantity) - (data[1].pro_price * quantity * data[0].itemdisper / 100)).toFixed(2)}</td>
+                            <td class="input-cell">
+                                <button type="button" onclick="removeProduct(this)">Remove</button>
+                            </td>
+                        `;
+                    } else {
+                        // If the product ID does not start with "PD"
+                        row.innerHTML = `
+                            <td>${data[0].pro_IDQR}</td>
+                            <td>${data[0].pro_name}</td>
+                            <td class="input-cell quantity">${quantity}</td>
+                            <td class="input-cell unit-price">${data[0].pro_price}</td>
+                            <td class="input-cell discount-percentage">${data[0].itemdisper || '0.00'}</td>
+                            <td class="input-cell item-total">${((data[0].pro_price * quantity) - (data[0].pro_price * quantity * data[0].itemdisper / 100)).toFixed(2)}</td>
+                            <td class="input-cell">
+                                <button type="button" onclick="removeProduct(this)">Remove</button>
+                            </td>
+                        `;
+                    }
+
+                        tableBody.appendChild(row);
+
+                                        }
+
+                                // Update the subtotal and grand total
+                                updateSubtotal();
+                                clearInputAndQuantity();
+                            } else {
+                                console.error('Received incomplete or undefined data from the server');
+                            }
+                        })
+                        .catch(error => console.error(error));
+                }
     
             function updateSubtotal() {
                 let subtotal = 0;
@@ -136,19 +164,38 @@
             }
     
             function updateGrandTotal() {
-                const subtotal = parseFloat(document.getElementById('sub_total').textContent);
-                const discountPercentage = parseFloat(document.querySelector('.disc_percnumb').textContent); // Select the element containing discount percentage
-                const taxPercentage = parseFloat(document.querySelector('.tax_percnumb').textContent); // Select the element containing tax percentage
+            const subtotal = parseFloat(document.getElementById('sub_total').textContent);
+            const taxPercentage = parseFloat(document.querySelector('.tax_percnumb').textContent); // Select the element containing tax percentage
 
-                // Calculate the grand total with discount and tax
-                const discount = (discountPercentage / 100) * subtotal;
-                const tax = (taxPercentage / 100) * subtotal;
-                const grandTotal = subtotal - discount + tax;
+            // Fetch the discount information based on the highest gendisqual less than or equal to subtotal
+            fetchDiscountForSubtotal(subtotal)
+                .then(discountPercentage => {
+                    // Calculate the grand total with discount and tax
+                    const discount = (discountPercentage / 100) * subtotal;
+                    const tax = (taxPercentage / 100) * subtotal;
+                    const grandTotal = subtotal - discount + tax;
 
-                // Update the grand total
-                document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+                    // Update the grand total and discount percentage
+                    document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+                    document.querySelector('.disc_percnumb').textContent = discountPercentage.toFixed(2);
+                })
+                .catch(error => console.error(error));
             }
 
+            function fetchDiscountForSubtotal(subtotal) {
+                const url = `getDiscount.php?subtotal=${subtotal}`;
+
+                return fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        return parseFloat(data.discountPercentage);
+                    });
+            }
 
             function removeProduct(button) {
                 const row = button.parentElement.parentElement;
