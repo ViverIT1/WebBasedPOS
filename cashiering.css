@@ -134,52 +134,58 @@ th {
 }
 
 /* Style for the totals-container */
+/* Styling for the totals-container */
 .totals-container {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background-color: #f2f2f2;
     padding: 20px;
+    border: 1px solid #ccc;
     margin-top: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Style for individual total elements */
-.totals {
     display: flex;
-    justify-content: space-between;
-    font-size: 22px; /* Enlarged font size */
-    margin: 10px 0; /* Increased margin for spacing */
+    flex-direction: column;
+    align-items: start;
 }
 
-.total_sub,
-.discount_perc,
-.disc,
-.grand_ttl {
-    font-size: 30px;
-    flex-basis: 50%;
+/* Styling for the subtotal, discount, tax, and grand total sections */
+.subtotal, .perc_discnt, .tax, .total {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* Styling for labels */
+.total_sub, .discount_perc, .tax_perc{
     font-weight: bold;
+    font-size: 20px;
+    margin-right: 10px;
 }
 
-.sub_number,
-.disc_percnumb,
-.disc_numb,
-.total_numb {
-    flex-basis: 50%;
-    text-align: right;
+.grand_ttl{
+    font-weight: bold;
+    font-size: 30px;
+    margin-right: 10px;
+} 
+
+/* Styling for numeric values */
+.sub_number, .disc_percnumb, .tax_percnumb{
+    font-weight: bold;
+    font-size: 20px;
 }
 
-/* Style for the Settle Payment button */
+.total_numb{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+/* Styling for the "Settle Payment" button */
 #popupButton {
-    margin-top: 20px;
-    background-color: #1e7e34;
+    background-color: #4CAF50;
     color: white;
+    padding: 10px 20px;
     border: none;
-    padding: 12px 24px; /* Enlarged padding */
-    font-size: 18px; /* Enlarged font size */
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+    font-size: 16px;
 }
 
 #popupButton:hover {
-    background-color: #28a745;
+    background-color: #45a049;
 }
