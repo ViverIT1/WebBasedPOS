@@ -101,6 +101,11 @@ $sql_supdelivery = "CREATE TABLE supdelivery (
     supdel_total DECIMAL(11,2)
 )"; //Supplier Delivery
 
+$sql_taxmnt = "CREATE TABLE taxmnt (
+    addPricePer DECIMAL(11,2),
+    taxPer DECIMAL(11,2)
+)"; //Supplier Delivery
+
 if (
     $conn->query($sql_itemlist) === true &&
     $conn->query($sql_cashier_temp) === true &&
@@ -111,7 +116,8 @@ if (
     $conn->query($sql_supplierlist) === true &&
     $conn->query($sql_customerlist) === true &&
     $conn->query($sql_polist) === true &&
-    $conn->query($sql_supdelivery)
+    $conn->query($sql_supdelivery) === true &&
+    $conn->query($sql_taxmnt)
 ) {
     echo "Tables 'itemlist', 'cashier_temp', 'userauth', 'gendiscount', 'itemdis', 'catdiscount',
     'supplierlist' and 'customerlist' created successfully";

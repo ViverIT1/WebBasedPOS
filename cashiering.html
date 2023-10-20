@@ -184,7 +184,7 @@
             }
 
             function fetchDiscountForSubtotal(subtotal) {
-                const url = `getDiscount.php?subtotal=${subtotal}`;
+                const url = `cashieringRetrieveGen.php?subtotal=${subtotal}`;
 
                 return fetch(url)
                     .then(response => {
@@ -195,6 +195,37 @@
                     })
                     .then(data => {
                         return parseFloat(data.discountPercentage);
+                    });
+            }
+
+            function fetchTaxPercentage() {
+                // Make an AJAX request to retrieve the tax percentage
+                fetchTaxPercentageFromServer()
+                    .then(taxPercentage => {
+                        console.log("Tax Percentage Fetched:", taxPercentage); // Debugging
+                        // Update the tax percentage element
+                        document.getElementById('tax_perc').textContent = taxPercentage.toFixed(2);
+                        // After updating the tax percentage, recalculate the grand total
+                        updateGrandTotal();
+                    })
+                    .catch(error => console.error(error));
+            }
+
+            function fetchTaxPercentageFromServer() {
+                // Send an API request to retrieve the tax percentage from the server
+                const url = 'cashieringRetrieveTax.php';
+
+                return fetch(url)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // If the data structure returned from taxRetrieve.php has changed,
+                        // make sure to access the tax percentage correctly.
+                        return parseFloat(data.taxPer); // Adjust this based on your JSON structure
                     });
             }
 

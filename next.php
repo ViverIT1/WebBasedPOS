@@ -129,7 +129,7 @@ if (!isset($_SESSION['username'])) {
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">Maintenance</a></li>
-                <li><a href="pricemaintenance.html" target="MainIframe">Pricing Maintenance</a></li>
+                <li><a href="pricemaintenance.php" target="MainIframe">Pricing Maintenance</a></li>
                 <li><a href="recieptmaintenance.html" target="MainIframe" >Temporary Receipt Maintenance</a></li>
                 <li><a href="discountmaintenance.html" target="MainIframe" >Discount Maintenance</a></li>
                 <li><a href="categorymaintenance.html" target="MainIframe" >Category Maintenance</a></li>
