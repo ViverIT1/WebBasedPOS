@@ -118,7 +118,7 @@ button[type="submit"]:hover {
 
 .content-table td:last-child button {
   padding: 6px 10px;
-  background-color: #82AAE3;
+  background-color: #176B87;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -127,5 +127,5 @@ button[type="submit"]:hover {
 }
 
 .content-table td:last-child button:hover {
-  background-color: #91D8E4;
+  background-color: #64CCC5;
 }
