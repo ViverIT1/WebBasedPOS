@@ -1,3 +1,26 @@
+<?php
+include("PhpCon.php");
+
+if ($conn) {
+    // Query to retrieve tax percentage from taxmnt table
+    $query = "SELECT taxPer FROM taxmnt WHERE taxper >= 0";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        // Fetch the tax percentage
+        $row = mysqli_fetch_assoc($result);
+        $taxPercentage = $row['taxPer'];
+
+        // Close the database connection
+        mysqli_close($conn);
+    } else {
+        echo "Query error: " . mysqli_error($conn);
+    }
+} else {
+    echo "Database connection error: " . mysqli_connect_error();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,8 +75,9 @@
     
             <div class="tax">
                 <div class="tax_perc">Tax %:</div>
-                <div class="tax_percnumb" id="tax_perc">0.00</div>
+                <div class="tax_percnumb" id="tax_perc"><?php echo $taxPercentage; ?></div>
             </div>
+
     
             <div class="total">
                 <div class="grand_ttl">Grand Total:</div>
