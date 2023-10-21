@@ -1,7 +1,5 @@
 <?php
 include("PhpCon.php");
-
-// Function to retrieve the current values
 function displayCurrentValues($conn) {
     $sql = "SELECT addPricePer, taxPer FROM taxmnt ORDER BY id DESC LIMIT 1";
     $result = $conn->query($sql);
@@ -10,7 +8,7 @@ function displayCurrentValues($conn) {
         $row = $result->fetch_assoc();
         return $row;
     } else {
-        return array("addPricePer" => "", "taxPer" => ""); // Return default values
+        return array("addPricePer" => 0, "taxPer" => 0); // Return 0 as default values
     }
 }
 
