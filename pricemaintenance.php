@@ -37,6 +37,7 @@ if (isset($_POST['confirm'])) {
     // Close the statement
     $stmt->close();
 }
+
 ?>
 
 <!DOCTYPE html>
