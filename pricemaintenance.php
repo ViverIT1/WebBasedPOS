@@ -1,7 +1,7 @@
 <?php
 include("PhpCon.php");
 function displayCurrentValues($conn) {
-    $sql = "SELECT addPricePer, taxPer FROM taxmnt ORDER BY id DESC LIMIT 1";
+    $sql = "SELECT addPricePer, taxPer FROM taxmnt LIMIT 1";
     $result = $conn->query($sql);
 
     if ($result !== false && $result->num_rows > 0) {

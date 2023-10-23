@@ -208,7 +208,7 @@ if (!isset($_SESSION['username'])) {
 
         submenuItem1.addEventListener("click", function (e) {
             e.preventDefault();
-            iframe.src = "cashiering.html";
+            iframe.src = "cashiering.php";
         });
 
                 // Submenu item 2 for User Management

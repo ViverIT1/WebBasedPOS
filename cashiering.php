@@ -7,9 +7,14 @@ if ($conn) {
     $result = mysqli_query($conn, $query);
 
     if ($result) {
-        // Fetch the tax percentage
-        $row = mysqli_fetch_assoc($result);
-        $taxPercentage = $row['taxPer'];
+        if (mysqli_num_rows($result) > 0) {
+            // Fetch the tax percentage
+            $row = mysqli_fetch_assoc($result);
+            $taxPercentage = $row['taxPer'];
+        } else {
+            // No data matching the condition
+            $taxPercentage = 0; // Assign a default value
+        }
 
         // Close the database connection
         mysqli_close($conn);
