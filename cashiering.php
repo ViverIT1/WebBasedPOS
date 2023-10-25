@@ -87,7 +87,59 @@ if ($conn) {
                 <input type="hidden" name="amount_change" value="0">
             </div>
     
-            <button id="popupButton" type="button">Settle Payment</button>
+            <button id="popupButton" type="button" class="btn" onclick="openPopup">Settle Payment</button>
+        <div class="popup" id="popup">
+
+            <div class="header">
+                <input type="text" id="invoiceNo" placeholder="Insert your Header">
+            </div>
+            <div class="invoice-no">
+                <h5>Invoice No.</h5>
+                <h2>1</h2>
+            </div>
+            <div class="select-date">
+                <h3>Select Date Format</h3>
+                <select id="dateFormat">
+                    <option value="dd-mm-yyyy">DD-MM-YYYY</option>
+                    <option value="mm-dd-yyyy">MM-DD-YYYY</option>
+                    <option value="yyyy-mm-dd">YYYY-MM-DD</option>
+                </select>
+            </div>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Unit</th>
+                        <th>Qty</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Screw</td>
+                        <td>kg</td>
+                        <td>1.5</td>
+                        <td>120</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="subtotal">
+                Subtotal: $120.00
+            </div>
+            <div class="tax">
+                Tax: $0.00
+            </div>
+            <div class="total">
+                TOTAL: $120.00
+            </div>
+            <div class="footer">
+                <input type="text" id="invoiceNo" placeholder=" Insert your Footer">
+            </div>
+            <div class="popup-buttons">
+                <button type="button" class="okay">OK</button>
+                <button type="button" class="cancel" onclick="closePopup">Cancel</button>
+            </div>
+        </div>
         </div>
     
         <script>
