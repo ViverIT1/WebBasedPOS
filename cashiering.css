@@ -39,7 +39,6 @@ table {
 }
 
 input {
-    flex: 1;
     margin-left: 10px;
     padding: 5px;
     border: 2px solid #176B87;
@@ -188,4 +187,96 @@ th {
 
 #popupButton:hover {
     background-color: #45a049;
+}
+
+/* Popup styles */
+.popup {
+    width: 400px;
+    background: #fff;
+    border-radius: 6px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    padding: 15px;
+    color: #333;
+    z-index: 999; /* Ensure it's above other elements */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    visibility: hidden;
+    transform: transform 0.4s;
+}
+
+.open-popup{
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+    top: 50%;
+}
+
+/* Popup header styles */
+.popup .header {
+    text-align: center;
+}
+
+/* Popup content styles */
+.popup .invoice-no,
+.popup .select-date,
+.popup .product-table,
+.popup .subtotal,
+.popup .tax,
+.popup .total {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Popup table styles */
+.popup .product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.popup .product-table th,
+.popup .product-table td {
+    border: 1px solid #000;
+    padding: 8px;
+}
+
+.popup .product-table th {
+    background-color: #f0f0f0;
+}
+
+/* Popup footer styles */
+.popup .footer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Popup button styles */
+.popup button.cancel {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #FF5733; /* Red color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.popup button.cancel:hover {
+    background-color: #D32F2F; /* Darker red on hover */
+}
+
+.popup button.okay {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #4CAF50; /* Red color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.popup button.okay:hover {
+    background-color: #45a049; /* Darker red on hover */
 }
