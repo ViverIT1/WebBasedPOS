@@ -100,7 +100,7 @@ if (!isset($_SESSION['username'])) {
                 <div class="iocn-link">
                 <a href="#">
                     <i class="fa-solid fa-list-check"></i>
-                    <span class="link_name">Reporting and Analytics</span>
+                    <span class="link_name">Reporting and Graphical Presentation</span>
                 </a>
                <i class="fa-solid fa-chevron-down arrow"></i>
             </div>
