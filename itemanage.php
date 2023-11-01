@@ -19,7 +19,7 @@ if (!$result) {
 
 <body>
         <div class="header">
-            <h1>Item Management</h1>
+            <h1>Product Management</h1>
             <a href="ItemAdd.php"><button class="add-button" type="button">+</button></a>
         </div>
 
