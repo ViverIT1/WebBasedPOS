@@ -8,22 +8,25 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
+        <!-- Store Information -->
+        <div class="store-info">
             <h1>Header</h1>
-            <input type="text" id="invoiceNo">
+            <input type="text" id="invoiceNo" placeholder="Store Name">
+            <p><input type="text" placeholder="Store Address"></p>
+            <p><input type="text" placeholder="Store Phone Number"></p>
+            <p><input type="text" placeholder="Email"></p>
         </div>
+        
         <div class="invoice-no">
             <h5>Invoice No.</h5>
             <h2>1</h2>
         </div>
-        <div class="select-date">
-            <h3>Select Date Format</h3>
-            <select id="dateFormat">
-                <option value="dd-mm-yyyy">DD-MM-YYYY</option>
-                <option value="mm-dd-yyyy">MM-DD-YYYY</option>
-                <option value="yyyy-mm-dd">YYYY-MM-DD</option>
-            </select>
+
+        <!-- Date and Time -->
+        <div class="date-time">
+            <p>Date: 02/11/2023 12:34:56</p>
         </div>
+        
         <table class="product-table">
             <thead>
                 <tr>
@@ -42,20 +45,31 @@
                 </tr>
             </tbody>
         </table>
+        
         <div class="subtotal">
             Subtotal: $120.00
         </div>
+
+        <div class="discount">
+            Discount: $0.00
+        </div>
+        
         <div class="tax">
             Tax: $0.00
         </div>
-        <div class="total">
-            TOTAL: $120.00
+
+
+        
+
+        <!-- Grand Total -->
+        <div class="grand-total">
+            Grand Total: $120.00
         </div>
+        
         <div class="footer">
             <h2>Footer</h2>
             <input type="text" id="invoiceNo">
         </div>
-        
     </div>
 </body>
 </html>
