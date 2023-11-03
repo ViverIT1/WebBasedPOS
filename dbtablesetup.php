@@ -106,6 +106,18 @@ $sql_taxmnt = "CREATE TABLE taxmnt (
     taxPer DECIMAL(11,2)
 )"; //Supplier Delivery
 
+$sql_reclay = "CREATE TABLE reclay (
+    id INT,
+    storeName VARCHAR(24),
+    storeAddress VARCHAR(24),
+    storePhone VARCHAR(24),
+    storeEmail VARCHAR(24),
+    textbox1 VARCHAR(24),
+    textbox2 VARCHAR(24),
+    textbox3 VARCHAR(24),
+    textbox4 VARCHAR(24)
+)"; // Receipt Layout
+
 if (
     $conn->query($sql_itemlist) === true &&
     $conn->query($sql_cashier_temp) === true &&
@@ -117,7 +129,8 @@ if (
     $conn->query($sql_customerlist) === true &&
     $conn->query($sql_polist) === true &&
     $conn->query($sql_supdelivery) === true &&
-    $conn->query($sql_taxmnt)
+    $conn->query($sql_taxmnt) === true &&
+    $conn->query($sql_reclay)   
 ) {
     echo "Tables 'itemlist', 'cashier_temp', 'userauth', 'gendiscount', 'itemdis', 'catdiscount',
     'supplierlist' and 'customerlist' created successfully";

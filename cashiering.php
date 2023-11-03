@@ -121,69 +121,92 @@
                 </div>
                         
             <script>
-                function fetchAndPopulateProducts(productID, quantity) {
-                    const url = `cashieringRetrieve.php?productID=${productID}`;
+function fetchAndPopulateProducts(productID, quantity) {
+    const url = `cashieringRetrieve.php?productID=${productID}`;
+    
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data); // Log the entire data object
 
-                    fetch(url)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            if (data.length > 0) {
-                                const existingRow = document.querySelector(`.content-table tbody tr[data-product-id="${data[0].pro_IDQR}"]`);
-                                if (existingRow) {
-                                    const existingQuantityCell = existingRow.querySelector('.input-cell.quantity');
-                                    const existingQuantity = parseInt(existingQuantityCell.textContent, 10);
-                                    const newQuantity = existingQuantity + parseInt(quantity, 10);
-                                    existingQuantityCell.textContent = newQuantity;
+            if (data.length > 0) {
+                console.log(data[0].pro_IDQR); // Log specific properties
+                console.log(data[0].pro_name);
 
-                                    const itemDiscountPercentage = parseFloat(data[0].itemdisper || '0.00'); // Set a default value for itemDiscountPercentage
-                                    const itemPriceCell = existingRow.querySelector('.input-cell.unit-price');
-                                    let itemPrice = parseFloat(itemPriceCell.textContent);
-                                    // Check if "itemPrice" is available, otherwise, use the original product price
-                                    if (data[0].itemPrice) {
-                                        itemPrice = parseFloat(data[0].itemPrice);
-                                    }
-                                    const itemTotalCell = existingRow.querySelector('.input-cell.item-total');
-                                    const discountTotal = (itemDiscountPercentage / 100) * (itemPrice * newQuantity);
-                                    itemTotalCell.textContent = ((itemPrice * newQuantity) - discountTotal).toFixed(2);
+                // Check if the product is already in the cart
+                const existingRow = document.querySelector(`.content-table tbody tr[data-product-id="${data[0].pro_IDQR}"]`);
 
-                                    const discountPercentageCell = existingRow.querySelector('.input-cell.discount-percentage');
-                                    discountPercentageCell.textContent = itemDiscountPercentage;
-                                } else {
-                                    const tableBody = document.querySelector('.content-table tbody');
-                                    const row = document.createElement('tr');
-                                    row.dataset.productId = data[0].pro_IDQR;
+                if (existingRow) {
+                    // If it's already in the cart, update the quantity and item total
+                    const existingQuantityCell = existingRow.querySelector('.input-cell.quantity');
+                    const existingQuantity = parseInt(existingQuantityCell.textContent, 10);
+                    const newQuantity = existingQuantity + parseInt(quantity, 10);
+                    existingQuantityCell.textContent = newQuantity;
 
-                                    const itemPrice = parseFloat(data[0].pro_price); // Get the item price
+                    // Get the discount information for the product from itemdiscount
+                    const itemDiscountPercentage = parseFloat(data[0].itemdisper);
+                    const itemPriceCell = existingRow.querySelector('.input-cell.unit-price');
+                    const itemTotalCell = existingRow.querySelector('.input-cell.item-total');
+                    const itemPrice = parseFloat(itemPriceCell.textContent);
 
-                                    row.innerHTML = `
-                                        <td>${data[0].pro_IDQR}</td>
-                                        <td>${data[0].pro_name}</td>
-                                        <td class="input-cell quantity">${quantity}</td>
-                                        <td class="input-cell unit-price">${itemPrice}</td>
-                                        <td class="input-cell discount-percentage">${data[0].itemdisper || '0.00'}</td>
-                                        <td class="input-cell item-total">${((itemPrice * quantity) - (itemPrice * quantity * (data[0].itemdisper || '0.00') / 100)).toFixed(2)}</td>
-                                        <td class="input-cell">
-                                            <button type="button" onclick="removeProduct(this)">Remove</button>
-                                        </td>
-                                    `;
+                    // Calculate the discounted total
+                    const discountTotal = (itemDiscountPercentage / 100) * (itemPrice * newQuantity);
+                    itemTotalCell.textContent = ((itemPrice * newQuantity) - discountTotal).toFixed(2);
 
-                                    tableBody.appendChild(row);
-                                }
+                    // Update the discount percentage in the table
+                    const discountPercentageCell = existingRow.querySelector('.input-cell.discount-percentage');
+                    discountPercentageCell.textContent = itemDiscountPercentage;
+                } else {
+                    // If it's not in the cart, add a new row
+                    const tableBody = document.querySelector('.content-table tbody');
+                    const row = document.createElement('tr');
+                    row.dataset.productId = data[0].pro_IDQR;
 
-                                updateSubtotal();
-                                clearInputAndQuantity();
-                            } else {
-                                console.error('Received incomplete or undefined data from the server');
-                            }
-                        })
-                        .catch(error => console.error(error));
+                    if ("itemdis_IDQR" in data[0]) {
+                        // If the product ID starts with "PD," handle it differently
+                        row.innerHTML = `
+                            <td>${data[0].itemdis_IDQR}</td>
+                            <td>${data[1].pro_name}</td>
+                            <td class="input-cell quantity">${quantity}</td>
+                            <td class="input-cell unit-price">${data[1].pro_price}</td>
+                            <td class="input-cell discount-percentage">${data[0].itemdisper || '0.00'}</td>
+                            <td class="input-cell item-total">${((data[1].pro_price * quantity) - (data[1].pro_price * quantity * data[0].itemdisper / 100)).toFixed(2)}</td>
+                            <td class="input-cell">
+                                <button type="button" onclick="removeProduct(this)">Remove</button>
+                            </td>
+                        `;
+                    } else {
+                        // If the product ID does not start with "PD"
+                        row.innerHTML = `
+                            <td>${data[0].pro_IDQR}</td>
+                            <td>${data[0].pro_name}</td>
+                            <td class="input-cell quantity">${quantity}</td>
+                            <td class="input-cell unit-price">${data[0].pro_price}</td>
+                            <td class="input-cell discount-percentage">${data[0].itemdisper || '0.00'}</td>
+                            <td class="input-cell item-total">${((data[0].pro_price * quantity) - (data[0].pro_price * quantity * data[0].itemdisper / 100)).toFixed(2)}</td>
+                            <td class="input-cell">
+                                <button type="button" onclick="removeProduct(this)">Remove</button>
+                            </td>
+                        `;
+                    }
+                    
+                    tableBody.appendChild(row);
                 }
-        
+
+                // Update the subtotal and grand total
+                updateSubtotal();
+                clearInputAndQuantity();
+            } else {
+                console.error('Received incomplete or undefined data from the server');
+            }
+        })
+        .catch(error => console.error(error));
+}
                 function updateSubtotal() {
                     let subtotal = 0;
                     const itemTotalCells = document.querySelectorAll('.input-cell.item-total');
@@ -388,64 +411,57 @@
                 }
 // Define the generateReceiptData function
 function printReceipt() {
+    // Generate a random invoice number (you can replace this with your own logic)
+    const invoiceNumber = Math.floor(Math.random() * 10000);
+
     // Create an empty array to store receipt data
     const receiptData = [];
+
+    // Prepare the receipt content with header, product list, and footer
+    let receiptContent = '';
+
+    // Header for invoice number at the top
+    receiptContent += 'Invoice: ' + invoiceNumber + '\n'; // Include invoice number at the top
+    receiptContent += 'Your Store Name\n';
+    receiptContent += '123 Main St, City, Country\n';
+    receiptContent += 'Phone: (123) 456-7890\n';
+    receiptContent += 'Email: info@yourstore.com\n';
+    receiptContent += '--------------------------------\n';
 
     // Retrieve product information from the existing HTML rows
     const productRows = document.querySelectorAll('.content-table tbody tr');
     productRows.forEach(row => {
         const productNameCell = row.querySelector('td:nth-child(2)');
         const quantityCell = row.querySelector('.input-cell.quantity');
-        const unitPriceCell = row.querySelector('.input-cell.unit-price');
         const totalCell = row.querySelector('.input-cell.item-total');
+        const discountPercentageCell = row.querySelector('.input-cell.discount-percentage'); // Get the discount percentage
 
         const productName = productNameCell.textContent;
         const quantity = parseInt(quantityCell.textContent, 10);
-        const unitPrice = parseFloat(unitPriceCell.textContent);
         const total = parseFloat(totalCell.textContent);
+        const discountPercentage = parseFloat(discountPercentageCell.textContent);
 
         receiptData.push({
             productName,
             quantity,
-            unitPrice,
             total,
+            discountPercentage,
         });
     });
 
-    // Prepare the receipt content with header, product list, and footer
-    let receiptContent = '';
-
-    // Header
-    receiptContent += 'Your Store Name\n';
-    receiptContent += '123 Main St, City, Country\n';
-    receiptContent += 'Phone: (123) 456-7890\n';
-    receiptContent += 'Email: info@yourstore.com\n';
-
-    // Get the current date
-    const currentDate = new Date();
-    const formattedDate = `${currentDate.toLocaleDateString()} ${currentDate.toLocaleTimeString()}`;
-    receiptContent += `Date: ${formattedDate}\n`;
-
-    receiptContent += '--------------------------------\n';
-
     // Header for product list
-    receiptContent += 'Product                | Price   | Total\n'; // Adjusted line width
+    receiptContent += 'Product                | Total\n'; // Adjusted line width
     receiptContent += '--------------------------------\n';
 
     receiptData.forEach((item, index) => {
-        const productNameLines = wordWrap(item.productName, 16); // Adjusted line width
-        const formattedUnitPrice = item.unitPrice.toFixed(2).padStart(6);
-        const formattedTotal = item.total.toFixed(2).padStart(7);
+        const productName = `${item.productName} x${item.quantity}`; // Include quantity in the product name
+        const formattedTotal = item.total.toFixed(2).padStart(6); // Adjusted padding
+        const discountedPrice = -((item.discountPercentage / 100) * item.total).toFixed(2);
 
-        productNameLines.forEach((line, lineIndex) => {
-            if (lineIndex === 0) {
-                receiptContent += `${line.substring(0, 16)} x${item.quantity}`.padEnd(32); // Include quantity on the first line
-            } else {
-                receiptContent += `${line}`.padEnd(32); // No quantity on subsequent lines
-            }
-            
-            receiptContent += ` | ${formattedUnitPrice} | ${formattedTotal}\n`;
-        });
+        receiptContent += `${productName} | ${formattedTotal}\n`;
+        if (item.discountPercentage > 0) {
+            receiptContent += `Discounted Price: ${discountedPrice}\n`;
+        }
     });
 
     // Line between product list and subtotals
@@ -460,18 +476,30 @@ function printReceipt() {
     const grandTotal = subTotal - discount + tax;
 
     // Subtotals
-    receiptContent += `Subtotal: ${subTotal.toFixed(2).padStart(6)}\n`;
-    receiptContent += `Discount: ${discount.toFixed(2).padStart(6)}\n`;
-    receiptContent += `Tax: ${tax.toFixed(2).padStart(6)}\n`;
+    receiptContent += `Subtotal: ${subTotal.toFixed(2).padStart(6)}\n`; // Adjusted padding
+    receiptContent += `Discount: ${discount.toFixed(2).padStart(6)}\n`; // Adjusted padding
+    receiptContent += `Tax: ${tax.toFixed(2).padStart(6)}\n`; // Adjusted padding
 
-    // Line between subtotals and grand total
-    receiptContent += '--------------------------------\n';
+    // Include random space below the footer for proper printing
+    const randomSpace = '\n\n\n\n\n';
 
-    receiptContent += `Grand Total: ${grandTotal.toFixed(2).padStart(6)}\n\n`;
+    // Cash Received and Change
+    const cashReceived = parseFloat(document.getElementById('cash-received').value);
+    const change = parseFloat(document.querySelector('input[name="amount_change"]').value);
 
-    // Footer
+    receiptContent += `Cash Received: ${cashReceived.toFixed(2).padStart(6)}\n`; // Adjusted padding
+    receiptContent += `Change: ${change.toFixed(2).padStart(6)}\n`; // Adjusted padding
+
+    // Grand Total
+    receiptContent += `Grand Total: ${grandTotal.toFixed(2).padStart(6)}\n`; // Adjusted padding
+
     receiptContent += 'Thank you for shopping with us!\n';
     receiptContent += 'Visit us again at www.yourstore.com\n';
+
+    // Add extra space with plus signs as separators
+    const extraSpaces = '\n\n\n\n\n\n\n\n\n\n' + '++++++++\n\n\n\n\n\n\n\n\n\n'; // Add more '+' as needed
+
+    receiptContent += extraSpaces;
 
     // Create a new window for printing
     const printWindow = window.open('', '', 'width=600,height=600'); // Adjust the width
@@ -479,28 +507,6 @@ function printReceipt() {
     printWindow.document.write('<pre>' + receiptContent + '</pre>');
     printWindow.document.close();
     printWindow.print();
-}
-
-// Function to wrap text to a new line based on a maximum line length
-function wordWrap(text, maxLineLength) {
-    const words = text.split(' ');
-    const lines = [];
-    let currentLine = '';
-
-    for (const word of words) {
-        if (currentLine.length + word.length <= maxLineLength) {
-            currentLine += (currentLine.length > 0 ? ' ' : '') + word;
-        } else {
-            lines.push(currentLine);
-            currentLine = word;
-        }
-    }
-
-    if (currentLine.length > 0) {
-        lines.push(currentLine);
-    }
-
-    return lines;
 }
             </script>
         </body>
