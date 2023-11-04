@@ -6,7 +6,6 @@ $Description = $_POST['Description'];
 $Category = $_POST['Category'];
 $Price = $_POST['Price'];
 $Quantity = 0;
-$Expiry_Date = $_POST['Expiry_Date'];
 $Reorder_Point = $_POST['Reorder_Point'];
 $Minimum = 10;
 $Maximum = 100;
@@ -17,13 +16,13 @@ if ($conn->connect_error) {
 }
 
 $sql = "INSERT INTO itemlist 
-        (pro_IDQR, pro_name, pro_inf, pro_cat, pro_price, pro_quantity, pro_exp, pro_reorder, pro_minStock, pro_maxStock) 
+        (pro_IDQR, pro_name, pro_inf, pro_cat, pro_price, pro_quantity, pro_reorder, pro_minStock, pro_maxStock) 
         VALUES 
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = mysqli_prepare($conn, $sql);
 
-mysqli_stmt_bind_param($stmt, "ssssiisiii", $Product_IDQR, $Product_Name, $Description, $Category, $Price, $Quantity, $Expiry_Date, $Reorder_Point, $Minimum, $Maximum);
+mysqli_stmt_bind_param($stmt, "ssssiiiii", $Product_IDQR, $Product_Name, $Description, $Category, $Price, $Quantity, $Expiry_Date, $Reorder_Point, $Minimum, $Maximum);
 
 if (mysqli_stmt_execute($stmt)) {
     header('location: ItemAdd.php');

@@ -20,21 +20,17 @@ if (isset($_REQUEST['import-excel'])) {
             $row = $data[$rowIndex];
 
             // Process the data from the Excel file
-            $Product_Name = $row[0]; // Product Name
-            $Product_Description = $row[1]; // Description
-            $Product_Category = $row[2]; // Category
-            $Product_Price = $row[3]; // Price
-            $Product_Quantity = 0; // Quantity
-            $Product_Expiry = $row[4]; // Expiry Date (yyyy-mm-dd)
-            $Product_Reorder = 20; // Reorder point
-            $Product_Maximum = 100; // Maximum Stock Level (use 0 as default if missing)
-            $Product_Minimum = 10; // Minimum Stock Level
+            $Product_IDQR = $row[0]; // Product IDQR
+            $Product_Name = $row[1]; // Product Name
+            $Product_Description = $row[2]; // Description
+            $Product_Category = $row[3]; // Category
+            $Product_Price = $row[4]; // Price
+            $Product_Expiry = $row[5]; // Expiry Date (yyyy-mm-dd)
 
-
-            // Check if the product already exists
+            // Check if the product already exists based on Product IDQR
             $existingQuantity = 0;
-            $result = mysqli_query($conn, "SELECT pro_quantity FROM itemlist WHERE pro_name = '$Product_Name'");
-            
+            $result = mysqli_query($conn, "SELECT pro_quantity FROM itemlist WHERE pro_IDQR = '$Product_IDQR'");
+
             if ($result !== false) { // Check if query was successful
                 if (mysqli_num_rows($result) > 0) { // Check if there are rows returned
                     $existingData = mysqli_fetch_assoc($result);
@@ -50,19 +46,19 @@ if (isset($_REQUEST['import-excel'])) {
 
             // Insert or update data based on existence
             if ($existingQuantity > 0) {
-                $updatedQuantity = $existingQuantity + $Product_Quantity;
-                $updateQuery = "UPDATE itemlist SET pro_quantity = '$updatedQuantity' WHERE pro_name = '$Product_Name'";
+                $updatedQuantity = $existingQuantity + 1; // You may want to update the quantity differently
+                $updateQuery = "UPDATE itemlist SET pro_quantity = '$updatedQuantity' WHERE pro_IDQR = '$Product_IDQR'";
                 if (mysqli_query($conn, $updateQuery)) {
                     $successCount++;
                 } else {
                     echo "Update error: " . mysqli_error($conn);
                 }
             } else {
-                $insertQuery = "INSERT INTO itemlist (pro_inf, pro_name, pro_cat, pro_price, pro_maxStock, pro_quantity, pro_reorder, pro_exp, pro_minStock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $insertQuery = "INSERT INTO itemlist (pro_IDQR, pro_name, pro_inf, pro_cat, pro_price, pro_exp) VALUES (?, ?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($insertQuery);
 
                 if ($stmt) {
-                    $stmt->bind_param("sssiiiisi", $Product_Description, $Product_Name, $Product_Category, $Product_Price, $Product_Maximum, $Product_Quantity, $Product_Reorder, $Product_Expiry, $Product_Minimum);
+                    $stmt->bind_param("ssssss", $Product_IDQR, $Product_Name, $Product_Description, $Product_Category, $Product_Price, $Product_Expiry);
                     if ($stmt->execute()) {
                         $successCount++;
                     } else {
@@ -131,12 +127,6 @@ if ($result->num_rows > 0) {
                     <br>
                     <label for="Price">Price:</label>
                     <input type="text" name="Price" id="Price" required>
-                    <br>
-                    <label for="Expiry_Date">Expiry Date(Must be in yyyy-mm-dd format):</label>
-                    <input type="text" name="Expiry_Date" id="Expiry_Date" required>
-                    <br>
-                    <label for="Reorder_Point">Reorder Point:</label>
-                    <input type="text" name="Reorder_Point" id="Reorder_Point" required>
                     <br>
                     <input type="submit" value="Add">
                         <button type="button" id="closeaddpop"><a href="itemanage.php">Close</a></button>

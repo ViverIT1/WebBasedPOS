@@ -420,93 +420,117 @@ function printReceipt() {
     // Prepare the receipt content with header, product list, and footer
     let receiptContent = '';
 
-    // Header for invoice number at the top
-    receiptContent += 'Invoice: ' + invoiceNumber + '\n'; // Include invoice number at the top
-    receiptContent += 'Your Store Name\n';
-    receiptContent += '123 Main St, City, Country\n';
-    receiptContent += 'Phone: (123) 456-7890\n';
-    receiptContent += 'Email: info@yourstore.com\n';
-    receiptContent += '--------------------------------\n';
+    // AJAX request to retrieve header and footer data from the server
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'cashieringRetrieveRec.php', true);
 
-    // Retrieve product information from the existing HTML rows
-    const productRows = document.querySelectorAll('.content-table tbody tr');
-    productRows.forEach(row => {
-        const productNameCell = row.querySelector('td:nth-child(2)');
-        const quantityCell = row.querySelector('.input-cell.quantity');
-        const totalCell = row.querySelector('.input-cell.item-total');
-        const discountPercentageCell = row.querySelector('.input-cell.discount-percentage'); // Get the discount percentage
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
 
-        const productName = productNameCell.textContent;
-        const quantity = parseInt(quantityCell.textContent, 10);
-        const total = parseFloat(totalCell.textContent);
-        const discountPercentage = parseFloat(discountPercentageCell.textContent);
+            // Check if header and footer data are available
+            const header = data.header || {};
+            const footer = data.footer || {};
 
-        receiptData.push({
-            productName,
-            quantity,
-            total,
-            discountPercentage,
-        });
-    });
+            // Header for invoice number at the top
+            receiptContent += `Invoice: ${invoiceNumber}\n`; // Include invoice number at the top
 
-    // Header for product list
-    receiptContent += 'Product                | Total\n'; // Adjusted line width
-    receiptContent += '--------------------------------\n';
+            // Add header lines
+            receiptContent += `${header.storeName}\n`;
+            receiptContent += `${header.storeAddress}\n`;
+            receiptContent += `${header.storePhone}\n`;
+            receiptContent += `${header.storeEmail}\n`;
+            receiptContent += '--------------------------------\n';
 
-    receiptData.forEach((item, index) => {
-        const productName = `${item.productName} x${item.quantity}`; // Include quantity in the product name
-        const formattedTotal = item.total.toFixed(2).padStart(6); // Adjusted padding
-        const discountedPrice = -((item.discountPercentage / 100) * item.total).toFixed(2);
+            // Retrieve product information from the existing HTML rows
+            const productRows = document.querySelectorAll('.content-table tbody tr');
+            productRows.forEach(row => {
+                const productNameCell = row.querySelector('td:nth-child(2)');
+                const quantityCell = row.querySelector('.input-cell.quantity');
+                const totalCell = row.querySelector('.input-cell.item-total');
+                const discountPercentageCell = row.querySelector('.input-cell.discount-percentage');
 
-        receiptContent += `${productName} | ${formattedTotal}\n`;
-        if (item.discountPercentage > 0) {
-            receiptContent += `Discounted Price: ${discountedPrice}\n`;
+                const productName = productNameCell.textContent;
+                const quantity = parseInt(quantityCell.textContent, 10);
+                const total = parseFloat(totalCell.textContent);
+                const discountPercentage = parseFloat(discountPercentageCell.textContent);
+
+                receiptData.push({
+                    productName,
+                    quantity,
+                    total,
+                    discountPercentage,
+                });
+            });
+
+            // Add a line separator after product list
+            receiptContent += '--------------------------------\n';
+
+            // Display product list
+            receiptData.forEach((item, index) => {
+                const productName = `${item.productName} x${item.quantity}`;
+                const formattedTotal = item.total.toFixed(2).padStart(6);
+                const discountedPrice = -((item.discountPercentage / 100) * item.total).toFixed(2);
+
+                receiptContent += `${productName} | ${formattedTotal}\n`;
+                if (item.discountPercentage > 0) {
+                    receiptContent += `Discounted Price: ${discountedPrice}\n`;
+                }
+            });
+
+            // Add a line separator before subtotals
+            receiptContent += '--------------------------------\n';
+
+            // Calculate subtotals, discount, tax, and grand total
+            const subTotal = receiptData.reduce((total, item) => total + item.total, 0);
+            const discountPercentage = data.discountPercentage || 0; // Default to 0 if not provided
+            const taxPercentage = data.taxPercentage || 0; // Default to 0 if not provided
+            const discount = (discountPercentage / 100) * subTotal;
+            const tax = (taxPercentage / 100) * subTotal;
+            const grandTotal = subTotal - discount + tax;
+
+            // Display subtotals, discount, and tax
+            receiptContent += `Subtotal: ${subTotal.toFixed(2).padStart(6)}\n`;
+            receiptContent += `Discount: ${discount.toFixed(2).padStart(6)}\n`;
+            receiptContent += `Tax: ${tax.toFixed(2).padStart(6)}\n`;
+
+            // Include random space below the footer for proper printing
+            const randomSpace = '\n\n\n\n\n';
+
+            // Get cash received and change values
+            const cashReceived = parseFloat(document.getElementById('cash-received').value);
+            const change = parseFloat(document.querySelector('input[name="amount_change"]').value);
+
+            // Display cash received and change
+            receiptContent += `Cash Received: ${cashReceived.toFixed(2).padStart(6)}\n`;
+            receiptContent += `Change: ${change.toFixed(2).padStart(6)}\n`;
+
+            // Add a line separator before footer
+            receiptContent += '--------------------------------\n';
+
+            // Display footer lines
+            receiptContent += `${footer.textbox1}\n`;
+            receiptContent += `${footer.textbox2}\n`;
+            receiptContent += `${footer.textbox3}\n`;
+            receiptContent += `${footer.textbox4}\n`;
+
+            // Add extra space with plus signs as separators
+            const extraSpaces = '\n\n\n\n\n\n\n\n\n\n' + '++++++++\n\n\n\n\n\n\n\n\n\n';
+
+            receiptContent += extraSpaces;
+
+            // Create a new window for printing
+            const printWindow = window.open('', '', 'width=600,height=600');
+            printWindow.document.open();
+            printWindow.document.write('<pre>' + receiptContent + '</pre>');
+            printWindow.document.close();
+            printWindow.print();
+        } else {
+            console.log('Error fetching header and footer data from the server.');
         }
-    });
+    };
 
-    // Line between product list and subtotals
-    receiptContent += '--------------------------------\n';
-
-    // Calculate the subtotal, discount, tax, and grand total
-    const subTotal = receiptData.reduce((total, item) => total + item.total, 0);
-    const discountPercentage = parseFloat(document.querySelector('.disc_percnumb').textContent);
-    const taxPercentage = parseFloat(document.querySelector('.tax_percnumb').textContent);
-    const discount = (discountPercentage / 100) * subTotal;
-    const tax = (taxPercentage / 100) * subTotal;
-    const grandTotal = subTotal - discount + tax;
-
-    // Subtotals
-    receiptContent += `Subtotal: ${subTotal.toFixed(2).padStart(6)}\n`; // Adjusted padding
-    receiptContent += `Discount: ${discount.toFixed(2).padStart(6)}\n`; // Adjusted padding
-    receiptContent += `Tax: ${tax.toFixed(2).padStart(6)}\n`; // Adjusted padding
-
-    // Include random space below the footer for proper printing
-    const randomSpace = '\n\n\n\n\n';
-
-    // Cash Received and Change
-    const cashReceived = parseFloat(document.getElementById('cash-received').value);
-    const change = parseFloat(document.querySelector('input[name="amount_change"]').value);
-
-    receiptContent += `Cash Received: ${cashReceived.toFixed(2).padStart(6)}\n`; // Adjusted padding
-    receiptContent += `Change: ${change.toFixed(2).padStart(6)}\n`; // Adjusted padding
-
-    // Grand Total
-    receiptContent += `Grand Total: ${grandTotal.toFixed(2).padStart(6)}\n`; // Adjusted padding
-
-    receiptContent += 'Thank you for shopping with us!\n';
-    receiptContent += 'Visit us again at www.yourstore.com\n';
-
-    // Add extra space with plus signs as separators
-    const extraSpaces = '\n\n\n\n\n\n\n\n\n\n' + '++++++++\n\n\n\n\n\n\n\n\n\n'; // Add more '+' as needed
-
-    receiptContent += extraSpaces;
-
-    // Create a new window for printing
-    const printWindow = window.open('', '', 'width=600,height=600'); // Adjust the width
-    printWindow.document.open();
-    printWindow.document.write('<pre>' + receiptContent + '</pre>');
-    printWindow.document.close();
-    printWindow.print();
+    xhr.send();
 }
             </script>
         </body>
