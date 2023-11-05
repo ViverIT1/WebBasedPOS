@@ -10,7 +10,8 @@ $sql_itemlist = "CREATE TABLE itemlist (
     pro_price decimal(11,2) NOT NULL,
     pro_maxStock INT(11) NOT NULL,
     pro_quantity INT(11) NOT NULL,
-    pro_exp DATE,
+    pro_unit VARCHAR(10),
+    pro_warr boolean,
     pro_reorder INT(11) NOT NULL,
     pro_minStock INT(11) NOT NULL
 )";//Item Database 
@@ -118,6 +119,15 @@ $sql_reclay = "CREATE TABLE reclay (
     textbox4 VARCHAR(24)
 )"; // Receipt Layout
 
+$sql_occdiscount = "CREATE TABLE occdiscounts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    mnt_occasion VARCHAR(255) NOT NULL,
+    mnt_discount DECIMAL(10, 2) NOT NULL,
+    mnt_start DATE NOT NULL,
+    mnt_end DATE NOT NULL
+)"; //Maintenance Discount(Occasional Discount)
+
+
 if (
     $conn->query($sql_itemlist) === true &&
     $conn->query($sql_cashier_temp) === true &&
@@ -130,7 +140,8 @@ if (
     $conn->query($sql_polist) === true &&
     $conn->query($sql_supdelivery) === true &&
     $conn->query($sql_taxmnt) === true &&
-    $conn->query($sql_reclay)   
+    $conn->query($sql_reclay) === true &&
+    $conn->query($sql_occdiscount)
 ) {
     echo "Tables 'itemlist', 'cashier_temp', 'userauth', 'gendiscount', 'itemdis', 'catdiscount',
     'supplierlist' and 'customerlist' created successfully";

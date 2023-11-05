@@ -54,11 +54,11 @@ if (isset($_REQUEST['import-excel'])) {
                     echo "Update error: " . mysqli_error($conn);
                 }
             } else {
-                $insertQuery = "INSERT INTO itemlist (pro_IDQR, pro_name, pro_inf, pro_cat, pro_price, pro_exp) VALUES (?, ?, ?, ?, ?, ?)";
+                $insertQuery = "INSERT INTO itemlist (pro_IDQR, pro_name, pro_inf, pro_cat, pro_price) VALUES (?, ?, ?, ?, ?)";
                 $stmt = $conn->prepare($insertQuery);
 
                 if ($stmt) {
-                    $stmt->bind_param("ssssss", $Product_IDQR, $Product_Name, $Product_Description, $Product_Category, $Product_Price, $Product_Expiry);
+                    $stmt->bind_param("sssss", $Product_IDQR, $Product_Name, $Product_Description, $Product_Category, $Product_Price);
                     if ($stmt->execute()) {
                         $successCount++;
                     } else {
