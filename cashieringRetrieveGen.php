@@ -18,14 +18,43 @@ if ($stmt->execute()) {
             $discountPercentage = max($discountPercentage, $row['gendisper']);
         }
 
-        // Return the discount percentage as JSON
-        echo json_encode(array('discountPercentage' => $discountPercentage));
+        // Now, let's retrieve the mnt_discount based on the date range
+        $currentDate = date('Y-m-d'); // Get the current date
+
+        // Query to get mnt_discount if the current date falls within the range
+        $sql = "SELECT mnt_discount FROM occdiscounts WHERE mnt_start <= ? AND mnt_end >= ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ss", $currentDate, $currentDate);
+
+        if ($stmt->execute()) {
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                $mnt_discount = 0.0;
+                while ($row = $result->fetch_assoc()) {
+                    $mnt_discount = max($mnt_discount, $row['mnt_discount']);
+                }
+
+                // Combine the discounts
+                $combinedDiscount = $discountPercentage + $mnt_discount;
+
+                error_log('Received Data: combinedDiscountPercentage=' . $combinedDiscount);
+
+                echo $combinedDiscount;
+            } else {
+                // No matching mnt_discount found
+                echo $discountPercentage;
+            }
+        } else {
+            // Error executing the mnt_discount query
+            echo json_encode(array('error' => 'Error executing mnt_discount query'));
+        }
     } else {
         // No matching discount found
-        echo json_encode(array('discountPercentage' => 0.0));
+        echo $combinedDiscount;
     }
 } else {
-    // Error executing the query
+    // Error executing the gendiscount query
     echo json_encode(array('error' => 'Error executing discount query'));
 }
 ?>

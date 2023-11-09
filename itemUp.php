@@ -7,30 +7,23 @@ if (isset($_GET['UpID'])) {
     $description = $_POST['Description'];
     $category = $_POST['Category'];
     $price = $_POST['Price'];
-    $expiryDate = $_POST['Expiry_Date'];
     $reorderPoint = $_POST['Reorder_Point'];
-    $minimumStock = $_POST['Minimum'];
-    $maximumStock = $_POST['Maximum'];
 
     // Prepare the SQL update statement
     $query = "UPDATE itemlist SET 
-              pro_IDQR =?,
+              pro_IDQR = ?,
               pro_name = ?,
               pro_inf = ?,
               pro_cat = ?,
               pro_price = ?,
-              pro_exp = ?,
-              pro_reorder = ?,
-              pro_minStock = ?,
-              pro_maxStock = ?
+              pro_reorder = ?
               WHERE pro_ID = ?";
 
     $stmt = mysqli_prepare($conn, $query);
 
     if ($stmt) {
         // Bind the parameters to the prepared statement
-        mysqli_stmt_bind_param($stmt, "ssssisiiii", $productIDQR, $productName, $description, $category, $price, $expiryDate, $reorderPoint, $minimumStock, $maximumStock, $proID);
-
+        mysqli_stmt_bind_param($stmt, "ssssiii", $productIDQR, $productName, $description, $category, $price, $reorderPoint, $proID);
 
         // Execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {

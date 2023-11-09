@@ -12,6 +12,7 @@ $sql_itemlist = "CREATE TABLE itemlist (
     pro_quantity INT(11) NOT NULL,
     pro_unit VARCHAR(10),
     pro_warr boolean,
+    pro_warrRng date,
     pro_reorder INT(11) NOT NULL,
     pro_minStock INT(11) NOT NULL
 )";//Item Database 
@@ -122,10 +123,25 @@ $sql_reclay = "CREATE TABLE reclay (
 $sql_occdiscount = "CREATE TABLE occdiscounts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     mnt_occasion VARCHAR(255) NOT NULL,
-    mnt_discount DECIMAL(10, 2) NOT NULL,
+    mnt_discount DECIMAL(11, 2) NOT NULL,
     mnt_start DATE NOT NULL,
     mnt_end DATE NOT NULL
 )"; //Maintenance Discount(Occasional Discount)
+
+$sql_salesRep = "CREATE TABLE sales_report (
+    invoice_no INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(50),
+    product_id INT(11),
+    product_name VARCHAR(50),
+    product_quantity INT(11),
+    product_discount DECIMAL(11,2),
+    product_total DECIMAL(11,2),
+    discount DECIMAL(11,2),
+    tax DECIMAL(11,2),
+    grand_total DECIMAL(11,2),
+    date_purchased TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)"; //sales report
+
 
 
 if (
@@ -141,7 +157,8 @@ if (
     $conn->query($sql_supdelivery) === true &&
     $conn->query($sql_taxmnt) === true &&
     $conn->query($sql_reclay) === true &&
-    $conn->query($sql_occdiscount)
+    $conn->query($sql_occdiscount) === true &&
+    $conn->query($sql_salesRep)
 ) {
     echo "Tables 'itemlist', 'cashier_temp', 'userauth', 'gendiscount', 'itemdis', 'catdiscount',
     'supplierlist' and 'customerlist' created successfully";

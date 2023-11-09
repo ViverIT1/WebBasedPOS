@@ -115,12 +115,14 @@
                         <div class="change-amount" id="change-amount">0.00</div>
                     </div>
                     <div class="popup-buttons">
+                        <button type="button" class="commit" id="commitButton">Commit</button>
                         <button type="button" class="okay" onclick="printReceipt()">Print Receipt</button>
                         <button type="button" class="cancel" onclick="closePopup()">Go Back</button>
                     </div>
                 </div>
                         
             <script>
+                
 function fetchAndPopulateProducts(productID, quantity) {
     const url = `cashieringRetrieve.php?productID=${productID}`;
     
@@ -149,18 +151,22 @@ function fetchAndPopulateProducts(productID, quantity) {
                     existingQuantityCell.textContent = newQuantity;
 
                     // Get the discount information for the product from itemdiscount
-                    const itemDiscountPercentage = parseFloat(data[0].itemdisper);
+                    const discountPercentageCell = existingRow.querySelector('.input-cell.discount-percentage');
                     const itemPriceCell = existingRow.querySelector('.input-cell.unit-price');
                     const itemTotalCell = existingRow.querySelector('.input-cell.item-total');
+
+                    // Extract and convert the discount percentage to a number
+                    const discountPercentageText = discountPercentageCell.textContent;
+                    const discountPercentage = parseFloat(discountPercentageText.replace('%', ''));
+
                     const itemPrice = parseFloat(itemPriceCell.textContent);
 
                     // Calculate the discounted total
-                    const discountTotal = (itemDiscountPercentage / 100) * (itemPrice * newQuantity);
+                    const discountTotal = (discountPercentage / 100) * (itemPrice * newQuantity);
                     itemTotalCell.textContent = ((itemPrice * newQuantity) - discountTotal).toFixed(2);
 
                     // Update the discount percentage in the table
-                    const discountPercentageCell = existingRow.querySelector('.input-cell.discount-percentage');
-                    discountPercentageCell.textContent = itemDiscountPercentage;
+                    discountPercentageCell.textContent = discountPercentage.toFixed(2); // Update the discount percentage
                 } else {
                     // If it's not in the cart, add a new row
                     const tableBody = document.querySelector('.content-table tbody');
@@ -195,18 +201,18 @@ function fetchAndPopulateProducts(productID, quantity) {
                         `;
                     }
                     
-                    tableBody.appendChild(row);
-                }
+                        tableBody.appendChild(row);
+                                }
 
-                // Update the subtotal and grand total
-                updateSubtotal();
-                clearInputAndQuantity();
-            } else {
-                console.error('Received incomplete or undefined data from the server');
-            }
-        })
-        .catch(error => console.error(error));
-}
+                                // Update the subtotal and grand total
+                                updateSubtotal();
+                                clearInputAndQuantity();
+                            } else {
+                                console.error('Received incomplete or undefined data from the server');
+                            }
+                        })
+                        .catch(error => console.error(error));
+                }
                 function updateSubtotal() {
                     let subtotal = 0;
                     const itemTotalCells = document.querySelectorAll('.input-cell.item-total');
@@ -220,22 +226,40 @@ function fetchAndPopulateProducts(productID, quantity) {
                 }
         
                 function updateGrandTotal() {
+                // Fetch or calculate the subtotal and taxPercentage
                 const subtotal = parseFloat(document.getElementById('sub_total').textContent);
                 const taxPercentage = parseFloat(document.querySelector('.tax_percnumb').textContent); // Select the element containing tax percentage
 
                 // Fetch the discount information based on the highest gendisqual less than or equal to subtotal
                 fetchDiscountForSubtotal(subtotal)
-                    .then(discountPercentage => {
-                        // Calculate the grand total with discount and tax
-                        const discount = (discountPercentage / 100) * subtotal;
-                        const tax = (taxPercentage / 100) * subtotal;
-                        const grandTotal = subtotal - discount + tax;
+                    .then(data => {
+                        // Extract the discount percentage and log it
+                        const discountPercentage = parseFloat(data);
 
-                        // Update the grand total and discount percentage
-                        document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
-                        document.querySelector('.disc_percnumb').textContent = discountPercentage.toFixed(2);
+                        if (!isNaN(discountPercentage)) {
+                            console.log('Parsed Discount Percentage:', discountPercentage);
+
+                            // Update the discount percentage in your HTML
+                            document.querySelector('.disc_percnumb').textContent = discountPercentage.toFixed(2);
+
+                            // Calculate the grand total
+                            const grandTotal = calculateGrandTotal(subtotal, discountPercentage, taxPercentage);
+
+                            // Update the grand total in your HTML
+                            document.getElementById('grand-total').textContent = grandTotal.toFixed(2);
+                        } else {
+                            console.error('Invalid Discount Percentage:', discountPercentage);
+                        }
                     })
                     .catch(error => console.error(error));
+                }
+
+                function calculateGrandTotal(subtotal, discountPercentage, taxPercentage) {
+                    // Calculate the grand total based on the given values
+                    const discount = (discountPercentage / 100) * subtotal;
+                    const tax = (taxPercentage / 100) * subtotal;
+                    const grandTotal = subtotal - discount + tax;
+                    return grandTotal;
                 }
 
                 function fetchDiscountForSubtotal(subtotal) {
@@ -249,7 +273,16 @@ function fetchAndPopulateProducts(productID, quantity) {
                             return response.json();
                         })
                         .then(data => {
-                            return parseFloat(data.discountPercentage);
+                            if (typeof data === 'number' || !isNaN(data)) {
+                                return data; // Return the discount percentage if it's a valid number
+                            } else {
+                                // If the response is empty or not a valid number, return a default value (0)
+                                return 0;
+                            }
+                        })
+                        .catch(error => {
+                            console.error(error);
+                            return 0; // Handle any error by returning a default value (0)
                         });
                 }
 
@@ -410,128 +443,221 @@ function fetchAndPopulateProducts(productID, quantity) {
                     }
                 }
 // Define the generateReceiptData function
-function printReceipt() {
-    // Generate a random invoice number (you can replace this with your own logic)
-    const invoiceNumber = Math.floor(Math.random() * 10000);
+                function printReceipt() {
+                    // Generate a random invoice number (you can replace this with your own logic)
+                    const invoiceNumber = Math.floor(Math.random() * 10000);
 
-    // Create an empty array to store receipt data
-    const receiptData = [];
+                    // Create an empty array to store receipt data
+                    const receiptData = [];
 
-    // Prepare the receipt content with header, product list, and footer
-    let receiptContent = '';
+                    // Prepare the receipt content with header, product list, and footer
+                    let receiptContent = '';
 
-    // AJAX request to retrieve header and footer data from the server
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'cashieringRetrieveRec.php', true);
+                    // AJAX request to retrieve header and footer data from the server
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'cashieringRetrieveRec.php', true);
 
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            const data = JSON.parse(xhr.responseText);
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            const data = JSON.parse(xhr.responseText);
 
-            // Check if header and footer data are available
-            const header = data.header || {};
-            const footer = data.footer || {};
+                            // Check if header and footer data are available
+                            const header = data.header || {};
+                            const footer = data.footer || {};
 
-            // Header for invoice number at the top
-            receiptContent += `Invoice: ${invoiceNumber}\n`; // Include invoice number at the top
+                            // Header for invoice number at the top
+                            receiptContent += `Invoice: ${invoiceNumber}\n`; // Include invoice number at the top
 
-            // Add header lines
-            receiptContent += `${header.storeName}\n`;
-            receiptContent += `${header.storeAddress}\n`;
-            receiptContent += `${header.storePhone}\n`;
-            receiptContent += `${header.storeEmail}\n`;
-            receiptContent += '--------------------------------\n';
+                            // Add header lines
+                            receiptContent += `${header.storeName}\n`;
+                            receiptContent += `${header.storeAddress}\n`;
+                            receiptContent += `${header.storePhone}\n`;
+                            receiptContent += `${header.storeEmail}\n`;
+                            receiptContent += '--------------------------------\n';
 
-            // Retrieve product information from the existing HTML rows
-            const productRows = document.querySelectorAll('.content-table tbody tr');
-            productRows.forEach(row => {
-                const productNameCell = row.querySelector('td:nth-child(2)');
-                const quantityCell = row.querySelector('.input-cell.quantity');
-                const totalCell = row.querySelector('.input-cell.item-total');
-                const discountPercentageCell = row.querySelector('.input-cell.discount-percentage');
+                            // Retrieve product information from the existing HTML rows
+                            const productRows = document.querySelectorAll('.content-table tbody tr');
+                            productRows.forEach(row => {
+                                const productNameCell = row.querySelector('td:nth-child(2)');
+                                const quantityCell = row.querySelector('.input-cell.quantity');
+                                const totalCell = row.querySelector('.input-cell.item-total');
+                                const discountPercentageCell = row.querySelector('.input-cell.discount-percentage');
 
-                const productName = productNameCell.textContent;
-                const quantity = parseInt(quantityCell.textContent, 10);
-                const total = parseFloat(totalCell.textContent);
-                const discountPercentage = parseFloat(discountPercentageCell.textContent);
+                                const productName = productNameCell.textContent;
+                                const quantity = parseInt(quantityCell.textContent, 10);
+                                const total = parseFloat(totalCell.textContent);
+                                const discountPercentage = parseFloat(discountPercentageCell.textContent);
 
-                receiptData.push({
-                    productName,
-                    quantity,
-                    total,
-                    discountPercentage,
-                });
-            });
+                                receiptData.push({
+                                    productName,
+                                    quantity,
+                                    total,
+                                    discountPercentage,
+                                });
+                            });
 
-            // Add a line separator after product list
-            receiptContent += '--------------------------------\n';
+                            // Add a line separator after product list
+                            receiptContent += '--------------------------------\n';
 
-            // Display product list
-            receiptData.forEach((item, index) => {
-                const productName = `${item.productName} x${item.quantity}`;
-                const formattedTotal = item.total.toFixed(2).padStart(6);
-                const discountedPrice = -((item.discountPercentage / 100) * item.total).toFixed(2);
+                            // Display product list
+                            receiptData.forEach((item, index) => {
+                                const productName = `${item.productName} x${item.quantity}`;
+                                const formattedTotal = item.total.toFixed(2).padStart(6);
+                                const discountedPrice = -((item.discountPercentage / 100) * item.total).toFixed(2);
 
-                receiptContent += `${productName} | ${formattedTotal}\n`;
-                if (item.discountPercentage > 0) {
-                    receiptContent += `Discounted Price: ${discountedPrice}\n`;
+                                receiptContent += `${productName} | ${formattedTotal}\n`;
+                                if (item.discountPercentage > 0) {
+                                    receiptContent += `Discounted Price: ${discountedPrice}\n`;
+                                }
+                            });
+
+                            // Add a line separator before subtotals
+                            receiptContent += '--------------------------------\n';
+
+                            // Calculate subtotals, discount, tax, and grand total
+                            const subTotal = receiptData.reduce((total, item) => total + item.total, 0);
+                            const discountPercentage = data.discountPercentage || 0; // Default to 0 if not provided
+                            const taxPercentage = data.taxPercentage || 0; // Default to 0 if not provided
+                            const discount = (discountPercentage / 100) * subTotal;
+                            const tax = (taxPercentage / 100) * subTotal;
+                            const grandTotal = subTotal - discount + tax;
+
+                            // Display subtotals, discount, and tax
+                            receiptContent += `Subtotal: ${subTotal.toFixed(2).padStart(6)}\n`;
+
+                            // Get the discount percentage value from the document
+                            const discountPercentageValue = document.querySelector('.disc_percnumb').textContent;
+                            receiptContent += `Discount: ${discountPercentageValue}%\n`;
+
+                            // Include the tax percentage in the receipt content
+                            const taxPercentageValue = document.querySelector('.tax_percnumb').textContent;
+                            receiptContent += `Tax: ${taxPercentageValue}%\n`;
+
+                            receiptContent += `Grand Total: ${grandTotal.toFixed(2).padStart(6)}\n`;
+
+
+                            // Include random space below the footer for proper printing
+                            const randomSpace = '\n\n\n\n\n';
+
+                            // Get cash received and change values
+                            const cashReceived = parseFloat(document.getElementById('cash-received').value);
+                            const change = parseFloat(document.querySelector('input[name="amount_change"]').value);
+
+                            // Display cash received and change
+                            receiptContent += `Cash Received: ${cashReceived.toFixed(2).padStart(6)}\n`;
+                            receiptContent += `Change: ${change.toFixed(2).padStart(6)}\n`;
+
+                            // Add a line separator before footer
+                            receiptContent += '--------------------------------\n';
+
+                            // Display footer lines
+                            receiptContent += `${footer.textbox1}\n`;
+                            receiptContent += `${footer.textbox2}\n`;
+                            receiptContent += `${footer.textbox3}\n`;
+                            receiptContent += `${footer.textbox4}\n`;
+
+                            // Add extra space with plus signs as separators
+                            const extraSpaces = '\n\n\n\n\n\n\n\n\n\n' + '++++++++\n\n\n\n\n\n\n\n\n\n';
+
+                            receiptContent += extraSpaces;
+
+                            // Create a new window for printing
+                            const printWindow = window.open('', '', 'width=600,height=600');
+                            printWindow.document.open();
+                            printWindow.document.write('<pre>' + receiptContent + '</pre>');
+                            printWindow.document.close();
+                            printWindow.print();
+                        } else {
+                            console.log('Error fetching header and footer data from the server.');
+                        }
+                    };
+
+                    xhr.send();
                 }
-            });
 
-            // Add a line separator before subtotals
-            receiptContent += '--------------------------------\n';
+                        // Function to handle the commit button click
+                        function handleCommitButtonClick() {
+    // Array to store extracted data from each row
+    const rowData = [];
 
-            // Calculate subtotals, discount, tax, and grand total
-            const subTotal = receiptData.reduce((total, item) => total + item.total, 0);
-            const discountPercentage = data.discountPercentage || 0; // Default to 0 if not provided
-            const taxPercentage = data.taxPercentage || 0; // Default to 0 if not provided
-            const discount = (discountPercentage / 100) * subTotal;
-            const tax = (taxPercentage / 100) * subTotal;
-            const grandTotal = subTotal - discount + tax;
+    // Get all rows in the table body
+    const allRows = document.querySelectorAll('.content-table tbody tr');
 
-            // Display subtotals, discount, and tax
-            receiptContent += `Subtotal: ${subTotal.toFixed(2).padStart(6)}\n`;
-            receiptContent += `Discount: ${discount.toFixed(2).padStart(6)}\n`;
-            receiptContent += `Tax: ${tax.toFixed(2).padStart(6)}\n`;
+    // Iterate through each row
+    allRows.forEach(row => {
+        // Get the cells in the row
+        const cells = Array.from(row.cells);
 
-            // Include random space below the footer for proper printing
-            const randomSpace = '\n\n\n\n\n';
+        // Check if the row structure matches the one with "itemdis_IDQR"
+        if (cells.length === 7) {
+            // Extract data from specific columns
+            const productId = cells[0].textContent;  // Product ID
+            const productName = cells[1].textContent;  // Product Name
+            const productQuantity = cells[2].textContent;  // Product Quantity
+            const productDiscount = cells[4].textContent;  // Product Discount
+            const productTotal = cells[5].textContent;  // Product Total
 
-            // Get cash received and change values
-            const cashReceived = parseFloat(document.getElementById('cash-received').value);
-            const change = parseFloat(document.querySelector('input[name="amount_change"]').value);
+            // Create an object with the extracted data
+            const rowDataForRow = {
+                productId,
+                productName,
+                productQuantity,
+                productDiscount,
+                productTotal
+            };
 
-            // Display cash received and change
-            receiptContent += `Cash Received: ${cashReceived.toFixed(2).padStart(6)}\n`;
-            receiptContent += `Change: ${change.toFixed(2).padStart(6)}\n`;
+            // Add the object to the rowData array
+            rowData.push(rowDataForRow);
+        }
+    });
 
-            // Add a line separator before footer
-            receiptContent += '--------------------------------\n';
+    // Log or use the rowData array as needed
+    console.log(rowData);
 
-            // Display footer lines
-            receiptContent += `${footer.textbox1}\n`;
-            receiptContent += `${footer.textbox2}\n`;
-            receiptContent += `${footer.textbox3}\n`;
-            receiptContent += `${footer.textbox4}\n`;
+    // Sample data to send to the server along with the extracted row data
+    const dataToSend = {
+        username: "JohnDoe",
+        email: "john@example.com",
+        products: rowData
+        // Add more data fields as needed
+    };
 
-            // Add extra space with plus signs as separators
-            const extraSpaces = '\n\n\n\n\n\n\n\n\n\n' + '++++++++\n\n\n\n\n\n\n\n\n\n';
+    // Display an alert before sending and saving the data
+    alert("Are you sure you want to commit?");
 
-            receiptContent += extraSpaces;
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
 
-            // Create a new window for printing
-            const printWindow = window.open('', '', 'width=600,height=600');
-            printWindow.document.open();
-            printWindow.document.write('<pre>' + receiptContent + '</pre>');
-            printWindow.document.close();
-            printWindow.print();
-        } else {
-            console.log('Error fetching header and footer data from the server.');
+    // Configure it: specify the type of request (POST), the URL, and set it to be asynchronous
+    xhr.open("POST", "cashieringProdRepWar.php", true);
+
+    // Set the request header to indicate that we are sending JSON data
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    // Define the callback function to handle the response from the server
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            // Check if the request was successful (status code 200)
+            if (xhr.status === 200) {
+                // Handle the response from the server
+                console.log(xhr.responseText);
+                alert("Data sent and saved successfully");
+            } else {
+                // Handle errors
+                console.error("Error: " + xhr.status);
+                alert("Error sending data to server");
+            }
         }
     };
 
-    xhr.send();
+    // Convert the data object to a JSON string
+    var jsonData = JSON.stringify(dataToSend);
+
+    // Send the data to the server
+    xhr.send(jsonData);
 }
+                // Attach the click event listener to the commit button
+                document.getElementById("commitButton").addEventListener("click", handleCommitButtonClick);
             </script>
         </body>
         </html>
