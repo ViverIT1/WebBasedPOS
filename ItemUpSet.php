@@ -1,9 +1,10 @@
 <?php
-require_once('PhpCon.php');
+include ('PhpCon.php');
+
 if (isset($_GET['UpSetID'])) {
     $proID = $_GET['UpSetID'];
 
-    $query = "SELECT * FROM itemlist WHERE pro_ID = '$proID'";
+    $query = "SELECT * FROM itemlist WHERE pro_IDQR = '$proID'";
     $result = mysqli_query($conn, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -31,8 +32,8 @@ if (isset($_GET['UpSetID'])) {
     <body>
         <div class="form-container">
             <div class="form-box">
-            <form action="itemUp.php?UpID=<?php echo $row['pro_ID']; ?>" method="post">
-                    <input type="hidden" name="Product_ID" value="<?php echo $row['pro_ID']; ?>">
+            <form action="itemUp.php?UpID=<?php echo $row['pro_IDQR']; ?>" method="post">
+                    <input type="hidden" name="Product_ID" value="<?php echo $row['pro_IDQR']; ?>">
                     <label for="Product_Name">Product IDQR:</label>
                     <input type="text" name="Product_IDQR" id="Product_IDQR" value="<?php echo isset($row['pro_IDQR']) ? $row['pro_IDQR'] : ''; ?>" required>
                     <br>
