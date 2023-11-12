@@ -9,6 +9,8 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("d", $subTotal); // Assuming gendisqual is a decimal value
 
 if ($stmt->execute()) {
+
+    $combinedDiscount = 0.00;   
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {

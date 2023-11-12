@@ -129,8 +129,9 @@ $sql_occdiscount = "CREATE TABLE occdiscounts (
 )"; //Maintenance Discount(Occasional Discount)
 
 $sql_salesRep = "CREATE TABLE sales_report (
-    invoice_no INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    invoice_no INT(11),
     customer_name VARCHAR(50),
+    paymeans VARCHAR(30),
     product_id INT(11),
     product_name VARCHAR(50),
     product_quantity INT(11),

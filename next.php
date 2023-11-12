@@ -108,7 +108,7 @@ if (!isset($_SESSION['username'])) {
                 <li><a class="link_name" href="#">Reporting and Graphical Presentation</a></li>
                 <li><a href="invreport.html" target="MainIframe">Inventory Report</a></li>
                 <li><a href="stockadjreport.html" target="MainIframe">Stock Adjusment Report</a></li>
-                <li><a href="salesreport.html" target="MainIframe">Sales Report</a></li>
+                <li><a href="salesreport.php" target="MainIframe">Sales Report</a></li>
                 <li><a href="cusreturnreport.html" target="MainIframe">Customer Return Report</a></li>
                 <li><a href="suppreturnreport.html" target="MainIframe">Supplier Return Report</a></li>
                 <li><a href="reodrlistreport.html" target="MainIframe">Re Order List Report</a></li>

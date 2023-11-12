@@ -35,12 +35,15 @@
         <link rel="stylesheet" type="text/css" href="cashiering.css">
     </head>
     <body>
+                <label for="customer">Customer:</label>
+                <input type="text" id="cust_name" name="cust_name" placeholder="Name" value="cust" required>
+        
                 <div class="input-group">
                     <form method="post" action="cashieringRetrieve.php" id="cashierForm" autocomplete="off">
                         <div class="container">
-                            <label for="product">Enter Product Code</label>
+                            <label for="product">Product Code</label>
                             <input type="text" id="productQR" name="productQR" placeholder="Enter your Product">
-                            <label for="product">Enter Quantity</label>
+                            <label for="product">Quantity</label>
                             <input type="number" id="quantity" name="quantity" value="1" placeholder="1">
                             <input type="submit" value="Add to cart">
                         </div>
@@ -115,14 +118,13 @@
                         <div class="change-amount" id="change-amount">0.00</div>
                     </div>
                     <div class="popup-buttons">
-                        <button type="button" class="commit" id="commitButton">Commit</button>
+                        <button type="button" class="commitButton" id="commitButton" onclick="payment()">Commit</button>
                         <button type="button" class="okay" onclick="printReceipt()">Print Receipt</button>
                         <button type="button" class="cancel" onclick="closePopup()">Go Back</button>
                     </div>
                 </div>
                         
             <script>
-                
 function fetchAndPopulateProducts(productID, quantity) {
     const url = `cashieringRetrieve.php?productID=${productID}`;
     
@@ -345,6 +347,7 @@ function fetchAndPopulateProducts(productID, quantity) {
                 document.querySelector('input[name="tax_perc"]').addEventListener('input', updateGrandTotal);
 
                 function openPopup() {
+
                     const popup = document.getElementById('popup');
                     const modalOverlay = document.getElementById('modal-overlay');
                     popup.classList.add('open-popup');
@@ -442,10 +445,36 @@ function fetchAndPopulateProducts(productID, quantity) {
                         console.error("Cash received is less than the grand total");
                     }
                 }
-// Define the generateReceiptData function
+
+                function genInv() {
+                    let sharedInvoiceNumber; // Variable retained inside the closure
+
+                    if (!sharedInvoiceNumber) {
+                        let xhr = new XMLHttpRequest();
+
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                if (xhr.status === 200) {
+                                    const latestInvoice = parseInt(xhr.responseText, 10);
+                                    sharedInvoiceNumber = isNaN(latestInvoice) ? 0 : latestInvoice + 1;
+                                } else {
+                                    console.error("Error: " + xhr.status);
+                                }
+                            }
+                        };
+
+                        xhr.open("GET", "cashieringInv.php", false); // Synchronous request
+                        xhr.send();
+                    } else {
+                        sharedInvoiceNumber += 1;
+                    }
+
+                    return sharedInvoiceNumber;
+                }
+                // Define the generateReceiptData function
                 function printReceipt() {
+                    const invoiceNumber = genInv();
                     // Generate a random invoice number (you can replace this with your own logic)
-                    const invoiceNumber = Math.floor(Math.random() * 10000);
 
                     // Create an empty array to store receipt data
                     const receiptData = [];
@@ -574,90 +603,133 @@ function fetchAndPopulateProducts(productID, quantity) {
 
                     xhr.send();
                 }
+                function payment() {
+                    const paymentMethod = document.getElementById("payment-method").value;
+                    
+                    if (paymentMethod === "cash") {
+                        validatecashpay();
+                    } else if (paymentMethod === "gcash") {
+                        noncashpay();
+                    } else {
+                        alert("Please select a payment method!");
+                    }
+                }
 
-                        // Function to handle the commit button click
-                        function handleCommitButtonClick() {
-    // Array to store extracted data from each row
-    const rowData = [];
+                function validatecashpay(){
+                    const cashReceived = parseFloat(document.getElementById('cash-received').value);
+                    const change = parseFloat(document.getElementById('change-amount').textContent);
 
-    // Get all rows in the table body
-    const allRows = document.querySelectorAll('.content-table tbody tr');
+                    if (cashReceived < change) {
+                        alert('Cash received is less than the change. Amount is not enough!');
+                    } else{
+                        cashpay();
+                    }
+                }
 
-    // Iterate through each row
-    allRows.forEach(row => {
-        // Get the cells in the row
-        const cells = Array.from(row.cells);
+                // Function to handle the commit button click
+                function cashpay() {
 
-        // Check if the row structure matches the one with "itemdis_IDQR"
-        if (cells.length === 7) {
-            // Extract data from specific columns
-            const productId = cells[0].textContent;  // Product ID
-            const productName = cells[1].textContent;  // Product Name
-            const productQuantity = cells[2].textContent;  // Product Quantity
-            const productDiscount = cells[4].textContent;  // Product Discount
-            const productTotal = cells[5].textContent;  // Product Total
+                    // Extract overall Discount, Tax, and Grand Total values
+                    const discount = document.getElementById("disc_perc").textContent;
+                    const tax = document.getElementById("tax_perc").textContent;
+                    const grandTotal = document.getElementById("grand-total").textContent;
+                    const invoiceNo = genInv();
+                    const customerName = document.getElementById("cust_name").value;
 
-            // Create an object with the extracted data
-            const rowDataForRow = {
-                productId,
-                productName,
-                productQuantity,
-                productDiscount,
-                productTotal
-            };
+                    // Get the selected payment method
+                    const paymentMethod = document.getElementById("payment-method").value;
 
-            // Add the object to the rowData array
-            rowData.push(rowDataForRow);
-        }
-    });
+                    // Array to store extracted data from each row
+                    const rowData = [];
 
-    // Log or use the rowData array as needed
-    console.log(rowData);
+                    // Get all rows in the table body
+                    const allRows = document.querySelectorAll('.content-table tbody tr');
 
-    // Sample data to send to the server along with the extracted row data
-    const dataToSend = {
-        username: "JohnDoe",
-        email: "john@example.com",
-        products: rowData
-        // Add more data fields as needed
-    };
+                    // Iterate through each row
+                    allRows.forEach(row => {
+                        // Get the cells in the row
+                        const cells = Array.from(row.cells);
 
-    // Display an alert before sending and saving the data
-    alert("Are you sure you want to commit?");
+                        // Check if the row structure matches the one with "itemdis_IDQR"
+                        if (cells.length === 7) {
+                            // Extract data from specific columns
+                            const productId = cells[0].textContent; // Product ID
+                            const productName = cells[1].textContent; // Product Name
+                            const productQuantity = cells[2].textContent; // Product Quantity
+                            const productDiscount = cells[4].textContent; // Product Discount
+                            const productTotal = cells[5].textContent; // Product Total
 
-    // Create a new XMLHttpRequest object
-    var xhr = new XMLHttpRequest();
+                            // Create an object with the extracted data
+                            const rowDataForRow = {
+                                productId,
+                                productName,
+                                productQuantity,
+                                productDiscount,
+                                productTotal
+                            };
 
-    // Configure it: specify the type of request (POST), the URL, and set it to be asynchronous
-    xhr.open("POST", "cashieringProdRepWar.php", true);
+                            // Add the object to the rowData array
+                            rowData.push(rowDataForRow);
+                        }
+                    });
 
-    // Set the request header to indicate that we are sending JSON data
-    xhr.setRequestHeader("Content-Type", "application/json");
+                    // Sample data to send to the server along with the extracted row data
+                    const dataToSend = {
+                        customer_name: customerName, // Update the key to 'customer_name'
+                        discount,
+                        tax,
+                        grandTotal,
+                        paymentMethod,
+                        products: rowData,
+                        invoiceNo
+                    };
 
-    // Define the callback function to handle the response from the server
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            // Check if the request was successful (status code 200)
-            if (xhr.status === 200) {
-                // Handle the response from the server
-                console.log(xhr.responseText);
-                alert("Data sent and saved successfully");
-            } else {
-                // Handle errors
-                console.error("Error: " + xhr.status);
-                alert("Error sending data to server");
-            }
-        }
-    };
+                        // Display an alert before sending and saving the data
+                        const confirmResult = confirm("Are you sure you want to commit?");
+                        if (!confirmResult) {
+                            return;
+                        }
 
-    // Convert the data object to a JSON string
-    var jsonData = JSON.stringify(dataToSend);
+                        // Create a new XMLHttpRequest object
+                        var xhr = new XMLHttpRequest();
 
-    // Send the data to the server
-    xhr.send(jsonData);
-}
-                // Attach the click event listener to the commit button
-                document.getElementById("commitButton").addEventListener("click", handleCommitButtonClick);
+                        // Configure it: specify the type of request (POST), the URL, and set it to be asynchronous
+                        xhr.open("POST", "cashieringProdRepWar.php", true);
+
+                        // Set the request header to indicate that we are sending JSON data
+                        xhr.setRequestHeader("Content-Type", "application/json");
+
+                        // Define the callback function to handle the response from the server
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState === XMLHttpRequest.DONE) {
+                                // Check if the request was successful (status code 200)
+                                if (xhr.status === 200) {
+                                    // Handle the response from the server
+                                    console.log(xhr.responseText);
+                                    alert("Data sent and saved successfully");
+                                    sharedInvoiceNumber = null;
+                                    // Reload the current page without using the cache
+                                    location.reload();
+
+                                    // Force a reload from the server by passing true
+                                    location.reload(true);
+                                } else {
+                                    // Handle errors
+                                    console.error("Error: " + xhr.status);
+                                    alert("Error sending data to server");
+                                }
+                            }
+                        };
+
+                        // Convert the data object to a JSON string
+                        var jsonData = JSON.stringify(dataToSend);
+
+                        // Send the data to the server
+                        xhr.send(jsonData);
+                    }
+                    function noncashpay(){
+
+                    }
             </script>
         </body>
         </html>
