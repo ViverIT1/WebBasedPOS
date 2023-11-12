@@ -1,12 +1,15 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    padding: 20px;
-    text-align: center;
 }
 
 h1 {
-    color: #176B87;
+    color: #000000;
+    margin: 2px;
+}
+
+h1.sub-title {
+    color: white;
 }
 
 .receipt-preview {
@@ -22,32 +25,65 @@ h1 {
     text-align: left;
 }
 
+.store-info {
+    background-color: #176B87;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
 .store-info p {
-    margin: 5px 0;
+    margin: 8px 0;
+}
+
+.date-time, .product-table, .subtotal, .discount, .tax, .grand-total, .footer {
+    margin-top: 20px;
+}
+
+.date-time p {
+    font-weight: bold;
 }
 
 .product-table {
     width: 100%;
-    margin-top: 10px;
     border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-table th, .product-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
+    border: 2px solid #000000;
+    padding: 10px;
+    text-align: center;
+}
+
+.product-table th {
+    background-color: #176B87;
+    color: white;
 }
 
 .subtotal, .discount, .tax, .grand-total {
-    margin-top: 10px;
-    font-weight: bold;
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 8px;
 }
 
 .footer {
-    margin-top: 20px;
+    background-color: #176B87;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
 }
 
 .additional-textboxes p {
-    margin: 5px 0;
+    margin: 8px 0;
+}
+
+.additional-textboxes span {
+    font-weight: bold;
+    color: #176B87;
 }
 
 form {
