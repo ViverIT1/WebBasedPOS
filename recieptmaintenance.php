@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receipt Maintenance</title>
+    <link rel="stylesheet" type="text/css" href="recieptmaintenance.css">
 </head>
 <body>
 <?php
@@ -66,7 +67,7 @@ if ($result->num_rows > 0) {
 <div class="preview">
     <!-- Store Information Preview -->
     <div class="store-info">
-        <h1>Header</h1>
+        <h1 class="sub-title">Header</h1>
         <p>Store Name: <span><?php echo $storeName; ?></span></p>
         <p>Store Address: <span><?php echo $storeAddress; ?></span></p>
         <p>Store Phone: <span><?php echo $storePhone; ?></span></p>
