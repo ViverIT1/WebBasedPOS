@@ -1,49 +1,80 @@
 body {
     font-family: Arial, sans-serif;
-}
-
-.container {
-    width: 400px;
-    margin: 0 auto;
-}
-
-.store-info {
+    background-color: #f0f0f0;
+    padding: 20px;
     text-align: center;
 }
 
-.invoice-no {
-    text-align: center;
+h1 {
+    color: #176B87;
+}
+
+.receipt-preview {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.preview {
+    text-align: left;
+}
+
+.store-info p {
+    margin: 5px 0;
 }
 
 .product-table {
     width: 100%;
-    border-collapse: collapse;
     margin-top: 10px;
+    border-collapse: collapse;
 }
 
 .product-table th, .product-table td {
-    border: 1px solid #000;
+    border: 1px solid #ccc;
     padding: 8px;
 }
 
-.product-table th {
-    background-color: #f0f0f0;
-}
-
-.subtotal, .tax, .discount, .grand-total {
-    text-align: left;
+.subtotal, .discount, .tax, .grand-total {
     margin-top: 10px;
-}
-
-.grand-total {
-    font-size: 20px;
-}
-
-.date-time {
-    text-align: center;
+    font-weight: bold;
 }
 
 .footer {
-    text-align: center;
     margin-top: 20px;
+}
+
+.additional-textboxes p {
+    margin: 5px 0;
+}
+
+form {
+    margin-top: 20px;
+    text-align: left;
+}
+
+form h2 {
+    color: #176B87;
+}
+
+form input {
+    margin: 8px 0;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    background-color: #176B87;
+    color: white;
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+form input[type="submit"]:hover {
+    background-color: #64CCC5;
 }
