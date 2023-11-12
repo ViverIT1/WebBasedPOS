@@ -3,10 +3,7 @@ ob_start();
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$conn = new mysqli('localhost', 'root', '', 'webinventorydb');
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+include("PhpCon.php");
 
 $stmt = $conn->prepare("SELECT * FROM userauth WHERE user_name = ? AND user_password = ?");
 $stmt->bind_param("ss", $username, $password);

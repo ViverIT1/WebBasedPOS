@@ -43,7 +43,6 @@ if (isset($_GET['invoice_number'])) {
             </div>
         </div>
     </div>
-    </div>
     <h1>Sales Report</h1>
     <div class="container">
         <div class="filter-container">
@@ -109,9 +108,10 @@ if (isset($_GET['invoice_number'])) {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
                 var products = JSON.parse(xhr.responseText);
-                var detailsHTML = "";
+                var detailsHTML = "<div class='receipt'>";
 
                 products.forEach(function(product) {
+                    detailsHTML += "<div class='item'>";
                     for (var key in product) {
                         if (key === 'product_id') {
                             detailsHTML += "<p>Product ID: " + product[key] + "</p>";
@@ -120,20 +120,32 @@ if (isset($_GET['invoice_number'])) {
                         } else if (key === 'product_quantity') {
                             detailsHTML += "<p>Quantity: " + product[key] + "</p>";
                         } else if (key === 'product_discount') {
-                            detailsHTML += "<p>Discount: " + product[key] + "</p>";
+                            detailsHTML += "<p>Item Discount: " + product[key] + "</p>";
                         } else if (key === 'product_total') {
                             detailsHTML += "<p>Total: " + product[key] + "</p>";
-                        } else if (key === 'discount') {
-                            detailsHTML += "<p>Discount: " + product[key] + "</p>";
-                        } else if (key === 'tax') {
-                            detailsHTML += "<p>Tax: " + product[key] + "</p>";
-                        } else if (key === 'grand_total') {
-                            detailsHTML += "<p>Grand Total: " + product[key] + "</p>";
+                            detailsHTML += "--------------------------------";
                         }
                     }
-                    detailsHTML += "<hr>";
+                    detailsHTML += "</div>";
                 });
 
+                var onceFlag = true;
+                products.forEach(function(product) {
+                    if (onceFlag) {
+                        for (var key in product) {
+                            if (key === 'discount') {
+                                detailsHTML += "<p>Discount: " + product[key] + "</p>";
+                            } else if (key === 'tax') {
+                                detailsHTML += "<p>Tax: " + product[key] + "</p>";
+                            } else if (key === 'grand_total') {
+                                detailsHTML += "<p>Grand Total: " + product[key] + "</p>";
+                            }
+                        }
+                        onceFlag = false; // Flag to prevent repetition
+                    }
+                });
+
+                detailsHTML += "</div>"; // Closing the receipt section
                 productDetails.innerHTML = detailsHTML;
                 modal.style.display = "block";
             } else {
@@ -142,21 +154,20 @@ if (isset($_GET['invoice_number'])) {
             }
         }
     };
-
     xhr.send();
 }
 
-    // Button click event listener
-    var buttons = document.querySelectorAll('button');
-    buttons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var row = this.parentNode.parentNode;
-            var cells = row.getElementsByTagName("td");
-            var invoiceNumber = cells[0].innerHTML;
+// Button click event listener
+var buttons = document.querySelectorAll('button');
+buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        var row = this.parentNode.parentNode;
+        var cells = row.getElementsByTagName("td");
+        var invoiceNumber = cells[0].innerHTML;
 
-            showProductDetails(invoiceNumber);
-        });
+        showProductDetails(invoiceNumber);
     });
+});
 
 </script>
 </html>
