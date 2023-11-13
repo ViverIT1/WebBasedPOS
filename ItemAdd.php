@@ -94,7 +94,7 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="itemanage.css">
+    <link rel="stylesheet" type="text/css" href="itemAdd.css">
     <title>Document</title>
 </head>
 <body>
@@ -103,6 +103,7 @@ if ($result->num_rows > 0) {
         <input type="submit" name="import-excel" value="Import" class="btn btn-success">
     </form>
     <br>
+    <div class="form-container">
             <div class="form-box">
                 <form action="ItemAddHandler.php" method="post">
                 <label for="Product_Name">Product ID:</label>
@@ -131,6 +132,7 @@ if ($result->num_rows > 0) {
                     <input type="submit" value="Add">
                         <button type="button" id="closeaddpop"><a href="itemanage.php">Close</a></button>
                 </form>
+    </div>
     </div>
 </body>
 </html>
