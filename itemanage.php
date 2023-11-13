@@ -55,10 +55,10 @@ if (!$result) {
                     <td><?php echo $row['pro_quantity']; ?></td>
                     <td><?php echo $row['pro_reorder']; ?></td>
                     <td>
-                        <button><a href="itemUpSet.php?UpSetID=<?php echo $row['pro_IDQR']; ?>">Update</button>
+                        <button class="update-button"><a href="itemUpSet.php?UpSetID=<?php echo $row['pro_IDQR']; ?>">Update</button>
                     </td>
                     <td>
-                        <button><a href="itemRe.php?ReID=<?php echo $row['pro_IDQR']; ?>">Remove</a></button>
+                        <button class="remove-button"><a href="itemRe.php?ReID=<?php echo $row['pro_IDQR']; ?>">Remove</a></button>
                     </td>
                 </tr>
             <?php
