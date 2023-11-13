@@ -30,7 +30,7 @@ if (isset($_GET['UpID'])) {
             echo "Record updated successfully. Redirecting...";
             echo '<script>
             window.location.href = "itemanage.php";
-            </script>';
+            </script>'; 
             exit;
         } else {
             echo "Error updating record: " . mysqli_error($conn);
