@@ -28,6 +28,7 @@ if (!$result) {
         <button type="submit">Search</button>
     </form>
 
+    <div class="table-container">
     <table class="content-table">
         <thead>
             <tr>
@@ -65,7 +66,7 @@ if (!$result) {
             ?>
         </tbody>
     </table>
-
+    </div>
 </body>
 
 </html>
