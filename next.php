@@ -114,7 +114,7 @@ if (!isset($_SESSION['username'])) {
                 <li><a href="reodrlistreport.html" target="MainIframe">Re Order List Report</a></li>
                 <li><a href="suppdevreport.html" target="MainIframe">Supplier Delivery Report</a></li>
                 <li><a href="prdexpreport.html" target="MainIframe" >Product Experiration Report</a></li>
-                <li><a href="datanalreport.html" target="MainIframe" >Graphical Presentation</a></li>
+                <li><a href="graphicpres.html" target="MainIframe" >Graphical Presentation</a></li>
                 <li><a href="audit.html" target="MainIframe">Audit Trail</a></li>
                 </ul>
             </li>
