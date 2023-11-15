@@ -42,6 +42,7 @@ mysqli_stmt_close($stmt);
         <button type="submit">Search</button>
       </form>
 
+      <div class="table-container">
   <table class="content-table">
     <tr>
       <th>Product Name/Id</th>
@@ -64,10 +65,12 @@ mysqli_stmt_close($stmt);
       
     </tr>
   </table>
+      </div>
 
   <button class="confirm-button" name="change_quantity" >Confirm</button>
       </form>
 
+      <div class="table-container">
   <table class="content-table">
         <thead>
             <tr>
@@ -96,7 +99,7 @@ mysqli_stmt_close($stmt);
             ?>
         </tbody>
     </table>
-
+      </div>
 
 </body>
 </html>
