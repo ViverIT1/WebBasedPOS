@@ -32,6 +32,7 @@ if ($poresult->num_rows > 0) {
 
 <?php foreach($ponovalues as $loopIndex => $pono): ?>
     <?php if(isset($pono) || isset($posuppvalues[$loopIndex])): ?>
+        <div class="table-container">
         <table class="order-table">
             <thead>
                 <tr>
@@ -52,6 +53,7 @@ if ($poresult->num_rows > 0) {
                 </tr>
             </tbody>
         </table>
+        </div>
     <?php endif; ?>
 <?php endforeach; ?>
 
