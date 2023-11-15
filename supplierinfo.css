@@ -30,13 +30,15 @@ body {
 form {
     text-align: start;
     margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* Style for the search input */
 input[type="search"] {
     padding: 5px;
     border: 1px solid #176B87;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 /* Style for the search button */
@@ -51,7 +53,7 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #64CCC5;
-  }
+}
 
 .add-button a {
     color: white;
@@ -93,41 +95,406 @@ button[type="submit"]:hover {
     text-align: center;
 }
 
-.content-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
 /* Style for empty row cells */
 .content-table tbody tr td {
-    border: 2px solid #ddd; /* Add border property */
+    border: 2px solid #000000;
     padding: 10px;
 }
 
-/*prev and next button */
-.pagination {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    justify-content: flex-end;
-  }
-  
-  .pagination button {
-    padding: 8px 12px;
-    border: none;
-    color: white;
+.table-container {
+    max-height: 500px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+/* Style for the "Details" button */
+button.details-button,
+button.remove-button {
     background-color: #176B87;
+    border: none;
+    color: #fff;
+    font-size: 14px;
     cursor: pointer;
-  }
-  
-  .page-num {
-    padding: 8px 12px;
-    font-weight: bold;
-  }
-  
-  .prev-btn {
-    border-radius: 5px 0 0 5px;
-  }
-  
-  .next-btn {
-    border-radius: 0 5px 5px 0;
-  }
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+/* Additional styles for the "Details" button with a class on hover */
+button.details-button:hover {
+    background-color: #64CCC5;
+}
+
+/* Style for the "Remove" button */
+button.remove-button {
+    background-color: #dc3545;
+}
+
+/* Additional styles for the "Remove" button with a class on hover */
+button.remove-button:hover {
+    background-color: #FF6666;
+}
+
+
+@media only screen and (max-width: 320px) {
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        padding: 10px;
+    }
+
+    .header {
+        display: flex;
+        text-align: left;
+        color: black;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 17px;
+    }
+
+    form {
+        text-align: start;
+        margin-bottom: 10px;
+    }
+
+    .add-button {
+        padding: 2px 4px;
+        margin-left: 4px;
+        background-color: #176B87;
+        border: #f0f0f0;
+        color: white;
+        font-size: 9px;
+        text-decoration: none;
+    }
+
+    input[type="search"] {
+        padding: 5px 5px;
+        border: 1px solid #176B87;
+        border-radius: 5px;
+        width: 88px;
+        font-size: 9px;
+    }
+
+    button[type="submit"] {
+        background-color: #176B87;
+        color: white;
+        border: none;
+        padding: 5px 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 4px;
+        font-size: 9px;
+    }
+
+    .content-table th {
+        background-color: #176B87;
+        padding: 6px;
+        color: white;
+        text-align: left;
+        border: 1px solid black;
+        font-size: 10px;
+    }
+
+    .content-table tbody tr td {
+        border: 1px solid #000000;
+        padding: 10px;
+    }
+
+    button.details-button, button.remove-button {
+        background-color: #176B87;
+        border: none;
+        color: #fff;
+        font-size: 9px;
+        cursor: pointer;
+        padding: 5px 5px;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    button.details-button:hover {
+        background-color: #64CCC5;
+    }
+
+    button.remove-button {
+        background-color: #dc3545;
+    }
+
+    button.remove-button:hover {
+        background-color: #FF6666;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 375px){
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        padding: 10px;
+    }
+
+    .header {
+        display: flex;
+        text-align: left;
+        color: black;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        font-size: 21px;
+    }
+
+    form {
+        text-align: start;
+        margin-bottom: 10px;
+    }
+
+    .add-button {
+        padding: 2px 4px;
+        margin-left: 4px;
+        background-color: #176B87;
+        border: #f0f0f0;
+        color: white;
+        font-size: 9px;
+        text-decoration: none;
+    }
+
+    input[type="search"] {
+        padding: 5px 5px;
+        border: 1px solid #176B87;
+        border-radius: 5px;
+        width: 88px;
+        font-size: 9px;
+    }
+
+    button[type="submit"] {
+        background-color: #176B87;
+        color: white;
+        border: none;
+        padding: 5px 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 4px;
+        font-size: 9px;
+    }
+
+    .content-table th {
+        background-color: #176B87;
+        padding: 6px;
+        color: white;
+        text-align: left;
+        border: 1px solid black;
+        font-size: 10px;
+    }
+
+    .content-table tbody tr td {
+        border: 1px solid #000000;
+        padding: 10px;
+    }
+
+    button.details-button, button.remove-button {
+        background-color: #176B87;
+        border: none;
+        color: #fff;
+        font-size: 9px;
+        cursor: pointer;
+        padding: 5px 5px;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    button.details-button:hover {
+        background-color: #64CCC5;
+    }
+
+    button.remove-button {
+        background-color: #dc3545;
+    }
+
+    button.remove-button:hover {
+        background-color: #FF6666;
+    }
+
+}
+
+@media only screen and (min-width: 375px) and (max-width: 425px) {
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        padding: 12px;
+    }
+
+    .header {
+        display: flex;
+        text-align: left;
+        color: black;
+        margin-bottom: 11px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    form {
+        text-align: start;
+        margin-bottom: 11px;
+    }
+
+    .add-button {
+        padding: 4px 4px;
+        margin-left: 4px;
+        background-color: #176B87;
+        border: #f0f0f0;
+        color: white;
+        font-size: 10px;
+        text-decoration: none;
+    }
+
+    input[type="search"] {
+        padding: 5px 5px;
+        border: 1px solid #176B87;
+        border-radius: 5px;
+        width: 93px;
+        font-size: 9px;
+    }
+
+    button[type="submit"] {
+        background-color: #176B87;
+        color: white;
+        border: none;
+        padding: 5px 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 4px;
+        font-size: 9px;
+    }
+
+    .content-table th {
+        background-color: #176B87;
+        padding: 6px;
+        color: white;
+        text-align: left;
+        border: 2px solid black;
+        font-size: 11px;
+    }
+
+    .content-table tbody tr td {
+        border: 2px solid #000000;
+        padding: 10px;
+    }
+
+    button.details-button, button.remove-button {
+        background-color: #176B87;
+        border: none;
+        color: #fff;
+        font-size: 9px;
+        cursor: pointer;
+        padding: 5px 5px;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    button.details-button:hover {
+        background-color: #64CCC5;
+    }
+
+    button.remove-button {
+        background-color: #dc3545;
+    }
+
+    button.remove-button:hover {
+        background-color: #FF6666;
+    }
+
+}
+
+@media only screen and (min-width: 425px) and (max-width: 755px) {
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        padding: 12px;
+    }
+
+    .header {
+        display: flex;
+        text-align: left;
+        color: black;
+        margin-bottom: 12px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    form {
+        text-align: start;
+        margin-bottom: 12px;
+    }
+
+    .add-button {
+        padding: 4px 8px;
+        margin-left: 4px;
+        background-color: #176B87;
+        border: #f0f0f0;
+        color: white;
+        font-size: 13px;
+        text-decoration: none;
+    }
+
+    input[type="search"] {
+        padding: 5px 5px;
+        border: 1px solid #176B87;
+        border-radius: 5px;
+        width: 103px;
+        font-size: 10px;
+    }
+
+    button[type="submit"] {
+        background-color: #176B87;
+        color: white;
+        border: none;
+        padding: 5px 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 4px;
+        font-size: 10px;
+    }
+
+    .content-table th {
+        background-color: #176B87;
+        padding: 8px;
+        color: white;
+        text-align: left;
+        border: 2px solid black;
+        font-size: 13px;
+    }
+
+    .content-table tbody tr td {
+        border: 2px solid #000000;
+        padding: 10px;
+    }
+
+    button.details-button, button.remove-button {
+        background-color: #176B87;
+        border: none;
+        color: #fff;
+        font-size: 11px;
+        cursor: pointer;
+        padding: 7px 7px;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    button.details-button:hover {
+        background-color: #64CCC5;
+    }
+
+    button.remove-button {
+        background-color: #dc3545;
+    }
+
+    button.remove-button:hover {
+        background-color: #FF6666;
+    }
+
+}
