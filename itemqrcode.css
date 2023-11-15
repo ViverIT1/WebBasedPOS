@@ -80,6 +80,12 @@ table {
     padding: 0px;
 }
 
+.table-container {
+    max-height: 500px;
+    overflow-y: auto;
+    width: 100%;
+}
+
 td:nth-child(1) {
     width: 20px;
     height: 15px;
@@ -111,4 +117,115 @@ th {
 
 .btn-qr:hover {
     background-color: #64CCC5;
+}
+
+@media only screen and (max-width: 320px) {
+    h1 {
+        font-size: 15px;
+    }
+
+    .content-table{
+        margin-bottom: 10px;
+    }
+
+    .content-table th {
+        background-color: #176B87;
+        color: white;
+        font-size: 10px;
+    }
+
+    .content-table td {
+        font-size: 10px;
+    }
+
+    .content-table th, .content-table td {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+    }
+
+    .btn-qr {
+        background-color: #176B87;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 10px;
+        margin-top: 3px;
+    }
+}
+
+@media only screen and (max-width: 375px) and (min-width: 320px) {
+    h1 {
+        font-size: 16px;
+    }
+
+    .content-table{
+        margin-bottom: 10px;
+    }
+
+    .content-table th {
+        background-color: #176B87;
+        color: white;
+        font-size: 11px;
+    }
+
+    .content-table td {
+        font-size: 11px;
+    }
+
+    .content-table th, .content-table td {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+    }
+
+    .btn-qr {
+        background-color: #176B87;
+        color: #fff;
+        border: none;
+        padding: 6px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 10px;
+        margin-top: 3px;
+    }
+}
+
+@media only screen and (max-width: 425px) and (min-width: 375px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    .content-table{
+        margin-bottom: 12px;
+    }
+
+    .content-table th {
+        background-color: #176B87;
+        color: white;
+        font-size: 13px;
+    }
+
+    .content-table td {
+        font-size: 13px;
+    }
+
+    .content-table th, .content-table td {
+        border: 2px solid black;
+        padding: 7px;
+        text-align: center;
+    }
+
+    .btn-qr {
+        background-color: #176B87;
+        color: #fff;
+        border: none;
+        padding: 9px 10px;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 11px;
+        margin-top: 3px;
+    }
 }
