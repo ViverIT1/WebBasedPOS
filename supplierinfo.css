@@ -36,7 +36,7 @@ form {
 
 /* Style for the search input */
 input[type="search"] {
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #176B87;
     border-radius: 5px;
 }
