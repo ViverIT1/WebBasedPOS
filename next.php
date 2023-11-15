@@ -139,7 +139,7 @@ if (!isset($_SESSION['username'])) {
             </li>
 
             <li>
-                <a href="#" id="submenu-item-4">
+                <a href="termsCond.html" target="MainIframe" id="submenu-item-4">
                     <i class="fa-solid fa-gavel"></i>
                     <span class="link_name">Terms and Conditions</span>
                 </a>
