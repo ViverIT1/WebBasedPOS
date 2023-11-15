@@ -25,12 +25,13 @@ if ($result->num_rows > 0) {
 </head>
 <body>
     <h1 class="header">Discount</h1>
-    <form>
+    <form method="post">
         <input type="search" name="search" placeholder="Search...">
         <button type="submit">Search</button>
     </form>
     
       <form method="post">
+      <div class="table-container">
       <table class="content-table">
     <thead>
         <tr>
@@ -47,7 +48,9 @@ if ($result->num_rows > 0) {
         </tr>
     </tbody>  
     </table>
+      </div>
 
+      <div class="table-container">
     <table class="content-table">
         <thead>
             <tr>
@@ -63,6 +66,7 @@ if ($result->num_rows > 0) {
         </tr>
     </tbody>  
     </table>
+      </div>
 
     <input type="submit" name="setGenDis" value="Set Total-Based Discount" class="custom-button1">
     </form>
@@ -91,6 +95,7 @@ if ($result->num_rows > 0) {
 
     ?>
         <form method="post">
+        <div class="table-container">
     <table class="content-table">
         <thead>
             <tr>
@@ -118,6 +123,9 @@ if ($result->num_rows > 0) {
             </tr>
         </tbody>  
         </table>
+        </div>
+
+        <div class="table-container">
         <table class="content-table">
         <thead>
             <th>Discount Starts(YYYY-MM-DD)</th>
@@ -128,6 +136,8 @@ if ($result->num_rows > 0) {
             <td><input type="text" name=catoritemEnd  autocomplete="off" required> </td>
         </tbody>
     </table>
+        </div>
+
     <input type="submit" value="Set Item-Based Discount" name="SetItemDiscount" class="custom-button2">
     </form>
     <?php
@@ -195,7 +205,6 @@ if ($result->num_rows > 0) {
             echo "Invalid Input";
         }
     }?>
-      </table>
 </body>
 
 </html>
