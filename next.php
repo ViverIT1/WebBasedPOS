@@ -55,7 +55,7 @@ if (!isset($_SESSION['username'])) {
             </li>
 
             <li>
-                <a href="#" id="submenu-item-3">
+                <a href="customermanage.php" target="MainIframe" id="submenu-item-3">
                     <i class="fa-solid fa-users-gear"></i>
                     <span class="link_name">Customer Management</span>
                 </a>
@@ -144,7 +144,7 @@ if (!isset($_SESSION['username'])) {
                     <span class="link_name">Terms and Conditions</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="policy.html" id="submenu-blank-4">Terms and Conditions</a></li>
+                    <li><a class="link_name" href="termsCond.html" id="submenu-blank-4">Terms and Conditions</a></li>
                 </ul>
             </li>
 
