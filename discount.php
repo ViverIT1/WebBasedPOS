@@ -25,13 +25,13 @@ if ($result->num_rows > 0) {
 </head>
 <body>
     <h1 class="header">Discount</h1>
-    <form>
+    <form method="post">
         <input type="search" name="search" placeholder="Search...">
         <button type="submit">Search</button>
     </form>
     
-      <form method="post">
-      <table class="content-table">
+      <div class="table-container">
+      <table class="content-table1">
     <thead>
         <tr>
             <th>Discount</th>
@@ -47,8 +47,10 @@ if ($result->num_rows > 0) {
         </tr>
     </tbody>  
     </table>
+      </div>
 
-    <table class="content-table">
+      <div class="table-container">
+        <table class="content-table2">
         <thead>
             <tr>
                 <th>Discount Starts(YYYY-MM-DD)</th>
@@ -57,15 +59,15 @@ if ($result->num_rows > 0) {
         </thead>
         <tbody>
         <tr>
-        <form>
             <td><input type="text" name="genDisStart" autocomplete="off" required></td>
             <td><input type="text" name="genDisEnd" autocomplete="off" required></td>
         </tr>
     </tbody>  
     </table>
+      </div>
 
     <input type="submit" name="setGenDis" value="Set Total-Based Discount" class="custom-button1">
-    </form>
+
     <?php   
         if (isset($_POST['setGenDis'])){
             $GeneralDiscount=$_POST['genDis'];
@@ -90,8 +92,9 @@ if ($result->num_rows > 0) {
         }
 
     ?>
-        <form method="post">
-    <table class="content-table">
+
+        <div class="table-container">
+    <table class="content-table3">
         <thead>
             <tr>
                 <th>Product ID<h6>Leave empty if has category</h6></th>
@@ -118,7 +121,10 @@ if ($result->num_rows > 0) {
             </tr>
         </tbody>  
         </table>
-        <table class="content-table">
+        </div>
+
+        <div class="table-container">
+        <table class="content-table4">
         <thead>
             <th>Discount Starts(YYYY-MM-DD)</th>
             <th>Discount Ends(YYYY-MM-DD)</th>
@@ -128,8 +134,10 @@ if ($result->num_rows > 0) {
             <td><input type="text" name=catoritemEnd  autocomplete="off" required> </td>
         </tbody>
     </table>
+        </div>
+
     <input type="submit" value="Set Item-Based Discount" name="SetItemDiscount" class="custom-button2">
-    </form>
+
     <?php
     if (isset($_REQUEST['SetItemDiscount'])){
         if (!empty($_POST['itemDisProID']) || !empty($_POST['itemDisProName'])) {
@@ -195,7 +203,5 @@ if ($result->num_rows > 0) {
             echo "Invalid Input";
         }
     }?>
-      </table>
 </body>
-
 </html>

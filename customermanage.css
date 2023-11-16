@@ -28,13 +28,14 @@ body {
 
 /* Style for the search form */
 form {
-    text-align: start;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
 }
 
 /* Style for the search input */
 input[type="search"] {
-    padding: 5px;
+    padding: 10px;
     border: 1px solid #176B87;
     border-radius: 3px;
 }

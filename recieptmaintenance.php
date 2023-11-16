@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Receipt Maintenance</title>
+    <title>Temporary Receipt Maintenance</title>
     <link rel="stylesheet" type="text/css" href="recieptmaintenance.css">
 </head>
 <body>
@@ -60,7 +60,7 @@ if ($result->num_rows > 0) {
 ?>
 
 
-<h1>Receipt Maintenance</h1>
+<h1> Temporary Receipt Maintenance</h1>
 
 <!-- Receipt Preview Section -->
 <div class="receipt-preview">

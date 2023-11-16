@@ -22,6 +22,7 @@ include ('PhpCon.php');
         <button type="submit">Search</button>
     </form>
 
+    <div class="table-container">
     <table class="content-table">
         <thead>
             <tr>
@@ -57,12 +58,7 @@ include ('PhpCon.php');
             ?>
         </tbody>
     </table>
-
-    <div class="pagination">
-        <button class="prev-btn">Previous</button>
-        <span class="page-num">1</span>
-        <button class="next-btn">Next</button>
-      </div>
+    </div>
 
 </body>
 </html>

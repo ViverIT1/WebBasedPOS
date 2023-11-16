@@ -18,6 +18,12 @@ body {
   margin-bottom: 20px;
 }
 
+.table-container {
+  max-height: 500px;
+  overflow-y: auto;
+  width: 100%;
+}
+
 .content-table {
     width: 100%;
     border-collapse: collapse;
@@ -45,6 +51,7 @@ body {
     display: flex; 
     align-items: center;
     justify-content: space-between; 
+    margin-bottom: 10px;
 }
 
 .filter-container,
@@ -72,4 +79,300 @@ body {
 
 .search-form button[type="submit"]:hover {
     background-color: #64CCC5;
+}
+
+@media only screen and (max-width: 320px) {
+  body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 15px;
+  }
+
+  h1 {
+      font-size: 15px;
+  }
+
+  label {
+      font-size: 10px;
+  }
+
+  input[type="date"] {
+      font-size: 10px;
+  }
+
+  .content-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      margin-top: 15px;
+  }
+
+  .content-table th {
+      background-color: #176B87;
+      color: white;
+      border: 1px solid black;
+      font-size: 10px;
+  }
+
+  .content-table th, .content-table td {
+      border: 1px solid black;
+      padding: 7px;
+      text-align: center;
+  }
+
+  .content-table td {
+      font-size: 11px;
+  }
+
+  .search-form {
+      position: absolute;
+      top: 58px;
+      right: 15px; /* Adjust if you want it on the right side */
+  }
+  
+  .filter-container{
+      display: flex;
+      margin: 5px 0px;
+  }
+
+  .search-form input[type="search"] {
+      padding: 5px;
+      border: 1px solid #176B87;
+      border-radius: 5px;
+      font-size: 9px;
+      width: 100px;
+  }
+
+  .search-form button[type="submit"] {
+      padding: 5px 10px;
+      background-color: #176B87;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 9px;
+      margin-left: 3px;
+  }
+}
+
+@media only screen and (max-width: 375px) and (min-width: 320px) {
+  body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 15px;
+  }
+
+  h1 {
+      font-size: 15px;
+  }
+
+  label {
+      font-size: 10px;
+  }
+
+  input[type="date"] {
+      font-size: 10px;
+  }
+
+  .content-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      margin-top: 15px;
+  }
+
+  .content-table th {
+      background-color: #176B87;
+      color: white;
+      border: 1px solid black;
+      font-size: 10px;
+  }
+
+  .content-table th, .content-table td {
+      border: 1px solid black;
+      padding: 7px;
+      text-align: center;
+  }
+
+  .content-table td {
+      font-size: 11px;
+  }
+
+  .search-form {
+      position: absolute;
+      top: 58px;
+      right: 15px; /* Adjust if you want it on the right side */
+  }
+  
+  .filter-container{
+      display: flex;
+      margin: 5px 0px;
+  }
+
+  .search-form input[type="search"] {
+      padding: 5px;
+      border: 1px solid #176B87;
+      border-radius: 5px;
+      font-size: 9px;
+      width: 100px;
+  }
+
+  .search-form button[type="submit"] {
+      padding: 5px 10px;
+      background-color: #176B87;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 9px;
+      margin-left: 3px;
+  }
+}
+
+@media only screen and (max-width: 425px) and (min-width: 375px) {
+  body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 15px;
+  }
+
+  h1 {
+      font-size: 20px;
+  }
+
+  label {
+      font-size: 13px;
+  }
+
+  input[type="date"] {
+      font-size: 13px;
+  }
+
+  .content-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      margin-top: 22px;
+  }
+
+  .content-table th {
+      background-color: #176B87;
+      color: white;
+      border: 1px solid black;
+      font-size: 12px;
+  }
+
+  .content-table th, .content-table td {
+      border: 2px solid black;
+      padding: 8px;
+      text-align: center;
+  }
+
+  .content-table td {
+      font-size: 11px;
+  }
+
+  .search-form {
+      position: absolute;
+      top: 73px;
+      right: 15px; /* Adjust if you want it on the right side */
+  }
+  
+  .filter-container{
+      display: flex;
+      margin: 5px 0px;
+  }
+
+  .search-form input[type="search"] {
+      padding: 5px;
+      border: 1px solid #176B87;
+      border-radius: 5px;
+      font-size: 10px;
+      width: 110px;
+  }
+
+  .search-form button[type="submit"] {
+      padding: 6px 10px;
+      background-color: #176B87;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 10px;
+      margin-left: 3px;
+  }
+}
+
+@media only screen and (max-width: 768px) and (min-width: 425px) {
+  body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 17px;
+  }
+
+  h1 {
+      font-size: 23px;
+  }
+
+  label {
+      font-size: 15px;
+  }
+
+  input[type="date"] {
+      font-size: 15px;
+  }
+
+  .content-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      margin-top: 22px;
+  }
+
+  .content-table th {
+      background-color: #176B87;
+      color: white;
+      border: 2px solid black;
+      font-size: 12px;
+  }
+
+  .content-table th, .content-table td {
+      border: 2px solid black;
+      padding: 8px;
+      text-align: center;
+  }
+
+  .content-table td {
+      font-size: 13px;
+  }
+
+  .search-form {
+      position: absolute;
+      top: 78px;
+      right: 15px; /* Adjust if you want it on the right side */
+  }
+  
+  .filter-container{
+      display: flex;
+      margin: 5px 0px;
+  }
+
+  .search-form input[type="search"] {
+      padding: 5px;
+      border: 1px solid #176B87;
+      border-radius: 5px;
+      font-size: 12px;
+      width: 110px;
+  }
+
+  .search-form button[type="submit"] {
+      padding: 6px 10px;
+      background-color: #176B87;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      margin-left: 3px;
+  }
 }

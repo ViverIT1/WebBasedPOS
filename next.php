@@ -114,7 +114,7 @@ if (!isset($_SESSION['username'])) {
                 <li><a href="reodrlistreport.html" target="MainIframe">Re Order List Report</a></li>
                 <li><a href="suppdevreport.html" target="MainIframe">Supplier Delivery Report</a></li>
                 <li><a href="prdexpreport.html" target="MainIframe" >Product Experiration Report</a></li>
-                <li><a href="datanalreport.html" target="MainIframe" >Graphical Presentation</a></li>
+                <li><a href="graphicpres.html" target="MainIframe" >Graphical Presentation</a></li>
                 <li><a href="audit.html" target="MainIframe">Audit Trail</a></li>
                 </ul>
             </li>
@@ -139,12 +139,12 @@ if (!isset($_SESSION['username'])) {
             </li>
 
             <li>
-                <a href="#" id="submenu-item-4">
+                <a href="termsCond.html" target="MainIframe" id="submenu-item-4">
                     <i class="fa-solid fa-gavel"></i>
                     <span class="link_name">Terms and Conditions</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="policy.html" id="submenu-blank-4">Terms and Conditions</a></li>
+                    <li><a class="link_name" href="termsCond.html" id="submenu-blank-4">Terms and Conditions</a></li>
                 </ul>
             </li>
 

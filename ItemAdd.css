@@ -17,6 +17,7 @@ form label {
   display: inline-block; /* Change display to inline-block to appear on the same line */
   margin-bottom: 5px;
   font-weight: bold;
+  font-family: Arial, sans-serif;
   width: 40%; /* Adjust the width of labels to create space for input fields on the right */
 }
 

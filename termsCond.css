@@ -30,18 +30,3 @@ textarea {
     border: 2px solid black;
     padding: 10px;
 }
-
-.btn-update {
-    background-color: #176B87;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 3px;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-.btn-update:hover {
-    background-color: #64CCC5;
-}
