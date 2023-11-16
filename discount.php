@@ -41,6 +41,7 @@ if ($result->num_rows > 0) {
     </thead>
     <tbody>
         <tr>
+            <form method="post">
             <td><input type="text" name="genDis" autocomplete="off"> </td>
             <td><input type="text" name="genDisPer" autocomplete="off"> </td>
             <td><input type="text" name="genDisQual" autocomplete="off"> </td>
@@ -66,7 +67,8 @@ if ($result->num_rows > 0) {
     </table>
       </div>
 
-    <input type="submit" name="setGenDis" value="Set Total-Based Discount" class="custom-button1">
+        <input type="submit" name="setGenDis" value="Set Total-Based Discount" class="custom-button1">
+        </form>
 
     <?php   
         if (isset($_POST['setGenDis'])){
@@ -107,6 +109,7 @@ if ($result->num_rows > 0) {
 
         <tbody>
             <tr>
+                <form method="post">
                 <td><input type="text" name="itemDisProID" autocomplete="off"> </td>
                 <td><input type="text" name="itemDisProName" autocomplete="off"> </td>
                 <td><select name="ItemCat_Picker">
@@ -137,6 +140,7 @@ if ($result->num_rows > 0) {
         </div>
 
     <input type="submit" value="Set Item-Based Discount" name="SetItemDiscount" class="custom-button2">
+    </form>
 
     <?php
     if (isset($_REQUEST['SetItemDiscount'])){
