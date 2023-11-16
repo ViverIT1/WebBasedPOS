@@ -1,4 +1,5 @@
 <?php
+
 class DbOperation {
     private $conn;
 
@@ -8,90 +9,98 @@ class DbOperation {
             die("Connection failed: " . $this->conn->connect_error);
         }
     }
-    public function userLogin($username, $password){
+
+    private function closeConnection() {
+        if ($this->conn) {
+            $this->conn->close();
+        }
+    }
+
+    public function userLogin($username, $password) {
         $this->connect();
 
         $sql = "SELECT * FROM userauth WHERE user_name = ? AND user_password = ?";
-        
+
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
         $result = $stmt->get_result();
-    
+
+        $this->closeConnection();
+
         if ($result->num_rows > 0) {
             return true;
         } else {
             return false;
         }
     }
+
     public function fetchProductdata($productID) {
         $this->connect();
-        $products = array(); // Initialize the array to hold product data
 
-        // Check if the productID starts with "PD"
-        if (strpos($productID, 'PD') === 0) {
-            $itemdis_IDQR = $productID; // Preserve the "PD" prefix
-            $itemlistProductID = substr($productID, 2); // Remove "PD" prefix for searching in itemlist
+        if (strpos($productID, "PD") === 0) {
+            // Product ID starts with "PD"
+            $itemdis = $this->getItemDiscount($productID);
 
-            // Search in the itemdiscount table for "PD"-preserved product ID
-            $sqlDiscount = "SELECT itemdis_IDQR, itemdisper FROM itemdiscount WHERE itemdis_IDQR = ?";
-            $stmtDiscount = $this->conn->prepare($sqlDiscount);
-            $stmtDiscount->bind_param("s", $itemdis_IDQR);
+            // Remove "PD" from the ID to retrieve the product name and price
+            $newProductID = substr($productID, 2);
+            $productData = $this->getItemDetails($newProductID);
 
-            if ($stmtDiscount->execute()) {
-                $resultDiscount = $stmtDiscount->get_result();
+            $this->closeConnection();
 
-                if ($resultDiscount->num_rows > 0) {
-                    while ($rowDiscount = $resultDiscount->fetch_assoc()) {
-                        $products[] = $rowDiscount;
-                    }
-                } else {
-                    // Product not found in itemdiscount
-                    return array('message' => 'Product not found');
-                }
-            } else {
-                // Debugging: Check for SQL query execution errors
-                return array('message' => 'Error executing discount query: ' . $stmtDiscount->error);
-            }
-
-            // Search for pro_name and pro_price in itemlist using the modified product ID
-            $sqlItemList = "SELECT pro_name, pro_price FROM itemlist WHERE pro_IDQR = ?";
-            $stmtItemList = $this->conn->prepare($sqlItemList);
-            $stmtItemList->bind_param("s", $itemlistProductID);
-
-            if ($stmtItemList->execute()) {
-                $resultItemList = $stmtItemList->get_result();
-
-                if ($resultItemList->num_rows > 0) {
-                    while ($rowItemList = $resultItemList->fetch_assoc()) {
-                        $products[] = $rowItemList;
-                    }
-                }
+            if ($itemdis && $productData) {
+                $price = $productData['pro_price'] - ($productData['pro_price'] * ($itemdis['pro_itemdisper'] / 100));
+                return array(
+                    'pro_name' => $productData['pro_name'],
+                    'pro_price' => $price
+                );
             }
         } else {
-            $sql = "SELECT il.pro_IDQR, il.pro_name, il.pro_quantity, il.pro_price, id.itemdisper
-                    FROM itemlist AS il
-                    LEFT JOIN itemdiscount AS id ON il.pro_IDQR = id.itemdis_IDQR
-                    WHERE il.pro_IDQR = ?";
-            $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param("s", $productID);
+            // Product ID doesn't start with "PD", search directly in the itemlist
+            $productData = $this->getItemDetails($productID);
 
-            if ($stmt->execute()) {
-                $result = $stmt->get_result();
+            $this->closeConnection();
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $products[] = $row;
-                    }
-                }
+            if ($productData) {
+                return array(
+                    'pro_name' => $productData['pro_name'],
+                    'pro_price' => $productData['pro_price'],
+                    'pro_quantity' => $productData['pro_quantity']
+                );
             }
         }
+
+        // If the product details are not found, you may return an error or handle it accordingly
+        return null;
     }
 
-    public function generatereport(){
-
+    private function getItemDetails($productID) {
+        // Query the database to fetch pro_name and pro_price based on $productID from the itemlist table
+        // Example:
+        $query = "SELECT pro_name, pro_price, pro_quantity FROM itemlist WHERE pro_IDQR = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("s", $productID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 
+    private function getItemDiscount($productID) {
+        // Query the database to fetch pro_itemdisper based on $productID from the itemdiscount table
+        // Example:
+        $query = "SELECT itemdisper FROM itemdiscount WHERE itemdis_IDQR = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("s", $productID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
+    }
+
+    public function generatereport() {
+        // Logic to generate a report
+        // You can fetch necessary data, format it, and create a report
+        // Example: return $reportData;
+    }
 }
-?>
 
+?>

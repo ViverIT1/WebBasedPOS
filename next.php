@@ -55,12 +55,12 @@ if (!isset($_SESSION['username'])) {
             </li>
 
             <li>
-                <a href="#" id="submenu-item-3">
+                <a href="customermanage.php" target="MainIframe" id="submenu-item-3">
                     <i class="fa-solid fa-users-gear"></i>
                     <span class="link_name">Customer Management</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="customermanage.php" id="submenu-blank-3">Customer Management</a></li>
+                    <li><a class="link_name" href="customermanage.php" target="MainIframe" id="submenu-blank-3">Customer Management</a></li>
                 </ul>
             </li>
 

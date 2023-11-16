@@ -52,7 +52,7 @@ $sql_itemdis = "CREATE TABLE itemdiscount (
     itemdisper DECIMAL(11,2),
     itemdistart date NOT NULL,
     itemdisend date NOT NULL
-)"; //Discount by item
+)"; //Discount database
 
 $sql_catdis = "CREATE TABLE catdiscount (
     catdis_ID BIGINT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
