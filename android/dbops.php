@@ -49,18 +49,19 @@ class DbOperation {
             $this->closeConnection();
 
             if ($itemdis && $productData) {
-                $price = $productData['pro_price'] - ($productData['pro_price'] * ($itemdis['pro_itemdisper'] / 100));
+                $price = $productData['pro_price'] - ($productData['pro_price'] * ($itemdis['itemdisper'] / 100));
                 return array(
                     'pro_name' => $productData['pro_name'],
-                    'pro_price' => $price
+                    'pro_price' => $price,
+                    'pro_quantity' => $productData['pro_quantity']
                 );
             }
         } else {
             // Product ID doesn't start with "PD", search directly in the itemlist
+            
+            $productDisData = $this->getItemDiscount($productID);
             $productData = $this->getItemDetails($productID);
-
-            $this->closeConnection();
-
+            if(!$productDisData){
             if ($productData) {
                 return array(
                     'pro_name' => $productData['pro_name'],
@@ -68,15 +69,21 @@ class DbOperation {
                     'pro_quantity' => $productData['pro_quantity']
                 );
             }
+            }
+            else{
+            $disprice = $productData['pro_price'] - ($productData['pro_price'] * ($productDisData['itemdisper'] / 100));
+                return array(
+                    'pro_name' => $productData['pro_name'],
+                    'pro_price' => $disprice,
+                    'pro_quantity' => $productData['pro_quantity']
+                );
+            }
         }
 
-        // If the product details are not found, you may return an error or handle it accordingly
         return null;
     }
 
     private function getItemDetails($productID) {
-        // Query the database to fetch pro_name and pro_price based on $productID from the itemlist table
-        // Example:
         $query = "SELECT pro_name, pro_price, pro_quantity FROM itemlist WHERE pro_IDQR = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("s", $productID);
@@ -86,8 +93,6 @@ class DbOperation {
     }
 
     private function getItemDiscount($productID) {
-        // Query the database to fetch pro_itemdisper based on $productID from the itemdiscount table
-        // Example:
         $query = "SELECT itemdisper FROM itemdiscount WHERE itemdis_IDQR = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("s", $productID);
@@ -97,9 +102,26 @@ class DbOperation {
     }
 
     public function generatereport() {
-        // Logic to generate a report
-        // You can fetch necessary data, format it, and create a report
-        // Example: return $reportData;
+    }
+    public function retrieveDis($productprice){
+        
+    }
+    public function retrievetax() {
+        $this->connect();
+
+        $query = "SELECT taxPer FROM taxmnt LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $taxData = $result->fetch_assoc();
+
+        $this->closeConnection();
+
+        if ($taxData) {
+            return $taxData['taxPer'];
+        } else {
+            return null;
+        }
     }
 }
 
