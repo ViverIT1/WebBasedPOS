@@ -33,6 +33,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Cashiering</title>
         <link rel="stylesheet" type="text/css" href="cashiering.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
     <body>
                 <label for="customer">Customer:</label>
@@ -41,13 +42,22 @@
                 <div class="input-group">
                     <form method="post" action="cashieringRetrieve.php" id="cashierForm" autocomplete="off">
                         <div class="container">
-                            <label for="product">Product Code</label>
-                            <input type="text" id="productQR" name="productQR" placeholder="Enter your Product">
-                            <label for="product">Quantity</label>
+                        <div class="input-container">
+                            <input type="text" class="search-input" id="productQR" name="productQR" placeholder="Enter your Product">
+                            <i class="icon fas fa-search" onclick="openSearchModal()"></i>
+                        </div>
+                        <label for="product">Quantity</label>
                             <input type="number" id="quantity" name="quantity" value="1" placeholder="1">
                             <input type="submit" value="Add to cart">
                         </div>
                     </form>                              
+                </div>
+                <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <input type="text" id="searchItem" placeholder="Search by ID or Name">
+                    <ul id="itemList"></ul>
+                    <button onclick="closeSearchModal()">Close</button>
+                </div>
                 </div>
 
                 <div class="table-container">
@@ -125,6 +135,59 @@
                 </div>
                         
             <script>
+            document.getElementById('searchItem').addEventListener('input', function () {
+                searchItems(this.value);
+            });
+
+            function searchItems(query) {
+                var itemList = document.getElementById('itemList');
+                itemList.innerHTML = ''; // Clear previous results
+
+                // Fetch data from the server using AJAX
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            var items = JSON.parse(xhr.responseText);
+
+                            // Display search results in the modal
+                            items.forEach(function (item) {
+                                var listItem = document.createElement('li');
+                                listItem.textContent = item.pro_name;
+                                listItem.setAttribute('data-id', item.pro_IDQR);
+                                listItem.addEventListener('click', function () {
+                                    selectItem(this);
+                                });
+                                itemList.appendChild(listItem);
+                            });
+                        } else {
+                            console.error('Failed to fetch items:', xhr.status, xhr.statusText);
+                        }
+                    }
+                };
+
+                // Replace 'your_server_endpoint.php' with the actual server-side script
+                xhr.open('GET', 'cashItmSearch.php?query=' + encodeURIComponent(query), true);
+                xhr.send();
+            }
+
+            function selectItem(item) {
+                var productId = item.getAttribute('data-id');
+                document.getElementById('productQR').value = productId;
+                closeSearchModal();
+            }
+            //Search Modal
+            function openSearchModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'flex';
+            }
+
+            function closeSearchModal() {
+                var modal = document.getElementById('myModal');
+                modal.style.display = 'none';
+            }
+            //till here
+
 function fetchAndPopulateProducts(productID, quantity) {
     const url = `cashieringRetrieve.php?productID=${productID}`;
     
