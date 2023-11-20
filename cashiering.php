@@ -46,9 +46,11 @@
                             <input type="text" class="search-input" id="productQR" name="productQR" placeholder="Enter your Product">
                             <i class="icon fas fa-search" onclick="openSearchModal()"></i>
                         </div>
+                        <div class="quantity-container">
                         <label for="product">Quantity</label>
                             <input type="number" id="quantity" name="quantity" value="1" placeholder="1">
                             <input type="submit" value="Add to cart">
+                        </div>
                         </div>
                     </form>                              
                 </div>
@@ -56,7 +58,7 @@
                 <div class="modal-content">
                     <input type="text" id="searchItem" placeholder="Search by ID or Name">
                     <ul id="itemList"></ul>
-                    <button onclick="closeSearchModal()">Close</button>
+                    <button class="modal-button" onclick="closeSearchModal()">Close</button>
                 </div>
                 </div>
 
